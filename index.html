@@ -496,22 +496,22 @@
 				padding: 15px 0;
 			}
 
+			/* LOGO STYLES - UPDATED */
 			.logo {
-				font-size: 1.8rem;
-				font-weight: 700;
-				color: #1a5fce;
-				text-decoration: none;
 				display: flex;
 				align-items: center;
-				gap: 10px;
+				text-decoration: none;
 			}
 
-			.logo span {
-				color: #ff6b35;
+			.logo-svg {
+				width: 200px;
+				height: 60px;
+				transition: all 0.3s ease;
 			}
 
-			.logo i {
-				font-size: 1.5rem;
+			.logo-svg:hover {
+				transform: scale(1.03);
+				opacity: 0.95;
 			}
 
 			/* Desktop Navigation */
@@ -636,8 +636,9 @@
 					display: block;
 				}
 
-				.logo {
-					font-size: 1.6rem;
+				.logo-svg {
+					width: 180px;
+					height: 55px;
 				}
 			}
 
@@ -648,6 +649,11 @@
 
 				.header-container {
 					padding: 12px 0;
+				}
+
+				.logo-svg {
+					width: 160px;
+					height: 50px;
 				}
 
 				.nav-cta {
@@ -706,12 +712,10 @@
 		<header>
 			<div class="container header-container">
 				<a href="#" class="logo">
-					<i class=""></i>
-					<span>Sales4Sight Inc.</span>
+    				<img src="Logo_New_1.png" alt="Sales4Sight Logo" class="logo-img">
 				</a>
-
 				<button class="mobile-menu-btn" id="mobileMenuBtn">
-					<i class=""></i>
+					<i class="fas fa-bars"></i>
 				</button>
 
 				<!-- Desktop Navigation -->
@@ -724,7 +728,7 @@
 					<li><a href="#results">Results</a></li>
 					<li>
 						<a href="https://forms.gle/BQbr35Mqxesrd8ZDA" class="nav-cta"
-							>Book a Free Consultation Call!</a
+							>Start your journey!</a
 						>
 					</li>
 				</ul>
@@ -739,7 +743,7 @@
 					<li><a href="#results">Results</a></li>
 					<li>
 						<a href="https://forms.gle/BQbr35Mqxesrd8ZDA" class="nav-cta"
-							>Book a Free Consultation Call!</a
+							>Start your journey!</a
 						>
 					</li>
 				</ul>
@@ -1264,7 +1268,7 @@
 						methodology and technology platform to make them reality.
 					</p>
 					<a href="https://forms.gle/BQbr35Mqxesrd8ZDA" class="btn btn-primary"
-						>Start Your Journey!</a
+						>Call Us</a
 					>
 				</div>
 			</div>
@@ -1286,7 +1290,7 @@
 						Ready to Transform Your Sales Operation?
 					</h3>
 					<a href="https://forms.gle/BQbr35Mqxesrd8ZDA" class="btn btn-primary"
-						>Start Your Journey!</a
+						>Book a Free Consultation Call!</a
 					>
 				</div>
 			</div>
