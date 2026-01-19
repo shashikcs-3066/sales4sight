@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Assessment - Sales4Sight</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==============================
+           ACCESS CONTROL STYLES
+           ============================== */
+        .access-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* ==============================
+           GAME STYLES (from sales_simulation.html)
+           ============================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #7c3aed;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --light-bg: #f8fafc;
+            --dark-bg: #1e293b;
+            --text-dark: #334155;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content Area */
+        .content {
+            padding: 40px;
+            min-height: 600px;
+        }
+
+        /* Screen Management */
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Form Styles */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: var(--light-bg);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 16px;
+            background: var(--light-bg);
+            cursor: pointer;
+        }
+
+        /* Button Styles */
+        .btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #64748b;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Game Screen Styles */
+        .game-header {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .progress-container {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 5px;
+        }
+
+        .topic-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .experience-badge {
+            background: var(--success-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Question Card */
+        .question-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-number {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+        }
+
+        /* Answer Options */
+        .answers-grid {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .answer-option {
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .answer-option:hover {
+            border-color: var(--primary-color);
+            background: #f0f7ff;
+            transform: translateX(5px);
+        }
+
+        .answer-option.selected {
+            border-color: var(--primary-color);
+            background: #f0f7ff;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
+        }
+
+        .answer-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+            margin-right: 15px;
+            color: var(--text-light);
+        }
+
+        .answer-option.selected .answer-letter {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .answer-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        /* Results Screen */
+        .results-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .score-display {
+            margin: 40px 0;
+        }
+
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--primary-color) 0% var(--percentage),
+                var(--light-bg) var(--percentage) 100%
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+        }
+
+        .score-inner {
+            width: 160px;
+            height: 160px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .performance-level {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 20px 0;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+        }
+
+        .performance-level.excellent {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .performance-level.good {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .performance-level.needs-improvement {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Topic Performance */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .topic-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .topic-name {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .topic-score {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .topic-score.excellent { color: var(--success-color); }
+        .topic-score.good { color: var(--warning-color); }
+        .topic-score.weak { color: var(--danger-color); }
+
+        .topic-status {
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .topic-status.strong {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .topic-status.average {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .topic-status.weak {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Recommendations */
+        .recommendations {
+            background: var(--light-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: left;
+        }
+
+        .recommendations h3 {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .recommendation-list {
+            list-style: none;
+        }
+
+        .recommendation-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .recommendation-list li:last-child {
+            border-bottom: none;
+        }
+
+        .recommendation-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .recommendation-icon.improve {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .recommendation-icon.maintain {
+            background: var(--success-color);
+            color: white;
+        }
+
+        /* User Info Display */
+        .user-info-display {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .user-details h3 {
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .user-details p {
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        /* Feedback Messages */
+        .feedback {
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #d1fae5;
+            border: 2px solid #a7f3d0;
+            color: #065f46;
+        }
+
+        .feedback.incorrect {
+            background: #fee2e2;
+            border: 2px solid #fecaca;
+            color: #991b1b;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Instructions */
+        .instructions {
+            background: var(--light-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .instructions h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .instructions-list {
+            list-style: none;
+        }
+
+        .instructions-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .instructions-list li:last-child {
+            border-bottom: none;
+        }
+
+        .instruction-number {
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Error Messages */
+        .error-message {
+            color: var(--danger-color);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--border-color);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .game-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .progress-container {
+                min-width: 100%;
+            }
+
+            .score-circle {
+                width: 150px;
+                height: 150px;
+            }
+
+            .score-inner {
+                width: 120px;
+                height: 120px;
+            }
+
+            .score-value {
+                font-size: 2.5rem;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .user-info-display {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .navigation .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Game Container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎯 Sales Mastery Simulation</h1>
+            <p>Test your sales expertise across experience levels and topics</p>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content">
+            <!-- Registration Screen -->
+            <div id="screen-register" class="screen active">
+                <div class="form-container">
+                    <h2 style="margin-bottom: 30px; color: var(--text-dark);">Begin Your Assessment</h2>
+                    <p style="margin-bottom: 40px; color: var(--text-light); line-height: 1.6;">
+                        Please provide your details to start the sales mastery assessment. 
+                        Your experience level will determine the difficulty of questions.
+                    </p>
+                    
+                    <form id="registration-form">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                            <div class="error-message" id="name-error">Please enter your name</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number *</label>
+                            <input type="tel" id="mobile" class="form-control" placeholder="Enter your mobile number" required>
+                            <div class="error-message" id="mobile-error">Please enter a valid 10-digit mobile number</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+                            <div class="error-message" id="email-error">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Sales Experience *</label>
+                            <select id="experience" class="form-select" required>
+                                <option value="">Select your experience level</option>
+                                <option value="0">Entry Level (0-2 Years)</option>
+                                <option value="1">Mid Level (2-10 Years)</option>
+                                <option value="2">Senior Level (Above 10 Years)</option>
+                            </select>
+                            <div class="error-message" id="experience-error">Please select your experience level</div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 40px;">
+                            <button type="submit" class="btn" style="min-width: 200px;">
+                                Start Assessment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Instructions Screen -->
+            <div id="screen-instructions" class="screen">
+                <div class="user-info-display">
+                    <div class="user-details">
+                        <h3 id="user-name">John Doe</h3>
+                        <p id="user-experience">Experience: Entry Level (0-2 Years)</p>
+                        <p id="user-contact">Email: john@example.com | Phone: 1234567890</p>
+                    </div>
+                    <div class="experience-badge" id="experience-badge">Entry Level</div>
+                </div>
+
+                <div class="instructions">
+                    <h3>📋 Assessment Instructions</h3>
+                    <ul class="instructions-list">
+                        <li>
+                            <div class="instruction-number">1</div>
+                            <div>You will answer <strong>60 questions</strong> across 15 sales topics</div>
+                        </li>
+                        <li>
+                            <div class="instruction-number">2</div>
+                            <div>Each question has 3 possible answers - all are correct but vary in effectiveness</div>
+                        </li>
+                        <li>
+                            <div class="instruction-number">3</div>
+                            <div><strong>Good</strong> = 1 point | <strong>Better</strong> = 2 points | <strong>Best</strong> = 3 points</div>
+                        </li>
+                        <li>
+                            <div class="instruction-number">4</div>
+                            <div>Select the <strong>most effective</strong> answer for your situation</div>
+                        </li>
+                        <li>
+                            <div class="instruction-number">5</div>
+                            <div>Complete all questions to receive your detailed performance report</div>
+                        </li>
+                        <li>
+                            <div class="instruction-number">6</div>
+                            <div>Time limit: No time limit, but try to maintain a steady pace</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <button id="start-assessment" class="btn" style="min-width: 200px;">
+                        Begin Assessment
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Screen -->
+            <div id="screen-loading" class="screen">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <h3 style="margin-bottom: 10px; color: var(--text-dark);">Loading Assessment</h3>
+                    <p style="color: var(--text-light);">Preparing questions based on your experience level...</p>
+                </div>
+            </div>
+
+            <!-- Game Screen -->
+            <div id="screen-game" class="screen">
+                <div class="game-header">
+                    <div class="progress-container">
+                        <div class="progress-info">
+                            <span>Question <span id="current-question">1</span> of <span id="total-questions">60</span></span>
+                            <span><span id="topic-name">Communication</span></span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                    <div class="topic-tag" id="current-topic">Communication</div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-number">Question <span id="question-counter">1</span></div>
+                    <div class="question-text" id="question-text">
+                        Loading question...
+                    </div>
+                    
+                    <div class="answers-grid" id="answers-container">
+                        <!-- Answers will be populated here -->
+                    </div>
+
+                    <div class="feedback" id="feedback">
+                        <!-- Feedback will appear here -->
+                    </div>
+
+                    <div class="navigation">
+                        <button id="prev-btn" class="btn btn-secondary" disabled>
+                            ← Previous
+                        </button>
+                        
+                        <div style="display: flex; gap: 10px;">
+                            <button id="skip-btn" class="btn btn-outline">
+                                Skip Question
+                            </button>
+                            <button id="next-btn" class="btn">
+                                Next Question →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="screen-results" class="screen">
+                <div class="results-container">
+                    <h2 style="margin-bottom: 20px; color: var(--text-dark);">Assessment Complete!</h2>
+                    <p id="user-greeting" style="color: var(--text-light); margin-bottom: 40px;">
+                        Congratulations on completing the assessment!
+                    </p>
+
+                    <div class="score-display">
+                        <div class="score-circle" id="score-circle">
+                            <div class="score-inner">
+                                <div class="score-value" id="score-percentage">0%</div>
+                                <div class="score-label">Overall Score</div>
+                            </div>
+                        </div>
+                        
+                        <div class="performance-level" id="performance-level">
+                            Loading...
+                        </div>
+                        
+                        <div style="margin: 20px 0;">
+                            <p style="color: var(--text-light);">
+                                Score: <strong id="score-total">0</strong> out of <strong>180</strong> points
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="topics-grid" id="topics-grid">
+                        <!-- Topic scores will be populated here -->
+                    </div>
+
+                    <div class="recommendations">
+                        <h3>📈 Performance Recommendations</h3>
+                        <ul class="recommendation-list" id="recommendation-list">
+                            <!-- Recommendations will be populated here -->
+                        </ul>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
+                        <button id="restart-btn" class="btn">
+                            Retake Assessment
+                        </button>
+                        <button id="download-btn" class="btn btn-secondary">
+                            Download Report
+                        </button>
+                        <button id="share-btn" class="btn btn-outline">
+                            Share Results
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==============================
+        // ACCESS CONTROL - ADD THIS FIRST
+        // ==============================
+        
+        function checkAccess() {
+            // Get code from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlCode = urlParams.get('code');
+            
+            // Get code from session
+            const sessionData = localStorage.getItem('s4s_current_access');
+            
+            if (!urlCode && !sessionData) {
+                showAccessDenied();
+                return false;
+            }
+            
+            // Check session validity
+            if (sessionData) {
+                const accessData = JSON.parse(sessionData);
+                const accessTime = new Date(accessData.timestamp);
+                const now = new Date();
+                
+                if (now - accessTime > accessData.validFor) {
+                    localStorage.removeItem('s4s_current_access');
+                    showAccessDenied("Session expired. Please get a new access code.");
+                    return false;
+                }
+                
+                // Session is valid
+                return true;
+            }
+            
+            // If URL code exists, validate it
+            if (urlCode) {
+                const savedCodes = localStorage.getItem('s4s_access_usage');
+                if (savedCodes) {
+                    const codes = JSON.parse(savedCodes);
+                    if (codes[urlCode] !== undefined) {
+                        // Create session
+                        const accessData = {
+                            code: urlCode,
+                            timestamp: new Date().toISOString(),
+                            validFor: 24 * 60 * 60 * 1000
+                        };
+                        localStorage.setItem('s4s_current_access', JSON.stringify(accessData));
+                        return true;
+                    }
+                }
+            }
+            
+            showAccessDenied();
+            return false;
+        }
+        
+        function showAccessDenied(message = "Access denied. Please use a valid access link.") {
+            document.body.innerHTML = `
+                <div style="
+                    text-align: center;
+                    padding: 60px 20px;
+                    font-family: Arial, sans-serif;
+                    background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+                    min-height: 100vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                ">
+                    <div style="
+                        background: white;
+                        padding: 50px 40px;
+                        border-radius: 20px;
+                        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                        max-width: 500px;
+                        width: 100%;
+                    ">
+                        <h1 style="color: #dc2626; margin-bottom: 20px;">
+                            <i class="fas fa-lock" style="font-size: 3rem; margin-bottom: 20px;"></i><br>
+                            Access Restricted
+                        </h1>
+                        <p style="font-size: 1.2rem; color: #444; margin-bottom: 25px;">
+                            ${message}
+                        </p>
+                        <p style="color: #666; margin-bottom: 30px;">
+                            This assessment is available by invitation only.
+                        </p>
+                        <a href="index.html" style="
+                            display: inline-block;
+                            background: #2563eb;
+                            color: white;
+                            padding: 15px 30px;
+                            border-radius: 10px;
+                            text-decoration: none;
+                            font-weight: 600;
+                            font-size: 1.1rem;
+                        ">
+                            <i class="fas fa-arrow-left"></i> Return to Access Portal
+                        </a>
+                        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                            <p style="color: #888; font-size: 0.9rem;">
+                                Need help? <a href="mailto:support@sales4sight.com" style="color: #2563eb;">Contact Support</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Check access on page load
+        if (!checkAccess()) {
+            throw new Error("Access denied - stopping page load");
+        }
+        
+        // ==============================
+        // YOUR ORIGINAL GAME CODE STARTS HERE
+        // ==============================
+        
+        // Global variables
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let userScores = [];
+        let userInfo = {};
+        let selectedQuestions = [];
+
+        // Complete question bank with 60 questions
+        const questionBank = [
+            // Communication (Questions 1-4)
+            {
+                topic: "Communication",
+                text: "How do you ensure your message is clear when speaking with a potential customer who may not be familiar with technical terms?",
+                answers: [
+                    { text: "I avoid using technical jargon and explain concepts in simple language", points: 1 },
+                    { text: "I ask if they understand as I go and adjust my language based on their responses", points: 2 },
+                    { text: "I prepare analogies related to their industry and check for understanding throughout", points: 3 }
+                ]
+            },
+            {
+                topic: "Communication",
+                text: "Describe a situation where you had to adapt your communication style to match a customer's preference. What did you do?",
+                answers: [
+                    { text: "I noticed they preferred short emails, so I kept my messages concise", points: 1 },
+                    { text: "When a customer was very analytical, I provided more data and less storytelling", points: 2 },
+                    { text: "I mirror their communication pace and style after assessing their preferences in the first few minutes", points: 3 }
+                ]
+            },
+            {
+                topic: "Communication",
+                text: "What techniques do you use to actively listen to a customer's needs during a conversation?",
+                answers: [
+                    { text: "I take notes and summarize what I hear to confirm understanding", points: 1 },
+                    { text: "I maintain eye contact and avoid interrupting while they're speaking", points: 2 },
+                    { text: "I use verbal affirmations, ask clarifying questions, and paraphrase their points", points: 3 }
+                ]
+            },
+            {
+                topic: "Communication",
+                text: "How do you handle a situation where a customer interrupts you frequently during a sales conversation?",
+                answers: [
+                    { text: "I politely pause and let them finish before continuing", points: 1 },
+                    { text: "I acknowledge their points and gently redirect to ensure we cover key topics", points: 2 },
+                    { text: "I assess if they're excited or frustrated, adapt my pacing, and use it as engagement", points: 3 }
+                ]
+            },
+            // Sales Pitch (Questions 5-8)
+            {
+                topic: "Sales Pitch",
+                text: "What are the three most important elements you include in your sales pitch?",
+                answers: [
+                    { text: "Problem, solution, and call to action", points: 1 },
+                    { text: "Customer pain point, value proposition, and next steps", points: 2 },
+                    { text: "Customer context, tailored solution, clear ROI, and defined next steps", points: 3 }
+                ]
+            },
+            {
+                topic: "Sales Pitch",
+                text: "How do you customize your standard pitch when you learn something new about a prospect's business?",
+                answers: [
+                    { text: "I mention their specific company name and industry", points: 1 },
+                    { text: "I adjust examples to match their business challenges", points: 2 },
+                    { text: "I reframe benefits around their specific metrics and priorities", points: 3 }
+                ]
+            },
+            {
+                topic: "Sales Pitch",
+                text: "Walk me through how you would pitch our product/service to a small business owner you're meeting for the first time.",
+                answers: [
+                    { text: "Start with who we are, what we do, and why they need it", points: 1 },
+                    { text: "Ask about their challenges first, then present relevant solutions", points: 2 },
+                    { text: "Research their business, start with industry insights, connect to their goals, then present tailored value", points: 3 }
+                ]
+            },
+            {
+                topic: "Sales Pitch",
+                text: "How do you know when your pitch is resonating with a prospect versus falling flat?",
+                answers: [
+                    { text: "If they ask questions and seem engaged", points: 1 },
+                    { text: "Body language, verbal affirmations, and relevant questions", points: 2 },
+                    { text: "They start co-creating the solution with you and discussing implementation", points: 3 }
+                ]
+            },
+            // Cold Calling (Questions 9-12)
+            {
+                topic: "Cold Calling",
+                text: "What do you say in the first 10 seconds of a cold call to grab the prospect's attention?",
+                answers: [
+                    { text: "Introduce yourself and ask if they have a moment", points: 1 },
+                    { text: "Mention a specific challenge in their industry and ask if they're facing it", points: 2 },
+                    { text: "Reference a specific insight about their company and connect to potential value", points: 3 }
+                ]
+            },
+            {
+                topic: "Cold Calling",
+                text: "How do you handle the nervousness or anxiety that comes with making cold calls?",
+                answers: [
+                    { text: "Take deep breaths and remember it's just a numbers game", points: 1 },
+                    { text: "Prepare a script but stay flexible, focus on helping not selling", points: 2 },
+                    { text: "Reframe as research conversations, track metrics to see progress", points: 3 }
+                ]
+            },
+            {
+                topic: "Cold Calling",
+                text: "When a gatekeeper asks 'What is this regarding?', what is your typical response?",
+                answers: [
+                    { text: "Tell them it's about your product/service", points: 1 },
+                    { text: "Mention you're following up on previous contact or referral", points: 2 },
+                    { text: "Be specific about value you bring to their role/department", points: 3 }
+                ]
+            },
+            {
+                topic: "Cold Calling",
+                text: "How many cold calls do you think you should make in a day to be effective?",
+                answers: [
+                    { text: "20-30 calls minimum", points: 1 },
+                    { text: "Quality matters more than quantity, aim for 15-20 well-researched calls", points: 2 },
+                    { text: "Depends on industry and target, but focus on conversion rate not call count", points: 3 }
+                ]
+            },
+            // Presentation Skill (Questions 13-16)
+            {
+                topic: "Presentation Skill",
+                text: "What tools or software do you use to create sales presentations?",
+                answers: [
+                    { text: "PowerPoint or Google Slides", points: 1 },
+                    { text: "Presentation software plus data visualization tools", points: 2 },
+                    { text: "Mix of presentation tools, interactive demos, and customer testimonials", points: 3 }
+                ]
+            },
+            {
+                topic: "Presentation Skill",
+                text: "How do you prepare for a sales presentation to ensure you're ready for questions?",
+                answers: [
+                    { text: "Review the product features and common questions", points: 1 },
+                    { text: "Research the prospect and anticipate their specific concerns", points: 2 },
+                    { text: "Conduct pre-call discovery and prepare tailored responses to likely objections", points: 3 }
+                ]
+            },
+            {
+                topic: "Presentation Skill",
+                text: "What do you do if your presentation technology fails during a meeting?",
+                answers: [
+                    { text: "Apologize and reschedule", points: 1 },
+                    { text: "Have backup materials ready and continue conversationally", points: 2 },
+                    { text: "Use it as opportunity for more interactive, whiteboard-style discussion", points: 3 }
+                ]
+            },
+            {
+                topic: "Presentation Skill",
+                text: "How do you structure a 15-minute product presentation to keep the audience engaged?",
+                answers: [
+                    { text: "Problem (2 min), solution (10 min), Q&A (3 min)", points: 1 },
+                    { text: "Hook (1 min), their challenge (3 min), solution (7 min), next steps (4 min)", points: 2 },
+                    { text: "Diagnostic questions (3 min), tailored insights (5 min), specific solution (5 min), commitment (2 min)", points: 3 }
+                ]
+            },
+            // Sales Process (Questions 17-20)
+            {
+                topic: "Sales Process",
+                text: "Can you describe the basic steps you follow from first contact to closing a deal?",
+                answers: [
+                    { text: "Prospect, present, close", points: 1 },
+                    { text: "Prospect, qualify, present, handle objections, close", points: 2 },
+                    { text: "Research, connect, discover, present, negotiate, close, onboard", points: 3 }
+                ]
+            },
+            {
+                topic: "Sales Process",
+                text: "At what point in the sales process do you typically discuss pricing with a prospect?",
+                answers: [
+                    { text: "Early on to qualify budget", points: 1 },
+                    { text: "After establishing value and need", points: 2 },
+                    { text: "Once we've co-created the solution scope and they see the ROI", points: 3 }
+                ]
+            },
+            {
+                topic: "Sales Process",
+                text: "How do you track your progress with each prospect through the sales pipeline?",
+                answers: [
+                    { text: "Spreadsheet or CRM with basic stages", points: 1 },
+                    { text: "CRM with stages, next steps, and probability scoring", points: 2 },
+                    { text: "CRM with multi-thread tracking, stakeholder mapping, and deal scoring", points: 3 }
+                ]
+            },
+            {
+                topic: "Sales Process",
+                text: "What does 'qualifying a lead' mean to you, and why is it important?",
+                answers: [
+                    { text: "Checking if they have budget and authority", points: 1 },
+                    { text: "Assessing BANT: Budget, Authority, Need, Timeline", points: 2 },
+                    { text: "Evaluating fit, urgency, stakeholders, and mutual value potential", points: 3 }
+                ]
+            },
+            // Questioning Skill (Questions 21-24)
+            {
+                topic: "Questioning Skill",
+                text: "What are three questions you always ask when first speaking with a potential customer?",
+                answers: [
+                    { text: "What do you do? What challenges are you facing? What's your budget?", points: 1 },
+                    { text: "What are your goals? What's preventing achievement? What have you tried?", points: 2 },
+                    { text: "What does success look like? What's the impact of not solving this? Who's involved in decisions?", points: 3 }
+                ]
+            },
+            {
+                topic: "Questioning Skill",
+                text: "How do open-ended questions differ from closed-ended questions, and when do you use each type?",
+                answers: [
+                    { text: "Open-ended get stories, closed get facts. Use open for discovery", points: 1 },
+                    { text: "Open for exploration, closed for confirmation. Balance both in conversation", points: 2 },
+                    { text: "Open to understand context and emotions, closed to verify specifics and gain commitment", points: 3 }
+                ]
+            },
+            {
+                topic: "Questioning Skill",
+                text: "Give an example of a question you'd ask to uncover a customer's pain points.",
+                answers: [
+                    { text: "What problems are you having with your current solution?", points: 1 },
+                    { text: "What's the biggest challenge impacting your team's productivity?", points: 2 },
+                    { text: "If you could eliminate one bottleneck in your process, what would have the biggest impact on your goals?", points: 3 }
+                ]
+            },
+            {
+                topic: "Questioning Skill",
+                text: "How do you respond when a prospect answers your question with 'I don't know'?",
+                answers: [
+                    { text: "Move to a different question", points: 1 },
+                    { text: "Rephrase the question or provide context", points: 2 },
+                    { text: "Explore why they don't know - is it lack of information, complexity, or organizational issue?", points: 3 }
+                ]
+            },
+            // Buying Process (Questions 25-28)
+            {
+                topic: "Buying Process",
+                text: "What factors typically influence a customer's decision to purchase a product or service?",
+                answers: [
+                    { text: "Price, features, and reputation", points: 1 },
+                    { text: "ROI, fit with needs, and vendor credibility", points: 2 },
+                    { text: "Strategic alignment, implementation ease, cultural fit, and total cost of ownership", points: 3 }
+                ]
+            },
+            {
+                topic: "Buying Process",
+                text: "How does understanding a customer's budget help you in the sales process?",
+                answers: [
+                    { text: "It tells me if they can afford our solution", points: 1 },
+                    { text: "Helps tailor solution scope and payment options", points: 2 },
+                    { text: "Reveals priorities, decision timeframe, and helps build business case", points: 3 }
+                ]
+            },
+            {
+                topic: "Buying Process",
+                text: "What is the difference between a decision-maker and an influencer in the buying process?",
+                answers: [
+                    { text: "Decision-maker signs, influencer recommends", points: 1 },
+                    { text: "Decision-maker has budget authority, influencer impacts evaluation", points: 2 },
+                    { text: "Decision-maker approves purchase, influencer defines requirements and evaluates options", points: 3 }
+                ]
+            },
+            {
+                topic: "Buying Process",
+                text: "How long does a typical buying process take in your current role, and what factors affect this timeline?",
+                answers: [
+                    { text: "1-2 months depending on company size", points: 1 },
+                    { text: "30-90 days, affected by budget cycles and urgency", points: 2 },
+                    { text: "45-180 days based on deal size, stakeholders, and organizational change required", points: 3 }
+                ]
+            },
+            // Objection Handling (Questions 29-32)
+            {
+                topic: "Objection Handling",
+                text: "What is the most common objection you hear from prospects, and how do you respond to it?",
+                answers: [
+                    { text: "\"Too expensive\" - I explain value and offer payment plans", points: 1 },
+                    { text: "\"We're happy with current vendor\" - I explore gaps and differentiation", points: 2 },
+                    { text: "\"Need to think about it\" - I diagnose real concern and create urgency with value", points: 3 }
+                ]
+            },
+            {
+                topic: "Objection Handling",
+                text: "When a prospect says 'It's too expensive,' what questions do you ask before responding?",
+                answers: [
+                    { text: "\"Compared to what?\" and \"What's your budget?\"", points: 1 },
+                    { text: "\"What specifically seems high?\" and \"What value were you expecting?\"", points: 2 },
+                    { text: "\"Help me understand your budget constraints\" and \"What's the cost of not solving this?\"", points: 3 }
+                ]
+            },
+            {
+                topic: "Objection Handling",
+                text: "How do you differentiate between a genuine objection and a brush-off?",
+                answers: [
+                    { text: "Genuine objections have specific reasons", points: 1 },
+                    { text: "Ask probing questions to understand root cause", points: 2 },
+                    { text: "Genuine objections come with engagement, brush-offs lack specificity or follow-up interest", points: 3 }
+                ]
+            },
+            {
+                topic: "Objection Handling",
+                text: "Describe your approach when a prospect says they need to 'think about it.'",
+                answers: [
+                    { text: "Give them time and follow up in a week", points: 1 },
+                    { text: "Ask what specifically they need to think about", points: 2 },
+                    { text: "Explore concerns, provide additional value, and schedule specific next steps", points: 3 }
+                ]
+            },
+            // Value Proposition (Questions 33-36)
+            {
+                topic: "Value Proposition",
+                text: "In one sentence, what value does your current product/service provide to customers?",
+                answers: [
+                    { text: "It helps businesses save time and money", points: 1 },
+                    { text: "It increases efficiency and reduces costs by automating processes", points: 2 },
+                    { text: "It drives revenue growth while decreasing operational expenses through intelligent automation", points: 3 }
+                ]
+            },
+            {
+                topic: "Value Proposition",
+                text: "How do you explain the difference between features and benefits to a prospect?",
+                answers: [
+                    { text: "Features are what it does, benefits are why it matters", points: 1 },
+                    { text: "Features are capabilities, benefits are outcomes that solve problems", points: 2 },
+                    { text: "Features tell, benefits sell - connect each feature to specific customer outcomes", points: 3 }
+                ]
+            },
+            {
+                topic: "Value Proposition",
+                text: "What makes your product/service different from competitors, and how do you communicate this?",
+                answers: [
+                    { text: "We have better features and price", points: 1 },
+                    { text: "Our unique approach to [specific capability] and customer support", points: 2 },
+                    { text: "We focus on [specific outcome] rather than just features, backed by data and testimonials", points: 3 }
+                ]
+            },
+            {
+                topic: "Value Proposition",
+                text: "How do you demonstrate ROI or value to a prospect who is price-sensitive?",
+                answers: [
+                    { text: "Show cost savings calculations", points: 1 },
+                    { text: "Present case studies with measurable results", points: 2 },
+                    { text: "Build custom ROI model based on their specific metrics and business impact", points: 3 }
+                ]
+            },
+            // ICP & Persona (Questions 37-40)
+            {
+                topic: "ICP & Persona",
+                text: "What does ICP stand for, and why is it important in sales?",
+                answers: [
+                    { text: "Ideal Customer Profile - helps target the right companies", points: 1 },
+                    { text: "Ideal Customer Profile - increases conversion rates by focusing on best-fit prospects", points: 2 },
+                    { text: "Ideal Customer Profile - aligns sales and marketing on characteristics of highest-value customers", points: 3 }
+                ]
+            },
+            {
+                topic: "ICP & Persona",
+                text: "Describe the typical customer profile you target in your current role.",
+                answers: [
+                    { text: "Small to medium businesses in our industry", points: 1 },
+                    { text: "Companies with 50-500 employees facing specific operational challenges", points: 2 },
+                    { text: "Mid-market companies in growth phase with digital transformation initiatives and specific pain points", points: 3 }
+                ]
+            },
+            {
+                topic: "ICP & Persona",
+                text: "How do you identify whether a lead fits your ideal customer profile?",
+                answers: [
+                    { text: "Check company size and industry", points: 1 },
+                    { text: "Evaluate firmographics, budget, and current challenges", points: 2 },
+                    { text: "Assess strategic fit, buying signals, stakeholder alignment, and mutual value potential", points: 3 }
+                ]
+            },
+            {
+                topic: "ICP & Persona",
+                text: "What are three characteristics of your best customers?",
+                answers: [
+                    { text: "They pay on time, use the product, and refer others", points: 1 },
+                    { text: "Strategic alignment, strong ROI realization, and partnership mindset", points: 2 },
+                    { text: "Clear success metrics, executive sponsorship, and willingness to collaborate on innovation", points: 3 }
+                ]
+            },
+            // Follow-up (Questions 41-44)
+            {
+                topic: "Follow-up",
+                text: "How soon after an initial meeting do you send a follow-up message, and what do you include?",
+                answers: [
+                    { text: "Within 24 hours with meeting notes", points: 1 },
+                    { text: "Same day with summary and specific next steps", points: 2 },
+                    { text: "Within 2 hours with personalized insights and clear action items", points: 3 }
+                ]
+            },
+            {
+                topic: "Follow-up",
+                text: "What methods do you use to follow up with prospects (email, phone, text, etc.)?",
+                answers: [
+                    { text: "Email primarily, sometimes phone", points: 1 },
+                    { text: "Multi-channel approach based on prospect preference", points: 2 },
+                    { text: "Cadence-based mix: email with value-add content, LinkedIn, and strategic calls", points: 3 }
+                ]
+            },
+            {
+                topic: "Follow-up",
+                text: "How many times do you typically follow up with a prospect before moving on?",
+                answers: [
+                    { text: "3-5 attempts", points: 1 },
+                    { text: "7-10 touches across different channels", points: 2 },
+                    { text: "Until they say no or become unresponsive, with strategic spacing and value in each touch", points: 3 }
+                ]
+            },
+            {
+                topic: "Follow-up",
+                text: "What do you do when a prospect doesn't respond to your follow-up attempts?",
+                answers: [
+                    { text: "Wait a month and try again", points: 1 },
+                    { text: "Try a different approach or channel", points: 2 },
+                    { text: "Send a break-up email to prompt response, then re-engage with new value later", points: 3 }
+                ]
+            },
+            // Sales Call Planning (Questions 45-48)
+            {
+                topic: "Sales Call Planning",
+                text: "What information do you gather about a prospect before making a sales call?",
+                answers: [
+                    { text: "Company name and industry", points: 1 },
+                    { text: "Company size, recent news, and potential pain points", points: 2 },
+                    { text: "Financials, organizational structure, initiatives, challenges, and decision processes", points: 3 }
+                ]
+            },
+            {
+                topic: "Sales Call Planning",
+                text: "What are three objectives you set for yourself before a sales call?",
+                answers: [
+                    { text: "Build rapport, present solution, get next meeting", points: 1 },
+                    { text: "Understand needs, establish value, agree on next steps", points: 2 },
+                    { text: "Diagnose key challenges, identify stakeholders, co-create next phase", points: 3 }
+                ]
+            },
+            {
+                topic: "Sales Call Planning",
+                text: "How do you prepare for potential questions a prospect might ask during a call?",
+                answers: [
+                    { text: "Review product FAQs", points: 1 },
+                    { text: "Anticipate based on their industry and role", points: 2 },
+                    { text: "Develop hypothesis-driven questions and prepare insights, not just answers", points: 3 }
+                ]
+            },
+            {
+                topic: "Sales Call Planning",
+                text: "What does a successful sales call look like to you?",
+                answers: [
+                    { text: "They agree to another meeting", points: 1 },
+                    { text: "Clear next steps and mutual understanding of value", points: 2 },
+                    { text: "Shared agenda achieved, new insights generated, and commitment to specific action", points: 3 }
+                ]
+            },
+            // Negotiation (Questions 49-52)
+            {
+                topic: "Negotiation",
+                text: "What do you do when a prospect asks for a discount?",
+                answers: [
+                    { text: "Check if I'm authorized to offer one", points: 1 },
+                    { text: "Explore what they need to move forward and trade value", points: 2 },
+                    { text: "Understand why they want discount and negotiate terms that protect value", points: 3 }
+                ]
+            },
+            {
+                topic: "Negotiation",
+                text: "How do you determine your 'walk-away' point in a negotiation?",
+                answers: [
+                    { text: "Minimum price we can accept", points: 1 },
+                    { text: "Value exchange threshold where deal no longer makes business sense", points: 2 },
+                    { text: "When strategic value, margin, or relationship terms compromise long-term success", points: 3 }
+                ]
+            },
+            {
+                topic: "Negotiation",
+                text: "Describe a time when you had to negotiate terms with a customer. What was the outcome?",
+                answers: [
+                    { text: "I offered a small discount to close the deal", points: 1 },
+                    { text: "Traded price for longer contract term, benefiting both parties", points: 2 },
+                    { text: "Created win-win by adjusting scope and payment terms while maintaining value", points: 3 }
+                ]
+            },
+            {
+                topic: "Negotiation",
+                text: "What concessions are you typically authorized to offer, and when do you use them?",
+                answers: [
+                    { text: "10-15% discount for annual contracts", points: 1 },
+                    { text: "Flexible payment terms and implementation support", points: 2 },
+                    { text: "Strategic concessions that accelerate deal cycle without compromising value", points: 3 }
+                ]
+            },
+            // Customer Understanding (Questions 53-56)
+            {
+                topic: "Customer Understanding",
+                text: "How do you research a prospect's business before your first interaction?",
+                answers: [
+                    { text: "Visit their website and LinkedIn", points: 1 },
+                    { text: "Review financial reports, news, and executive team", points: 2 },
+                    { text: "Analyze industry trends, competitive position, and recent initiatives", points: 3 }
+                ]
+            },
+            {
+                topic: "Customer Understanding",
+                text: "What questions do you ask to understand a customer's current challenges?",
+                answers: [
+                    { text: "\"What problems are you facing?\"", points: 1 },
+                    { text: "\"What's impacting your team's productivity or goals?\"", points: 2 },
+                    { text: "\"How do current challenges affect business outcomes and strategic initiatives?\"", points: 3 }
+                ]
+            },
+            {
+                topic: "Customer Understanding",
+                text: "Why is it important to understand a customer's industry and business model?",
+                answers: [
+                    { text: "To speak their language and build rapport", points: 1 },
+                    { text: "To tailor solutions to their specific context", points: 2 },
+                    { text: "To identify unseen opportunities and position as strategic partner", points: 3 }
+                ]
+            },
+            {
+                topic: "Customer Understanding",
+                text: "How do you identify what matters most to a particular customer?",
+                answers: [
+                    { text: "Ask them directly about priorities", points: 1 },
+                    { text: "Listen for repeated themes and emotional triggers", points: 2 },
+                    { text: "Analyze decision criteria, stakeholder motivations, and business metrics", points: 3 }
+                ]
+            },
+            // Competitor Understanding (Questions 57-60)
+            {
+                topic: "Competitor Understanding",
+                text: "Who are the main competitors in your current market?",
+                answers: [
+                    { text: "Company A and Company B", points: 1 },
+                    { text: "Direct competitors and adjacent solution providers", points: 2 },
+                    { text: "Competitors across price segments and alternative solutions customers consider", points: 3 }
+                ]
+            },
+            {
+                topic: "Competitor Understanding",
+                text: "How do you respond when a prospect mentions they're also considering a competitor?",
+                answers: [
+                    { text: "Highlight our advantages over them", points: 1 },
+                    { text: "Ask what they like about the competitor and compare strengths", points: 2 },
+                    { text: "Explore their evaluation criteria and position our unique value accordingly", points: 3 }
+                ]
+            },
+            {
+                topic: "Competitor Understanding",
+                text: "What is one strength and one weakness of your top competitor?",
+                answers: [
+                    { text: "Strength: Brand recognition, Weakness: Higher price", points: 1 },
+                    { text: "Strength: Market share, Weakness: Less flexible solutions", points: 2 },
+                    { text: "Strength: Enterprise scale, Weakness: Slower innovation and customization", points: 3 }
+                ]
+            },
+            {
+                topic: "Competitor Understanding",
+                text: "How do you stay informed about what your competitors are offering?",
+                answers: [
+                    { text: "Check their websites occasionally", points: 1 },
+                    { text: "Monitor their marketing and talk to customers", points: 2 },
+                    { text: "Systematic competitive intelligence through win/loss analysis and market monitoring", points: 3 }
+                ]
+            }
+        ];
+
+        // DOM Elements
+        const screens = {
+            register: document.getElementById('screen-register'),
+            instructions: document.getElementById('screen-instructions'),
+            loading: document.getElementById('screen-loading'),
+            game: document.getElementById('screen-game'),
+            results: document.getElementById('screen-results')
+        };
+
+        // Registration form elements
+        const registrationForm = document.getElementById('registration-form');
+        const nameInput = document.getElementById('name');
+        const mobileInput = document.getElementById('mobile');
+        const emailInput = document.getElementById('email');
+        const experienceSelect = document.getElementById('experience');
+
+        // Instruction screen elements
+        const userNameDisplay = document.getElementById('user-name');
+        const userExperienceDisplay = document.getElementById('user-experience');
+        const userContactDisplay = document.getElementById('user-contact');
+        const experienceBadge = document.getElementById('experience-badge');
+        const startAssessmentBtn = document.getElementById('start-assessment');
+
+        // Game screen elements
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const topicNameEl = document.getElementById('topic-name');
+        const progressFill = document.getElementById('progress-fill');
+        const currentTopicEl = document.getElementById('current-topic');
+        const questionCounter = document.getElementById('question-counter');
+        const questionText = document.getElementById('question-text');
+        const answersContainer = document.getElementById('answers-container');
+        const feedback = document.getElementById('feedback');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const skipBtn = document.getElementById('skip-btn');
+
+        // Results screen elements
+        const userGreeting = document.getElementById('user-greeting');
+        const scoreCircle = document.getElementById('score-circle');
+        const scorePercentage = document.getElementById('score-percentage');
+        const scoreTotal = document.getElementById('score-total');
+        const performanceLevel = document.getElementById('performance-level');
+        const topicsGrid = document.getElementById('topics-grid');
+        const recommendationList = document.getElementById('recommendation-list');
+        const restartBtn = document.getElementById('restart-btn');
+        const downloadBtn = document.getElementById('download-btn');
+        const shareBtn = document.getElementById('share-btn');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            // Initialize with all questions
+            selectedQuestions = [...questionBank];
+            
+            // Add access indicator after game loads
+            const accessData = JSON.parse(localStorage.getItem('s4s_current_access') || '{}');
+            if (accessData.code) {
+                const indicator = document.createElement('div');
+                indicator.className = 'access-indicator';
+                indicator.innerHTML = `
+                    <i class="fas fa-user-check"></i>
+                    Access Code: ${accessData.code.substring(0, 3)}...
+                `;
+                document.body.appendChild(indicator);
+            }
+        });
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Registration form submission
+            registrationForm.addEventListener('submit', handleRegistration);
+            
+            // Start assessment button
+            startAssessmentBtn.addEventListener('click', startAssessment);
+            
+            // Navigation buttons
+            prevBtn.addEventListener('click', goToPreviousQuestion);
+            nextBtn.addEventListener('click', goToNextQuestion);
+            skipBtn.addEventListener('click', skipQuestion);
+            
+            // Results screen buttons
+            restartBtn.addEventListener('click', restartAssessment);
+            downloadBtn.addEventListener('click', downloadReport);
+            shareBtn.addEventListener('click', shareResults);
+            
+            // Input validation
+            setupInputValidation();
+        }
+
+        // Handle registration
+        function handleRegistration(e) {
+            e.preventDefault();
+            
+            // Validate inputs
+            if (!validateRegistration()) {
+                return;
+            }
+            
+            // Save user info
+            userInfo = {
+                name: nameInput.value.trim(),
+                mobile: mobileInput.value.trim(),
+                email: emailInput.value.trim(),
+                experience: parseInt(experienceSelect.value)
+            };
+            
+            // Update instruction screen
+            updateInstructionScreen();
+            
+            // Show instructions
+            showScreen('instructions');
+        }
+
+        // Validate registration form
+        function validateRegistration() {
+            let isValid = true;
+            
+            // Validate name
+            if (!nameInput.value.trim()) {
+                showError('name-error', 'Please enter your name');
+                isValid = false;
+            } else {
+                hideError('name-error');
+            }
+            
+            // Validate mobile (simple validation)
+            const mobileRegex = /^\d{10}$/;
+            if (!mobileInput.value.trim() || !mobileRegex.test(mobileInput.value.replace(/\D/g, ''))) {
+                showError('mobile-error', 'Please enter a valid 10-digit mobile number');
+                isValid = false;
+            } else {
+                hideError('mobile-error');
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                showError('email-error', 'Please enter a valid email address');
+                isValid = false;
+            } else {
+                hideError('email-error');
+            }
+            
+            // Validate experience
+            if (experienceSelect.value === '') {
+                showError('experience-error', 'Please select your experience level');
+                isValid = false;
+            } else {
+                hideError('experience-error');
+            }
+            
+            return isValid;
+        }
+
+        // Show error message
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+        }
+
+        // Hide error message
+        function hideError(elementId) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.classList.remove('show');
+        }
+
+        // Set up input validation
+        function setupInputValidation() {
+            nameInput.addEventListener('input', () => {
+                if (nameInput.value.trim()) hideError('name-error');
+            });
+            
+            mobileInput.addEventListener('input', () => {
+                const mobileRegex = /^\d{10}$/;
+                if (mobileRegex.test(mobileInput.value.replace(/\D/g, ''))) hideError('mobile-error');
+            });
+            
+            emailInput.addEventListener('input', () => {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailRegex.test(emailInput.value)) hideError('email-error');
+            });
+            
+            experienceSelect.addEventListener('change', () => {
+                if (experienceSelect.value !== '') hideError('experience-error');
+            });
+        }
+
+        // Update instruction screen with user info
+        function updateInstructionScreen() {
+            const experienceLabels = [
+                'Entry Level (0-2 Years)',
+                'Mid Level (2-10 Years)',
+                'Senior Level (Above 10 Years)'
+            ];
+            
+            const experienceBadges = ['Entry Level', 'Mid Level', 'Senior Level'];
+            const experienceColors = ['#10b981', '#f59e0b', '#ef4444'];
+            
+            userNameDisplay.textContent = userInfo.name;
+            userExperienceDisplay.textContent = `Experience: ${experienceLabels[userInfo.experience]}`;
+            userContactDisplay.textContent = `Email: ${userInfo.email} | Phone: ${userInfo.mobile}`;
+            experienceBadge.textContent = experienceBadges[userInfo.experience];
+            experienceBadge.style.background = experienceColors[userInfo.experience];
+        }
+
+        // Start assessment
+        function startAssessment() {
+            // Show loading screen
+            showScreen('loading');
+            
+            // Simulate loading questions
+            setTimeout(() => {
+                // Initialize game state
+                initializeGameState();
+                
+                // Show first question
+                showScreen('game');
+                loadQuestion(currentQuestionIndex);
+            }, 1000);
+        }
+
+        // Initialize game state
+        function initializeGameState() {
+            currentQuestionIndex = 0;
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            userScores = new Array(selectedQuestions.length).fill(0);
+            
+            // Update UI
+            totalQuestionsEl.textContent = selectedQuestions.length;
+            updateProgress();
+        }
+
+        // Load question
+        function loadQuestion(index) {
+            if (index < 0 || index >= selectedQuestions.length) {
+                console.error("Question index out of bounds:", index);
+                return;
+            }
+            
+            const question = selectedQuestions[index];
+            
+            // Update UI elements
+            currentQuestionEl.textContent = index + 1;
+            questionCounter.textContent = index + 1;
+            questionText.textContent = question.text;
+            topicNameEl.textContent = question.topic;
+            currentTopicEl.textContent = question.topic;
+            
+            // Clear previous answers
+            answersContainer.innerHTML = '';
+            
+            // Get shuffled answers
+            const shuffledAnswers = shuffleArray([...question.answers]);
+            
+            // Add answer options
+            shuffledAnswers.forEach((answer, answerIndex) => {
+                const answerElement = document.createElement('div');
+                answerElement.className = `answer-option ${userAnswers[index] === answerIndex ? 'selected' : ''}`;
+                answerElement.innerHTML = `
+                    <span class="answer-letter">${String.fromCharCode(65 + answerIndex)}</span>
+                    <span class="answer-text">${answer.text}</span>
+                `;
+                
+                answerElement.addEventListener('click', () => selectAnswer(index, answerIndex, answer.points));
+                answersContainer.appendChild(answerElement);
+            });
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Update progress
+            updateProgress();
+            
+            // Hide feedback
+            feedback.classList.remove('show');
+        }
+
+        // Shuffle array using Fisher-Yates algorithm
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Select answer
+        function selectAnswer(questionIndex, answerIndex, points) {
+            // Update user answer and score
+            userAnswers[questionIndex] = answerIndex;
+            userScores[questionIndex] = points;
+            
+            // Update UI
+            const answerOptions = document.querySelectorAll('.answer-option');
+            answerOptions.forEach((option, index) => {
+                option.classList.toggle('selected', index === answerIndex);
+            });
+            
+            // Show feedback
+            showFeedback(questionIndex, points);
+            
+            // Enable next button
+            nextBtn.disabled = false;
+        }
+
+        // Show feedback
+        function showFeedback(questionIndex, points) {
+            const question = selectedQuestions[questionIndex];
+            
+            feedback.innerHTML = '';
+            feedback.className = 'feedback';
+            
+            // Determine if this is the best answer
+            const maxPoints = 3;
+            const isBestAnswer = points === maxPoints;
+            
+            if (isBestAnswer) {
+                feedback.classList.add('correct');
+                feedback.innerHTML = `
+                    <strong>✓ Excellent Choice!</strong> You selected the most effective answer (${points}/3 points).
+                    <br><br>
+                    <small>This approach demonstrates advanced understanding of ${question.topic}.</small>
+                `;
+            } else if (points === 2) {
+                feedback.classList.add('incorrect');
+                feedback.innerHTML = `
+                    <strong>Good choice (${points}/3 points)</strong>
+                    <br><br>
+                    <small>This is a solid approach, but there's an even more effective strategy for this situation.</small>
+                `;
+            } else {
+                feedback.classList.add('incorrect');
+                feedback.innerHTML = `
+                    <strong>Basic approach (${points}/3 points)</strong>
+                    <br><br>
+                    <small>This answer works, but more sophisticated techniques would be more effective for ${question.topic}.</small>
+                `;
+            }
+            
+            feedback.classList.add('show');
+        }
+
+        // Update navigation buttons
+        function updateNavigationButtons() {
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            if (currentQuestionIndex === selectedQuestions.length - 1) {
+                nextBtn.textContent = 'View Results';
+            } else {
+                nextBtn.textContent = 'Next Question →';
+            }
+            
+            // Enable next button if answer is selected
+            nextBtn.disabled = userAnswers[currentQuestionIndex] === null;
+        }
+
+        // Update progress
+        function updateProgress() {
+            const progress = ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
+            progressFill.style.width = `${progress}%`;
+        }
+
+        // Go to previous question
+        function goToPreviousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+            }
+        }
+
+        // Go to next question
+        function goToNextQuestion() {
+            if (currentQuestionIndex < selectedQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            } else {
+                // Last question - show results
+                showResults();
+            }
+        }
+
+        // Skip question
+        function skipQuestion() {
+            // Mark as unanswered
+            userAnswers[currentQuestionIndex] = null;
+            userScores[currentQuestionIndex] = 0;
+            
+            // Move to next question
+            if (currentQuestionIndex < selectedQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            } else {
+                showResults();
+            }
+        }
+
+        // Show results
+        function showResults() {
+            showScreen('results');
+            
+            // Calculate scores
+            const totalScore = userScores.reduce((sum, score) => sum + score, 0);
+            const maxScore = selectedQuestions.length * 3;
+            const percentage = Math.round((totalScore / maxScore) * 100);
+            
+            // Update results display
+            userGreeting.textContent = `Excellent work, ${userInfo.name}! Here's your performance analysis:`;
+            scorePercentage.textContent = `${percentage}%`;
+            scoreTotal.textContent = totalScore;
+            
+            // Update score circle
+            scoreCircle.style.setProperty('--percentage', `${percentage}%`);
+            
+            // Set performance level
+            setPerformanceLevel(percentage);
+            
+            // Calculate topic-wise scores
+            const topicScores = calculateTopicScores();
+            
+            // Display topic scores
+            displayTopicScores(topicScores);
+            
+            // Generate recommendations
+            generateRecommendations(topicScores);
+            
+            // Save results to localStorage for admin panel
+            saveAssessmentResult(percentage, topicScores);
+        }
+
+        // Save assessment result
+        function saveAssessmentResult(percentage, topicScores) {
+            const accessData = JSON.parse(localStorage.getItem('s4s_current_access') || '{}');
+            const results = JSON.parse(localStorage.getItem('s4s_assessment_results') || '[]');
+            
+            const result = {
+                id: Date.now().toString(),
+                timestamp: new Date().toISOString(),
+                name: userInfo.name,
+                email: userInfo.email,
+                mobile: userInfo.mobile,
+                experience: userInfo.experience,
+                score: percentage,
+                totalScore: userScores.reduce((sum, score) => sum + score, 0),
+                maxScore: selectedQuestions.length * 3,
+                accessCode: accessData.code || 'unknown',
+                topics: topicScores
+            };
+            
+            results.push(result);
+            localStorage.setItem('s4s_assessment_results', JSON.stringify(results));
+        }
+
+        // Set performance level
+        function setPerformanceLevel(percentage) {
+            if (percentage >= 80) {
+                performanceLevel.textContent = 'Excellent Performance';
+                performanceLevel.className = 'performance-level excellent';
+            } else if (percentage >= 60) {
+                performanceLevel.textContent = 'Good Performance';
+                performanceLevel.className = 'performance-level good';
+            } else {
+                performanceLevel.textContent = 'Needs Improvement';
+                performanceLevel.className = 'performance-level needs-improvement';
+            }
+        }
+
+        // Calculate topic-wise scores
+        function calculateTopicScores() {
+            const topicScores = {};
+            
+            selectedQuestions.forEach((question, index) => {
+                const topic = question.topic;
+                
+                if (!topicScores[topic]) {
+                    topicScores[topic] = {
+                        totalPoints: 0,
+                        maxPoints: 0,
+                        questions: 0
+                    };
+                }
+                
+                topicScores[topic].totalPoints += userScores[index];
+                topicScores[topic].maxPoints += 3;
+                topicScores[topic].questions++;
+            });
+            
+            // Calculate percentages
+            Object.keys(topicScores).forEach(topic => {
+                const data = topicScores[topic];
+                data.percentage = Math.round((data.totalPoints / data.maxPoints) * 100);
+                
+                // Determine status
+                if (data.percentage >= 80) {
+                    data.status = 'strong';
+                    data.statusText = 'Strong';
+                } else if (data.percentage >= 60) {
+                    data.status = 'average';
+                    data.statusText = 'Average';
+                } else {
+                    data.status = 'weak';
+                    data.statusText = 'Needs Improvement';
+                }
+            });
+            
+            return topicScores;
+        }
+
+        // Display topic scores
+        function displayTopicScores(topicScores) {
+            topicsGrid.innerHTML = '';
+            
+            Object.entries(topicScores).forEach(([topic, data]) => {
+                const topicCard = document.createElement('div');
+                topicCard.className = 'topic-card';
+                
+                topicCard.innerHTML = `
+                    <div class="topic-name">${topic}</div>
+                    <div class="topic-score ${data.status}">${data.percentage}%</div>
+                    <div class="topic-status ${data.status}">${data.statusText}</div>
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                        ${data.totalPoints}/${data.maxPoints} points
+                    </div>
+                `;
+                
+                topicsGrid.appendChild(topicCard);
+            });
+        }
+
+        // Generate recommendations
+        function generateRecommendations(topicScores) {
+            recommendationList.innerHTML = '';
+            
+            // Sort topics by score (lowest first)
+            const sortedTopics = Object.entries(topicScores)
+                .sort((a, b) => a[1].percentage - b[1].percentage);
+            
+            // Generate recommendations
+            sortedTopics.forEach(([topic, data], index) => {
+                const listItem = document.createElement('li');
+                
+                let recommendation = '';
+                let iconClass = '';
+                
+                if (data.status === 'weak') {
+                    recommendation = `Focus on improving your ${topic} skills through practice and training`;
+                    iconClass = 'recommendation-icon improve';
+                } else if (data.status === 'average') {
+                    recommendation = `Continue developing your ${topic} skills to reach expert level`;
+                    iconClass = 'recommendation-icon maintain';
+                } else {
+                    recommendation = `Maintain your excellent ${topic} skills and consider mentoring others`;
+                    iconClass = 'recommendation-icon maintain';
+                }
+                
+                listItem.innerHTML = `
+                    <div class="${iconClass}">${index + 1}</div>
+                    <div>${recommendation}</div>
+                `;
+                
+                recommendationList.appendChild(listItem);
+            });
+        }
+
+        // Restart assessment
+        function restartAssessment() {
+            // Reset to registration
+            registrationForm.reset();
+            showScreen('register');
+        }
+
+        // Download report
+        function downloadReport() {
+            const totalScore = userScores.reduce((sum, score) => sum + score, 0);
+            const maxScore = selectedQuestions.length * 3;
+            const percentage = Math.round((totalScore / maxScore) * 100);
+            
+            const topicScores = calculateTopicScores();
+            
+            // Create report content
+            let report = `SALES4SIGHT ASSESSMENT REPORT\n`;
+            report += `==============================\n\n`;
+            report += `Candidate Information:\n`;
+            report += `- Name: ${userInfo.name}\n`;
+            report += `- Email: ${userInfo.email}\n`;
+            report += `- Mobile: ${userInfo.mobile}\n`;
+            report += `- Experience Level: ${['Entry Level (0-2 Years)', 'Mid Level (2-10 Years)', 'Senior Level (Above 10 Years)'][userInfo.experience]}\n`;
+            report += `- Assessment Date: ${new Date().toLocaleDateString()}\n`;
+            report += `- Assessment Time: ${new Date().toLocaleTimeString()}\n\n`;
+            
+            report += `Overall Performance:\n`;
+            report += `- Score: ${totalScore}/${maxScore} points\n`;
+            report += `- Percentage: ${percentage}%\n`;
+            report += `- Performance Level: ${percentage >= 80 ? 'Excellent' : percentage >= 60 ? 'Good' : 'Needs Improvement'}\n\n`;
+            
+            report += `Topic-wise Performance:\n`;
+            report += `=======================\n`;
+            Object.entries(topicScores).forEach(([topic, data]) => {
+                report += `${topic}: ${data.percentage}% (${data.totalPoints}/${data.maxPoints} points) - ${data.statusText}\n`;
+            });
+            
+            report += `\nDetailed Question Analysis:\n`;
+            report += `==========================\n`;
+            selectedQuestions.forEach((question, index) => {
+                const score = userScores[index];
+                const maxPoints = 3;
+                report += `Q${index + 1}. ${question.topic}\n`;
+                report += `   Question: ${question.text}\n`;
+                report += `   Your Score: ${score}/${maxPoints}\n\n`;
+            });
+            
+            report += `\nRecommendations:\n`;
+            report += `================\n`;
+            const sortedTopics = Object.entries(topicScores)
+                .sort((a, b) => a[1].percentage - b[1].percentage);
+            
+            sortedTopics.forEach(([topic, data], index) => {
+                let rec = '';
+                if (data.status === 'weak') {
+                    rec = `Priority ${index + 1}: Focus on improving ${topic} skills`;
+                } else if (data.status === 'average') {
+                    rec = `Priority ${index + 1}: Continue developing ${topic} skills`;
+                } else {
+                    rec = `Strength: Maintain excellence in ${topic}`;
+                }
+                report += `${rec}\n`;
+            });
+            
+            // Create and trigger download
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Sales4Sight_Report_${userInfo.name.replace(/\s+/g, '_')}_${new Date().getTime()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Share results
+        function shareResults() {
+            const totalScore = userScores.reduce((sum, score) => sum + score, 0);
+            const maxScore = selectedQuestions.length * 3;
+            const percentage = Math.round((totalScore / maxScore) * 100);
+            
+            const shareText = `I scored ${percentage}% on the Sales4Sight Sales Mastery Assessment!`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Sales4Sight Assessment Results',
+                    text: shareText,
+                    url: window.location.href
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Results copied to clipboard! You can now paste and share them.');
+                });
+            }
+        }
+
+        // Show screen
+        function showScreen(screenName) {
+            Object.values(screens).forEach(screen => {
+                screen.classList.remove('active');
+            });
+            screens[screenName].classList.add('active');
+        }
+    </script>
+</body>
+</html>
