@@ -319,6 +319,11 @@
             box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
         }
 
+        .answer-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
         .answer-letter {
             display: inline-block;
             width: 30px;
@@ -561,42 +566,6 @@
             align-items: center;
             gap: 8px;
             margin-bottom: 5px;
-        }
-
-        /* Feedback Messages */
-        .feedback {
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            display: none;
-            animation: slideIn 0.3s ease;
-        }
-
-        .feedback.show {
-            display: block;
-        }
-
-        .feedback.correct {
-            background: #d1fae5;
-            border: 2px solid #a7f3d0;
-            color: #065f46;
-        }
-
-        .feedback.incorrect {
-            background: #fee2e2;
-            border: 2px solid #fecaca;
-            color: #991b1b;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         /* Instructions */
@@ -849,6 +818,10 @@
                             <div class="instruction-number">6</div>
                             <div>Time limit: No time limit, but try to maintain a steady pace</div>
                         </li>
+                        <li>
+                            <div class="instruction-number">7</div>
+                            <div><strong>Note:</strong> You cannot go back to previous questions or skip questions</div>
+                        </li>
                     </ul>
                 </div>
 
@@ -893,23 +866,10 @@
                         <!-- Answers will be populated here -->
                     </div>
 
-                    <div class="feedback" id="feedback">
-                        <!-- Feedback will appear here -->
-                    </div>
-
-                    <div class="navigation">
-                        <button id="prev-btn" class="btn btn-secondary" disabled>
-                            ← Previous
+                    <div class="navigation" style="justify-content: flex-end;">
+                        <button id="next-btn" class="btn">
+                            Next Question →
                         </button>
-                        
-                        <div style="display: flex; gap: 10px;">
-                            <button id="skip-btn" class="btn btn-outline">
-                                Skip Question
-                            </button>
-                            <button id="next-btn" class="btn">
-                                Next Question →
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -941,6 +901,10 @@
                         </div>
                     </div>
 
+                    <div id="detailed-feedback-container" style="display: none;">
+                        <!-- Detailed feedback will be added here -->
+                    </div>
+
                     <div class="topics-grid" id="topics-grid">
                         <!-- Topic scores will be populated here -->
                     </div>
@@ -959,8 +923,8 @@
                         <button id="download-btn" class="btn btn-secondary">
                             Download Report
                         </button>
-                        <button id="share-btn" class="btn btn-outline">
-                            Share Results
+                        <button id="view-feedback-btn" class="btn btn-outline">
+                            View Detailed Feedback
                         </button>
                     </div>
                 </div>
@@ -1082,7 +1046,7 @@
         }
         
         // ==============================
-        // YOUR ORIGINAL GAME CODE STARTS HERE
+        // GAME CODE
         // ==============================
         
         // Global variables
@@ -1683,10 +1647,7 @@
         const questionCounter = document.getElementById('question-counter');
         const questionText = document.getElementById('question-text');
         const answersContainer = document.getElementById('answers-container');
-        const feedback = document.getElementById('feedback');
-        const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
-        const skipBtn = document.getElementById('skip-btn');
 
         // Results screen elements
         const userGreeting = document.getElementById('user-greeting');
@@ -1698,7 +1659,8 @@
         const recommendationList = document.getElementById('recommendation-list');
         const restartBtn = document.getElementById('restart-btn');
         const downloadBtn = document.getElementById('download-btn');
-        const shareBtn = document.getElementById('share-btn');
+        const viewFeedbackBtn = document.getElementById('view-feedback-btn');
+        const detailedFeedbackContainer = document.getElementById('detailed-feedback-container');
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -1727,15 +1689,13 @@
             // Start assessment button
             startAssessmentBtn.addEventListener('click', startAssessment);
             
-            // Navigation buttons
-            prevBtn.addEventListener('click', goToPreviousQuestion);
+            // Navigation button
             nextBtn.addEventListener('click', goToNextQuestion);
-            skipBtn.addEventListener('click', skipQuestion);
             
             // Results screen buttons
             restartBtn.addEventListener('click', restartAssessment);
             downloadBtn.addEventListener('click', downloadReport);
-            shareBtn.addEventListener('click', shareResults);
+            viewFeedbackBtn.addEventListener('click', toggleDetailedFeedback);
             
             // Input validation
             setupInputValidation();
@@ -1920,14 +1880,19 @@
                 answersContainer.appendChild(answerElement);
             });
             
-            // Update navigation buttons
-            updateNavigationButtons();
+            // Disable clicking on already answered questions
+            if (userAnswers[index] !== null) {
+                const answerOptions = document.querySelectorAll('.answer-option');
+                answerOptions.forEach(option => {
+                    option.style.pointerEvents = 'none';
+                });
+            }
+            
+            // Update navigation button
+            updateNavigationButton();
             
             // Update progress
             updateProgress();
-            
-            // Hide feedback
-            feedback.classList.remove('show');
         }
 
         // Shuffle array using Fisher-Yates algorithm
@@ -1952,61 +1917,25 @@
                 option.classList.toggle('selected', index === answerIndex);
             });
             
-            // Show feedback
-            showFeedback(questionIndex, points);
+            // Disable all answer options to prevent changing answer
+            answerOptions.forEach(option => {
+                option.style.pointerEvents = 'none';
+                option.classList.add('disabled');
+            });
             
             // Enable next button
             nextBtn.disabled = false;
         }
 
-        // Show feedback
-        function showFeedback(questionIndex, points) {
-            const question = selectedQuestions[questionIndex];
-            
-            feedback.innerHTML = '';
-            feedback.className = 'feedback';
-            
-            // Determine if this is the best answer
-            const maxPoints = 3;
-            const isBestAnswer = points === maxPoints;
-            
-            if (isBestAnswer) {
-                feedback.classList.add('correct');
-                feedback.innerHTML = `
-                    <strong>✓ Excellent Choice!</strong> You selected the most effective answer (${points}/3 points).
-                    <br><br>
-                    <small>This approach demonstrates advanced understanding of ${question.topic}.</small>
-                `;
-            } else if (points === 2) {
-                feedback.classList.add('incorrect');
-                feedback.innerHTML = `
-                    <strong>Good choice (${points}/3 points)</strong>
-                    <br><br>
-                    <small>This is a solid approach, but there's an even more effective strategy for this situation.</small>
-                `;
-            } else {
-                feedback.classList.add('incorrect');
-                feedback.innerHTML = `
-                    <strong>Basic approach (${points}/3 points)</strong>
-                    <br><br>
-                    <small>This answer works, but more sophisticated techniques would be more effective for ${question.topic}.</small>
-                `;
-            }
-            
-            feedback.classList.add('show');
-        }
-
-        // Update navigation buttons
-        function updateNavigationButtons() {
-            prevBtn.disabled = currentQuestionIndex === 0;
-            
+        // Update navigation button
+        function updateNavigationButton() {
             if (currentQuestionIndex === selectedQuestions.length - 1) {
                 nextBtn.textContent = 'View Results';
             } else {
                 nextBtn.textContent = 'Next Question →';
             }
             
-            // Enable next button if answer is selected
+            // Enable next button only if answer is selected
             nextBtn.disabled = userAnswers[currentQuestionIndex] === null;
         }
 
@@ -2016,14 +1945,6 @@
             progressFill.style.width = `${progress}%`;
         }
 
-        // Go to previous question
-        function goToPreviousQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                loadQuestion(currentQuestionIndex);
-            }
-        }
-
         // Go to next question
         function goToNextQuestion() {
             if (currentQuestionIndex < selectedQuestions.length - 1) {
@@ -2031,21 +1952,6 @@
                 loadQuestion(currentQuestionIndex);
             } else {
                 // Last question - show results
-                showResults();
-            }
-        }
-
-        // Skip question
-        function skipQuestion() {
-            // Mark as unanswered
-            userAnswers[currentQuestionIndex] = null;
-            userScores[currentQuestionIndex] = 0;
-            
-            // Move to next question
-            if (currentQuestionIndex < selectedQuestions.length - 1) {
-                currentQuestionIndex++;
-                loadQuestion(currentQuestionIndex);
-            } else {
                 showResults();
             }
         }
@@ -2217,6 +2123,63 @@
             });
         }
 
+        // Toggle detailed feedback visibility
+        function toggleDetailedFeedback() {
+            if (detailedFeedbackContainer.style.display === 'none' || !detailedFeedbackContainer.style.display) {
+                showDetailedFeedback();
+                viewFeedbackBtn.textContent = 'Hide Detailed Feedback';
+            } else {
+                detailedFeedbackContainer.style.display = 'none';
+                viewFeedbackBtn.textContent = 'View Detailed Feedback';
+            }
+        }
+
+        // Show detailed feedback
+        function showDetailedFeedback() {
+            detailedFeedbackContainer.style.display = 'block';
+            detailedFeedbackContainer.innerHTML = `
+                <div class="recommendations">
+                    <h3>📋 Question-by-Question Feedback</h3>
+                    <div id="detailed-feedback-content" style="max-height: 400px; overflow-y: auto; padding: 10px;"></div>
+                </div>
+            `;
+            
+            const detailedFeedbackContent = document.getElementById('detailed-feedback-content');
+            detailedFeedbackContent.innerHTML = '';
+            
+            selectedQuestions.forEach((question, index) => {
+                const userAnswerIndex = userAnswers[index];
+                const userScore = userScores[index];
+                const maxPoints = 3;
+                const bestAnswer = question.answers.find(a => a.points === maxPoints);
+                const userAnswer = userAnswerIndex !== null ? question.answers[userAnswerIndex] : null;
+                
+                const feedbackItem = document.createElement('div');
+                feedbackItem.style.padding = '15px';
+                feedbackItem.style.marginBottom = '10px';
+                feedbackItem.style.border = '1px solid var(--border-color)';
+                feedbackItem.style.borderRadius = '8px';
+                feedbackItem.style.background = userScore === maxPoints ? '#f0f9ff' : '#fff8f8';
+                
+                let feedbackHTML = `
+                    <strong>Q${index + 1}: ${question.topic}</strong><br>
+                    <small>${question.text}</small><br><br>
+                    <strong>Your Score:</strong> ${userScore}/${maxPoints} points<br>
+                `;
+                
+                if (userAnswer) {
+                    feedbackHTML += `<strong>Your Answer:</strong> ${userAnswer.text} (${userScore} points)<br>`;
+                } else {
+                    feedbackHTML += `<strong>Your Answer:</strong> Not answered (0 points)<br>`;
+                }
+                
+                feedbackHTML += `<strong>Best Answer:</strong> ${bestAnswer.text} (3 points)`;
+                
+                feedbackItem.innerHTML = feedbackHTML;
+                detailedFeedbackContent.appendChild(feedbackItem);
+            });
+        }
+
         // Restart assessment
         function restartAssessment() {
             // Reset to registration
@@ -2259,9 +2222,11 @@
             selectedQuestions.forEach((question, index) => {
                 const score = userScores[index];
                 const maxPoints = 3;
+                const bestAnswer = question.answers.find(a => a.points === maxPoints);
                 report += `Q${index + 1}. ${question.topic}\n`;
                 report += `   Question: ${question.text}\n`;
-                report += `   Your Score: ${score}/${maxPoints}\n\n`;
+                report += `   Your Score: ${score}/${maxPoints}\n`;
+                report += `   Best Answer: ${bestAnswer.text}\n\n`;
             });
             
             report += `\nRecommendations:\n`;
@@ -2291,28 +2256,6 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-        }
-
-        // Share results
-        function shareResults() {
-            const totalScore = userScores.reduce((sum, score) => sum + score, 0);
-            const maxScore = selectedQuestions.length * 3;
-            const percentage = Math.round((totalScore / maxScore) * 100);
-            
-            const shareText = `I scored ${percentage}% on the Sales4Sight Sales Mastery Assessment!`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Sales4Sight Assessment Results',
-                    text: shareText,
-                    url: window.location.href
-                });
-            } else {
-                // Fallback: copy to clipboard
-                navigator.clipboard.writeText(shareText).then(() => {
-                    alert('Results copied to clipboard! You can now paste and share them.');
-                });
-            }
         }
 
         // Show screen
