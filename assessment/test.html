@@ -6,7 +6,6 @@
     <title>Sales Assessment - Sales4Sight</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ALL YOUR EXISTING CSS STAYS HERE */
         /* ==============================
            ACCESS CONTROL STYLES
            ============================== */
@@ -1315,7 +1314,7 @@
                 answers: [
                     { text: "1-2 months depending on company size", points: 1 },
                     { text: "30-90 days, affected by budget cycles and urgency", points: 2 },
-                    { text: "45-180 days based on deal size, stakeholders, and organizational change required", point: 3 }
+                    { text: "45-180 days based on deal size, stakeholders, and organizational change required", points: 3 }
                 ]
             },
             // Objection Handling (Questions 29-32)
@@ -1664,54 +1663,31 @@
         const detailedFeedbackContainer = document.getElementById('detailed-feedback-container');
 
         // Initialize
- 	    document.addEventListener('DOMContentLoaded', function() {
-            console.log('=== DOM Content Loaded ===');
-            console.log('Document ready state:', document.readyState);
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            // Initialize with all questions
+            selectedQuestions = [...questionBank];
             
-            try {
-                setupEventListeners();
-                console.log('Event listeners set up successfully');
-                
-                // Initialize with all questions
-                selectedQuestions = [...questionBank];
-                console.log('Questions loaded:', selectedQuestions.length);
-                
-                // Add access indicator after game loads
-                const accessData = JSON.parse(localStorage.getItem('s4s_current_access') || '{}');
-                if (accessData.code) {
-                    const indicator = document.createElement('div');
-                    indicator.className = 'access-indicator';
-                    indicator.innerHTML = `
-                        <i class="fas fa-user-check"></i>
-                        Access Code: ${accessData.code.substring(0, 3)}...
-                    `;
-                    document.body.appendChild(indicator);
-                    console.log('Access indicator added');
-                }
-            } catch (error) {
-                console.error('Error during initialization:', error);
+            // Add access indicator after game loads
+            const accessData = JSON.parse(localStorage.getItem('s4s_current_access') || '{}');
+            if (accessData.code) {
+                const indicator = document.createElement('div');
+                indicator.className = 'access-indicator';
+                indicator.innerHTML = `
+                    <i class="fas fa-user-check"></i>
+                    Access Code: ${accessData.code.substring(0, 3)}...
+                `;
+                document.body.appendChild(indicator);
             }
-            
-            console.log('=== Initialization complete ===');
         });
 
         // Set up event listeners
         function setupEventListeners() {
-            console.log('=== setupEventListeners called ===');
-            
             // Registration form submission
-            console.log('Setting up registration form listener');
-            console.log('Form element found:', !!registrationForm);
-            
             registrationForm.addEventListener('submit', handleRegistration);
-            console.log('Registration form listener added');
             
             // Start assessment button
-            console.log('Setting up start assessment button listener');
-            console.log('Button element found:', !!startAssessmentBtn);
-            
             startAssessmentBtn.addEventListener('click', startAssessment);
-            console.log('Start assessment button listener added');
             
             // Navigation button
             nextBtn.addEventListener('click', goToNextQuestion);
@@ -1723,23 +1699,14 @@
             
             // Input validation
             setupInputValidation();
-            
-            console.log('=== setupEventListeners completed ===');
         }
 
         // Handle registration
-         function handleRegistration(e) {
-            console.log('=== handleRegistration called ===');
+        function handleRegistration(e) {
             e.preventDefault();
             
-            console.log('Registration form submitted');
-            
             // Validate inputs
-            const isValid = validateRegistration();
-            console.log('Validation result:', isValid);
-            
-            if (!isValid) {
-                console.log('Validation failed, returning');
+            if (!validateRegistration()) {
                 return;
             }
             
@@ -1751,17 +1718,13 @@
                 experience: parseInt(experienceSelect.value)
             };
             
-            console.log('User info saved:', userInfo);
-            
             // Update instruction screen
             updateInstructionScreen();
             
-            console.log('About to show instructions screen');
-            // Show instructions screen
+            // Show instructions
             showScreen('instructions');
-            
-            console.log('=== handleRegistration completed ===');
         }
+
         // Validate registration form
         function validateRegistration() {
             let isValid = true;
@@ -2022,15 +1985,11 @@
             // Generate recommendations
             generateRecommendations(topicScores);
             
-            // Save results to localStorage AND Google Sheets
+            // Save results to localStorage for admin panel
             saveAssessmentResult(percentage, topicScores);
         }
 
-        // ========================================
-        // GOOGLE SHEETS INTEGRATION - UPDATED CODE
-        // ========================================
-
-        // Save assessment result to both localStorage and Google Sheets
+        // Save assessment result
         function saveAssessmentResult(percentage, topicScores) {
             const accessData = JSON.parse(localStorage.getItem('s4s_current_access') || '{}');
             const results = JSON.parse(localStorage.getItem('s4s_assessment_results') || '[]');
@@ -2049,93 +2008,8 @@
                 topics: topicScores
             };
             
-            // 1. Save to localStorage
             results.push(result);
             localStorage.setItem('s4s_assessment_results', JSON.stringify(results));
-            
-            // 2. Save to Google Sheets
-            saveToGoogleSheets(result);
-        }
-
-        // Save to Google Sheets
-        function saveToGoogleSheets(result) {
-            // ⚠️ REPLACE THIS URL WITH YOUR ACTUAL GOOGLE APPS SCRIPT URL ⚠️
-            //const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
-	    const scriptURL = 'https://script.google.com/macros/s/AKfycbyK-WOArL4yjSPpN2gINnxvrEfhP9Zz2SLmYaJd7p6YNs5VW3ZomwLAZHe4ZEewN1zD/exec':
-            
-            const experienceLabels = ['Entry Level (0-2 Years)', 'Mid Level (2-10 Years)', 'Senior Level (Above 10 Years)'];
-            const topicsString = JSON.stringify(result.topics || {});
-            
-            // Prepare form data
-            const formData = new FormData();
-            formData.append('timestamp', new Date().toLocaleString());
-            formData.append('name', result.name);
-            formData.append('email', result.email);
-            formData.append('mobile', result.mobile);
-            formData.append('experience', experienceLabels[result.experience]);
-            formData.append('score', result.score + '%');
-            formData.append('points', result.totalScore + '/' + result.maxScore);
-            formData.append('topics', topicsString);
-            formData.append('accessCode', result.accessCode || 'unknown');
-            formData.append('assessmentId', result.id);
-            
-            // Send to Google Sheets
-            fetch(scriptURL, {
-                method: 'POST',
-                mode: 'no-cors', // Important for Google Apps Script
-                body: formData
-            })
-            .then(() => {
-                console.log('✅ Assessment saved to Google Sheets');
-                // Show success notification
-                showSaveNotification();
-            })
-            .catch(error => {
-                console.error('❌ Error saving to Google Sheets:', error);
-                // Data is still saved in localStorage as backup
-            });
-        }
-
-        // Show save notification
-        function showSaveNotification() {
-            const notification = document.createElement('div');
-            notification.innerHTML = `
-                <div style="
-                    position: fixed;
-                    bottom: 20px;
-                    right: 20px;
-                    background: #10b981;
-                    color: white;
-                    padding: 12px 20px;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-                    z-index: 10000;
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    animation: slideIn 0.3s ease;
-                ">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Results saved successfully!</span>
-                </div>
-            `;
-            document.body.appendChild(notification);
-            
-            // Add CSS for animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                notification.remove();
-                style.remove();
-            }, 3000);
         }
 
         // Set performance level
