@@ -6,6 +6,7 @@
     <title>Sales Assessment - Sales4Sight</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ALL YOUR EXISTING CSS STAYS HERE */
         /* ==============================
            ACCESS CONTROL STYLES
            ============================== */
@@ -1314,7 +1315,7 @@
                 answers: [
                     { text: "1-2 months depending on company size", points: 1 },
                     { text: "30-90 days, affected by budget cycles and urgency", points: 2 },
-                    { text: "45-180 days based on deal size, stakeholders, and organizational change required", points: 3 }
+                    { text: "45-180 days based on deal size, stakeholders, and organizational change required", point: 3 }
                 ]
             },
             // Objection Handling (Questions 29-32)
@@ -1985,11 +1986,15 @@
             // Generate recommendations
             generateRecommendations(topicScores);
             
-            // Save results to localStorage for admin panel
+            // Save results to localStorage AND Google Sheets
             saveAssessmentResult(percentage, topicScores);
         }
 
-        // Save assessment result
+        // ========================================
+        // GOOGLE SHEETS INTEGRATION - UPDATED CODE
+        // ========================================
+
+        // Save assessment result to both localStorage and Google Sheets
         function saveAssessmentResult(percentage, topicScores) {
             const accessData = JSON.parse(localStorage.getItem('s4s_current_access') || '{}');
             const results = JSON.parse(localStorage.getItem('s4s_assessment_results') || '[]');
@@ -2008,8 +2013,93 @@
                 topics: topicScores
             };
             
+            // 1. Save to localStorage
             results.push(result);
             localStorage.setItem('s4s_assessment_results', JSON.stringify(results));
+            
+            // 2. Save to Google Sheets
+            saveToGoogleSheets(result);
+        }
+
+        // Save to Google Sheets
+        function saveToGoogleSheets(result) {
+            // ⚠️ REPLACE THIS URL WITH YOUR ACTUAL GOOGLE APPS SCRIPT URL ⚠️
+            //const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
+	    const scriptURL = 'https://script.google.com/macros/s/AKfycbyK-WOArL4yjSPpN2gINnxvrEfhP9Zz2SLmYaJd7p6YNs5VW3ZomwLAZHe4ZEewN1zD/exec':
+            
+            const experienceLabels = ['Entry Level (0-2 Years)', 'Mid Level (2-10 Years)', 'Senior Level (Above 10 Years)'];
+            const topicsString = JSON.stringify(result.topics || {});
+            
+            // Prepare form data
+            const formData = new FormData();
+            formData.append('timestamp', new Date().toLocaleString());
+            formData.append('name', result.name);
+            formData.append('email', result.email);
+            formData.append('mobile', result.mobile);
+            formData.append('experience', experienceLabels[result.experience]);
+            formData.append('score', result.score + '%');
+            formData.append('points', result.totalScore + '/' + result.maxScore);
+            formData.append('topics', topicsString);
+            formData.append('accessCode', result.accessCode || 'unknown');
+            formData.append('assessmentId', result.id);
+            
+            // Send to Google Sheets
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Important for Google Apps Script
+                body: formData
+            })
+            .then(() => {
+                console.log('✅ Assessment saved to Google Sheets');
+                // Show success notification
+                showSaveNotification();
+            })
+            .catch(error => {
+                console.error('❌ Error saving to Google Sheets:', error);
+                // Data is still saved in localStorage as backup
+            });
+        }
+
+        // Show save notification
+        function showSaveNotification() {
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    background: #10b981;
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    animation: slideIn 0.3s ease;
+                ">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Results saved successfully!</span>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Add CSS for animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+                style.remove();
+            }, 3000);
         }
 
         // Set performance level
