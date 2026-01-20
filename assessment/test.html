@@ -1664,10 +1664,14 @@
         const detailedFeedbackContainer = document.getElementById('detailed-feedback-container');
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up listeners');
             setupEventListeners();
             // Initialize with all questions
             selectedQuestions = [...questionBank];
+            
+            // Debug: Log form submission binding
+            console.log('Registration form element:', registrationForm);
             
             // Add access indicator after game loads
             const accessData = JSON.parse(localStorage.getItem('s4s_current_access') || '{}');
@@ -1703,8 +1707,10 @@
         }
 
         // Handle registration
-        function handleRegistration(e) {
+         function handleRegistration(e) {
             e.preventDefault();
+            
+            console.log('Registration form submitted'); // ADDED HERE
             
             // Validate inputs
             if (!validateRegistration()) {
@@ -1719,13 +1725,14 @@
                 experience: parseInt(experienceSelect.value)
             };
             
+            console.log('User info saved:', userInfo); // Debug log
+            
             // Update instruction screen
             updateInstructionScreen();
             
-            // Show instructions
+            // Show instructions screen
             showScreen('instructions');
         }
-
         // Validate registration form
         function validateRegistration() {
             let isValid = true;
