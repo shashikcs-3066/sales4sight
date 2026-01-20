@@ -1664,35 +1664,54 @@
         const detailedFeedbackContainer = document.getElementById('detailed-feedback-container');
 
         // Initialize
-            document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, setting up listeners');
-            setupEventListeners();
-            // Initialize with all questions
-            selectedQuestions = [...questionBank];
+ 	    document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== DOM Content Loaded ===');
+            console.log('Document ready state:', document.readyState);
             
-            // Debug: Log form submission binding
-            console.log('Registration form element:', registrationForm);
-            
-            // Add access indicator after game loads
-            const accessData = JSON.parse(localStorage.getItem('s4s_current_access') || '{}');
-            if (accessData.code) {
-                const indicator = document.createElement('div');
-                indicator.className = 'access-indicator';
-                indicator.innerHTML = `
-                    <i class="fas fa-user-check"></i>
-                    Access Code: ${accessData.code.substring(0, 3)}...
-                `;
-                document.body.appendChild(indicator);
+            try {
+                setupEventListeners();
+                console.log('Event listeners set up successfully');
+                
+                // Initialize with all questions
+                selectedQuestions = [...questionBank];
+                console.log('Questions loaded:', selectedQuestions.length);
+                
+                // Add access indicator after game loads
+                const accessData = JSON.parse(localStorage.getItem('s4s_current_access') || '{}');
+                if (accessData.code) {
+                    const indicator = document.createElement('div');
+                    indicator.className = 'access-indicator';
+                    indicator.innerHTML = `
+                        <i class="fas fa-user-check"></i>
+                        Access Code: ${accessData.code.substring(0, 3)}...
+                    `;
+                    document.body.appendChild(indicator);
+                    console.log('Access indicator added');
+                }
+            } catch (error) {
+                console.error('Error during initialization:', error);
             }
+            
+            console.log('=== Initialization complete ===');
         });
 
         // Set up event listeners
         function setupEventListeners() {
+            console.log('=== setupEventListeners called ===');
+            
             // Registration form submission
+            console.log('Setting up registration form listener');
+            console.log('Form element found:', !!registrationForm);
+            
             registrationForm.addEventListener('submit', handleRegistration);
+            console.log('Registration form listener added');
             
             // Start assessment button
+            console.log('Setting up start assessment button listener');
+            console.log('Button element found:', !!startAssessmentBtn);
+            
             startAssessmentBtn.addEventListener('click', startAssessment);
+            console.log('Start assessment button listener added');
             
             // Navigation button
             nextBtn.addEventListener('click', goToNextQuestion);
@@ -1704,16 +1723,23 @@
             
             // Input validation
             setupInputValidation();
+            
+            console.log('=== setupEventListeners completed ===');
         }
 
         // Handle registration
          function handleRegistration(e) {
+            console.log('=== handleRegistration called ===');
             e.preventDefault();
             
-            console.log('Registration form submitted'); // ADDED HERE
+            console.log('Registration form submitted');
             
             // Validate inputs
-            if (!validateRegistration()) {
+            const isValid = validateRegistration();
+            console.log('Validation result:', isValid);
+            
+            if (!isValid) {
+                console.log('Validation failed, returning');
                 return;
             }
             
@@ -1725,13 +1751,16 @@
                 experience: parseInt(experienceSelect.value)
             };
             
-            console.log('User info saved:', userInfo); // Debug log
+            console.log('User info saved:', userInfo);
             
             // Update instruction screen
             updateInstructionScreen();
             
+            console.log('About to show instructions screen');
             // Show instructions screen
             showScreen('instructions');
+            
+            console.log('=== handleRegistration completed ===');
         }
         // Validate registration form
         function validateRegistration() {
@@ -2032,7 +2061,7 @@
         function saveToGoogleSheets(result) {
             // ⚠️ REPLACE THIS URL WITH YOUR ACTUAL GOOGLE APPS SCRIPT URL ⚠️
             //const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
-	    const scriptURL = 'https://script.google.com/macros/s/AKfycbyK-WOArL4yjSPpN2gINnxvrEfhP9Zz2SLmYaJd7p6YNs5VW3ZomwLAZHe4ZEewN1zD/exec';
+	    const scriptURL = 'https://script.google.com/macros/s/AKfycbyK-WOArL4yjSPpN2gINnxvrEfhP9Zz2SLmYaJd7p6YNs5VW3ZomwLAZHe4ZEewN1zD/exec':
             
             const experienceLabels = ['Entry Level (0-2 Years)', 'Mid Level (2-10 Years)', 'Senior Level (Above 10 Years)'];
             const topicsString = JSON.stringify(result.topics || {});
