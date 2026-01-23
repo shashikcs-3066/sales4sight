@@ -648,6 +648,38 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Mobile Debug Panel */
+        .mobile-debug-panel {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 10000;
+            max-width: 300px;
+            display: none;
+        }
+
+        .mobile-debug-panel.active {
+            display: block;
+        }
+
+        .debug-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -722,6 +754,13 @@
     </style>
 </head>
 <body>
+    <!-- Mobile Debug Toggle -->
+    <button class="debug-toggle" id="debugToggle">Debug</button>
+    <div class="mobile-debug-panel" id="mobileDebugPanel">
+        <strong>Mobile Debug Info:</strong><br>
+        <div id="debugInfo">Loading...</div>
+    </div>
+
     <!-- Game Container -->
     <div class="container">
         <!-- Header -->
@@ -958,7 +997,7 @@
         }
         
         // ==============================
-        // INDEXEDDB CLASS
+        // ENHANCED INDEXEDDB CLASS WITH DEBUGGING
         // ==============================
         class AssessmentDB {
             constructor() {
@@ -966,6 +1005,7 @@
                 this.dbVersion = 2;
                 this.db = null;
                 this.isInitialized = false;
+                this.debugLog = [];
             }
 
             async init() {
@@ -974,11 +1014,15 @@
                 }
 
                 return new Promise((resolve, reject) => {
+                    this.addDebugLog('Initializing IndexedDB...');
+                    
                     const request = indexedDB.open(this.dbName, this.dbVersion);
 
                     request.onerror = (event) => {
-                        console.error('❌ IndexedDB error:', event.target.error);
-                        reject(event.target.error);
+                        const error = event.target.error;
+                        this.addDebugLog(`❌ IndexedDB error: ${error.message}`);
+                        console.error('❌ IndexedDB error:', error);
+                        reject(error);
                     };
 
                     request.onsuccess = (event) => {
@@ -988,15 +1032,18 @@
                         // Listen for version changes
                         this.db.onversionchange = () => {
                             this.db.close();
+                            this.addDebugLog('Database version changed, reloading page...');
                             console.log('Database is outdated, please reload the page.');
                         };
                         
+                        this.addDebugLog('✅ IndexedDB initialized successfully');
                         console.log('✅ IndexedDB initialized');
                         resolve(this.db);
                     };
 
                     request.onupgradeneeded = (event) => {
                         const db = event.target.result;
+                        this.addDebugLog(`Upgrading database to version ${this.dbVersion}...`);
                         
                         // Create object store for assessments
                         if (!db.objectStoreNames.contains('assessments')) {
@@ -1009,8 +1056,11 @@
                             store.createIndex('score', 'score', { unique: false });
                             store.createIndex('experience', 'experience', { unique: false });
                             store.createIndex('accessCode', 'accessCode', { unique: false });
+                            
+                            this.addDebugLog('✅ Created "assessments" object store');
                         }
 
+                        this.addDebugLog('✅ IndexedDB schema upgraded');
                         console.log('✅ IndexedDB schema upgraded to version', this.dbVersion);
                     };
                 });
@@ -1020,12 +1070,15 @@
                 await this.init();
 
                 return new Promise((resolve, reject) => {
+                    this.addDebugLog('Starting saveAssessment...');
+                    
                     const transaction = this.db.transaction(['assessments'], 'readwrite');
                     const store = transaction.objectStore('assessments');
 
                     // Ensure unique ID
                     if (!assessment.id) {
                         assessment.id = `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+                        this.addDebugLog(`Generated ID: ${assessment.id}`);
                     }
 
                     // Ensure timestamp
@@ -1035,17 +1088,32 @@
 
                     // Mark source
                     assessment._source = 'indexeddb';
+                    
+                    // Add debug info for mobile
+                    assessment._userAgent = navigator.userAgent;
+                    assessment._platform = navigator.platform;
+                    assessment._screenSize = `${window.screen.width}x${window.screen.height}`;
 
                     const request = store.put(assessment);
 
                     request.onsuccess = () => {
+                        this.addDebugLog(`✅ Assessment saved: ${assessment.id}`);
                         console.log(`✅ Assessment saved to IndexedDB: ${assessment.id}`);
                         resolve(assessment.id);
                     };
 
                     request.onerror = (event) => {
+                        this.addDebugLog(`❌ Save error: ${event.target.error.message}`);
                         console.error('Error saving to IndexedDB:', event.target.error);
                         reject(event.target.error);
+                    };
+                    
+                    transaction.oncomplete = () => {
+                        this.addDebugLog('Transaction completed');
+                    };
+                    
+                    transaction.onerror = (event) => {
+                        this.addDebugLog(`Transaction error: ${event.target.error.message}`);
                     };
                 });
             }
@@ -1054,16 +1122,20 @@
                 await this.init();
 
                 return new Promise((resolve, reject) => {
+                    this.addDebugLog('Fetching all assessments...');
+                    
                     const transaction = this.db.transaction(['assessments'], 'readonly');
                     const store = transaction.objectStore('assessments');
                     const request = store.getAll();
 
                     request.onsuccess = () => {
+                        this.addDebugLog(`✅ Loaded ${request.result.length} assessments`);
                         console.log(`✅ Loaded ${request.result.length} assessments from IndexedDB`);
                         resolve(request.result);
                     };
 
                     request.onerror = (event) => {
+                        this.addDebugLog(`❌ Load error: ${event.target.error.message}`);
                         console.error('Error loading from IndexedDB:', event.target.error);
                         reject(event.target.error);
                     };
@@ -1074,18 +1146,141 @@
                 await this.init();
 
                 return new Promise((resolve, reject) => {
+                    this.addDebugLog('Counting assessments...');
+                    
                     const transaction = this.db.transaction(['assessments'], 'readonly');
                     const store = transaction.objectStore('assessments');
                     const request = store.count();
 
                     request.onsuccess = () => {
+                        this.addDebugLog(`Count: ${request.result} assessments`);
                         resolve(request.result);
                     };
 
                     request.onerror = (event) => {
+                        this.addDebugLog(`Count error: ${event.target.error.message}`);
                         reject(event.target.error);
                     };
                 });
+            }
+            
+            // NEW: Mobile Debugging Function
+            async debugMobileIssues() {
+                this.addDebugLog('=== MOBILE DEBUG SESSION STARTED ===');
+                
+                try {
+                    // Check if IndexedDB is supported
+                    if (!window.indexedDB) {
+                        this.addDebugLog('❌ IndexedDB is not supported in this browser');
+                        return {
+                            supported: false,
+                            error: 'IndexedDB not supported'
+                        };
+                    }
+                    
+                    // Test database initialization
+                    await this.init();
+                    
+                    // Test saving a test record
+                    const testRecord = {
+                        id: `test_${Date.now()}`,
+                        timestamp: new Date().toISOString(),
+                        name: 'Test User',
+                        email: 'test@example.com',
+                        mobile: '1234567890',
+                        score: 85,
+                        _debug: true,
+                        _userAgent: navigator.userAgent,
+                        _platform: navigator.platform,
+                        _screenSize: `${window.screen.width}x${window.screen.height}`,
+                        _viewport: `${window.innerWidth}x${window.innerHeight}`
+                    };
+                    
+                    await this.saveAssessment(testRecord);
+                    
+                    // Test retrieving records
+                    const count = await this.countAssessments();
+                    const allRecords = await this.getAllAssessments();
+                    
+                    // Check for mobile-specific issues
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    
+                    const debugInfo = {
+                        success: true,
+                        indexedDBSupported: true,
+                        isMobile: isMobile,
+                        userAgent: navigator.userAgent,
+                        platform: navigator.platform,
+                        screenSize: `${window.screen.width}x${window.screen.height}`,
+                        viewport: `${window.innerWidth}x${window.innerHeight}`,
+                        totalRecords: count,
+                        testRecordSaved: true,
+                        storageEstimate: await this.estimateStorage(),
+                        debugLog: this.debugLog
+                    };
+                    
+                    this.addDebugLog('✅ Mobile debug completed successfully');
+                    return debugInfo;
+                    
+                } catch (error) {
+                    this.addDebugLog(`❌ Mobile debug failed: ${error.message}`);
+                    
+                    return {
+                        success: false,
+                        error: error.message,
+                        stack: error.stack,
+                        userAgent: navigator.userAgent,
+                        platform: navigator.platform,
+                        debugLog: this.debugLog
+                    };
+                }
+            }
+            
+            // Storage estimation
+            async estimateStorage() {
+                if ('storage' in navigator && 'estimate' in navigator.storage) {
+                    try {
+                        const estimate = await navigator.storage.estimate();
+                        return {
+                            usage: estimate.usage,
+                            quota: estimate.quota,
+                            percent: estimate.usage && estimate.quota ? 
+                                Math.round((estimate.usage / estimate.quota) * 100) : null
+                        };
+                    } catch (error) {
+                        this.addDebugLog(`Storage estimate error: ${error.message}`);
+                        return { error: error.message };
+                    }
+                }
+                return { error: 'Storage API not supported' };
+            }
+            
+            // Add to debug log
+            addDebugLog(message) {
+                const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
+                const logEntry = `[${timestamp}] ${message}`;
+                this.debugLog.push(logEntry);
+                
+                // Keep only last 100 entries
+                if (this.debugLog.length > 100) {
+                    this.debugLog = this.debugLog.slice(-100);
+                }
+                
+                // Also update debug panel if it exists
+                updateDebugPanel();
+                
+                return logEntry;
+            }
+            
+            // Get debug logs
+            getDebugLogs() {
+                return this.debugLog;
+            }
+            
+            // Clear debug logs
+            clearDebugLogs() {
+                this.debugLog = [];
+                updateDebugPanel();
             }
         }
         
@@ -1155,6 +1350,11 @@
         const viewFeedbackBtn = document.getElementById('view-feedback-btn');
         const detailedFeedbackContainer = document.getElementById('detailed-feedback-container');
 
+        // Debug elements
+        const debugToggle = document.getElementById('debugToggle');
+        const mobileDebugPanel = document.getElementById('mobileDebugPanel');
+        const debugInfoEl = document.getElementById('debugInfo');
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM fully loaded and parsed');
@@ -1221,6 +1421,12 @@
             setupInputValidation();
             console.log('✅ Input validation set up');
             
+            // Debug toggle
+            if (debugToggle) {
+                debugToggle.addEventListener('click', toggleDebugPanel);
+                console.log('✅ Debug toggle listener added');
+            }
+            
             console.log('✅ All event listeners set up successfully');
         }
 
@@ -1229,7 +1435,7 @@
             console.log('Registration form submitted');
             e.preventDefault();
             
-            // Validate inputs
+            // Validate inputs with enhanced mobile validation
             if (!validateRegistration()) {
                 console.log('❌ Registration validation failed');
                 return;
@@ -1253,7 +1459,7 @@
             console.log('✅ Showing instructions screen');
         }
 
-        // Validate registration form
+        // Enhanced registration validation with better mobile validation
         function validateRegistration() {
             console.log('Validating registration form...');
             let isValid = true;
@@ -1267,19 +1473,38 @@
                 hideError('name-error');
             }
             
-            // Validate mobile (simple validation)
-            const mobileRegex = /^\d{10}$/;
-            if (!mobileInput.value.trim() || !mobileRegex.test(mobileInput.value.replace(/\D/g, ''))) {
-                showError('mobile-error', 'Please enter a valid 10-digit mobile number');
+            // ENHANCED: Validate mobile (better validation for different formats)
+            const mobileValue = mobileInput.value.trim();
+            const cleanMobile = mobileValue.replace(/\D/g, ''); // Remove non-digits
+            
+            console.log(`Mobile input: "${mobileValue}" -> Clean: "${cleanMobile}"`);
+            
+            if (!mobileValue) {
+                showError('mobile-error', 'Please enter your mobile number');
                 isValid = false;
-                console.log('❌ Mobile validation failed');
+                console.log('❌ Mobile validation failed - empty');
+            } else if (cleanMobile.length < 10) {
+                showError('mobile-error', 'Please enter at least 10 digits');
+                isValid = false;
+                console.log('❌ Mobile validation failed - too short');
+            } else if (cleanMobile.length > 15) {
+                showError('mobile-error', 'Mobile number too long (max 15 digits)');
+                isValid = false;
+                console.log('❌ Mobile validation failed - too long');
+            } else if (!/^\d+$/.test(cleanMobile)) {
+                showError('mobile-error', 'Mobile number should contain only digits');
+                isValid = false;
+                console.log('❌ Mobile validation failed - non-digits');
             } else {
+                // Update input with cleaned value
+                mobileInput.value = cleanMobile;
                 hideError('mobile-error');
             }
             
             // Validate email
+            const emailValue = emailInput.value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+            if (!emailValue || !emailRegex.test(emailValue)) {
                 showError('email-error', 'Please enter a valid email address');
                 isValid = false;
                 console.log('❌ Email validation failed');
@@ -1324,8 +1549,12 @@
             });
             
             mobileInput.addEventListener('input', () => {
-                const mobileRegex = /^\d{10}$/;
-                if (mobileRegex.test(mobileInput.value.replace(/\D/g, ''))) hideError('mobile-error');
+                const mobileValue = mobileInput.value.trim();
+                const cleanMobile = mobileValue.replace(/\D/g, '');
+                
+                if (cleanMobile.length >= 10 && cleanMobile.length <= 15 && /^\d+$/.test(cleanMobile)) {
+                    hideError('mobile-error');
+                }
             });
             
             emailInput.addEventListener('input', () => {
@@ -1631,51 +1860,145 @@
             // Generate recommendations
             generateRecommendations(topicScores);
             
-            // Save results to localStorage and IndexedDB
+            // ENHANCED: Save results with better error handling
             saveAssessmentResult(percentage, topicScores);
         }
 
-        // Save assessment result (Updated with IndexedDB support)
+        // ==============================
+        // ENHANCED: Save Assessment Result Function
+        // ==============================
         async function saveAssessmentResult(percentage, topicScores) {
-            console.log('Saving assessment results...');
+            console.log('Saving assessment results (enhanced version)...');
             
             const accessData = JSON.parse(localStorage.getItem('s4s_current_access') || '{}');
             
+            const totalScore = userScores.reduce((sum, score) => sum + score, 0);
+            const maxScore = selectedQuestions.length * 3;
+            
             const result = {
-                id: Date.now().toString(),
+                id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
                 timestamp: new Date().toISOString(),
                 name: userInfo.name,
                 email: userInfo.email,
                 mobile: userInfo.mobile,
                 experience: ['Entry Level (0-2 Years)', 'Mid Level (2-10 Years)', 'Senior Level (Above 10 Years)'][userInfo.experience],
+                experienceLevel: userInfo.experience,
                 score: percentage,
-                totalScore: userScores.reduce((sum, score) => sum + score, 0),
-                maxScore: selectedQuestions.length * 3,
+                totalScore: totalScore,
+                maxScore: maxScore,
                 accessCode: accessData.code || 'test-mode',
                 topics: topicScores,
-                performanceLevel: percentage >= 80 ? 'Excellent' : percentage >= 60 ? 'Good' : 'Needs Improvement'
+                questionsAnswered: selectedQuestions.length,
+                performanceLevel: percentage >= 80 ? 'Excellent' : percentage >= 60 ? 'Good' : 'Needs Improvement',
+                _deviceInfo: {
+                    userAgent: navigator.userAgent,
+                    platform: navigator.platform,
+                    screenSize: `${window.screen.width}x${window.screen.height}`,
+                    viewport: `${window.innerWidth}x${window.innerHeight}`,
+                    isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                }
             };
             
-            // Save to LocalStorage (for backward compatibility)
-            const localResults = JSON.parse(localStorage.getItem('s4s_assessment_results') || '[]');
-            localResults.push(result);
-            localStorage.setItem('s4s_assessment_results', JSON.stringify(localResults));
-            console.log('✅ Assessment results saved to LocalStorage');
-            
-            // Try to save to IndexedDB
+            // Multi-layered save approach for reliability
             try {
-                await dbManager.saveAssessment(result);
-                console.log('✅ Assessment results saved to IndexedDB');
-                showSaveNotification('Results saved to database successfully!', 'success');
+                // 1. Save to LocalStorage (fast, reliable fallback)
+                const localResults = JSON.parse(localStorage.getItem('s4s_assessment_results') || '[]');
+                localResults.push(result);
+                localStorage.setItem('s4s_assessment_results', JSON.stringify(localResults));
+                console.log('✅ Assessment results saved to LocalStorage');
+                
+                // 2. Try to save to IndexedDB (primary storage)
+                try {
+                    await dbManager.saveAssessment(result);
+                    console.log('✅ Assessment results saved to IndexedDB');
+                    
+                    // Show success notification
+                    showSaveNotification('Results saved successfully!', 'success');
+                    
+                } catch (indexedDBError) {
+                    console.warn('⚠️ IndexedDB save failed, using LocalStorage only:', indexedDBError);
+                    
+                    // Mark as LocalStorage only
+                    result._storage = 'localStorage_only';
+                    result._indexedDBError = indexedDBError.message;
+                    
+                    // Update LocalStorage with error info
+                    const updatedResults = JSON.parse(localStorage.getItem('s4s_assessment_results') || '[]');
+                    if (updatedResults.length > 0) {
+                        updatedResults[updatedResults.length - 1] = result;
+                        localStorage.setItem('s4s_assessment_results', JSON.stringify(updatedResults));
+                    }
+                    
+                    showSaveNotification('Results saved locally (database unavailable)', 'warning');
+                }
+                
+                // 3. Also save a backup copy with timestamp
+                const backupKey = `s4s_backup_${Date.now()}`;
+                localStorage.setItem(backupKey, JSON.stringify(result));
+                console.log(`✅ Backup saved to ${backupKey}`);
+                
+                // 4. Track analytics
+                trackAssessmentAnalytics(result);
+                
             } catch (error) {
-                console.error('Failed to save to IndexedDB:', error);
-                showSaveNotification('Results saved locally (IndexedDB unavailable)', 'warning');
+                console.error('❌ Critical error saving assessment:', error);
+                
+                // Last resort: Try to save minimal data
+                const minimalResult = {
+                    id: Date.now().toString(),
+                    timestamp: new Date().toISOString(),
+                    name: userInfo.name,
+                    score: percentage,
+                    error: 'Full save failed',
+                    minimal: true
+                };
+                
+                const emergencyResults = JSON.parse(localStorage.getItem('s4s_emergency_results') || '[]');
+                emergencyResults.push(minimalResult);
+                localStorage.setItem('s4s_emergency_results', JSON.stringify(emergencyResults));
+                
+                showSaveNotification('Results partially saved due to technical issues', 'warning');
+            }
+            
+            return result;
+        }
+
+        // Analytics tracking
+        function trackAssessmentAnalytics(result) {
+            try {
+                const analytics = JSON.parse(localStorage.getItem('s4s_analytics') || '{}');
+                
+                if (!analytics.assessments) analytics.assessments = [];
+                analytics.assessments.push({
+                    timestamp: result.timestamp,
+                    score: result.score,
+                    experience: result.experienceLevel,
+                    performance: result.performanceLevel
+                });
+                
+                // Keep only last 100 entries
+                if (analytics.assessments.length > 100) {
+                    analytics.assessments = analytics.assessments.slice(-100);
+                }
+                
+                // Update counts
+                analytics.totalAssessments = (analytics.totalAssessments || 0) + 1;
+                
+                // Calculate averages
+                const scores = analytics.assessments.map(a => a.score);
+                analytics.averageScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+                
+                localStorage.setItem('s4s_analytics', JSON.stringify(analytics));
+                console.log('✅ Analytics updated');
+                
+            } catch (error) {
+                console.warn('Analytics tracking failed:', error);
             }
         }
 
         // Save to IndexedDB button handler
         async function saveToIndexedDB() {
-            console.log('Saving to IndexedDB...');
+            console.log('Manual save to IndexedDB triggered');
             
             const saveBtn = document.getElementById('save-to-indexeddb-btn');
             const originalText = saveBtn.innerHTML;
@@ -1685,7 +2008,7 @@
                 saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
                 saveBtn.disabled = true;
                 
-                // Get the current result data
+                // Get current result data
                 const totalScore = userScores.reduce((sum, score) => sum + score, 0);
                 const maxScore = selectedQuestions.length * 3;
                 const percentage = Math.round((totalScore / maxScore) * 100);
@@ -1699,13 +2022,21 @@
                     email: userInfo.email,
                     mobile: userInfo.mobile,
                     experience: ['Entry Level (0-2 Years)', 'Mid Level (2-10 Years)', 'Senior Level (Above 10 Years)'][userInfo.experience],
+                    experienceLevel: userInfo.experience,
                     score: percentage,
                     totalScore: totalScore,
                     maxScore: maxScore,
                     accessCode: accessData.code || 'test-mode',
                     topics: topicScores,
                     performanceLevel: percentage >= 80 ? 'Excellent' : percentage >= 60 ? 'Good' : 'Needs Improvement',
-                    _source: 'manual_save'
+                    _source: 'manual_save',
+                    _deviceInfo: {
+                        userAgent: navigator.userAgent,
+                        platform: navigator.platform,
+                        screenSize: `${window.screen.width}x${window.screen.height}`,
+                        viewport: `${window.innerWidth}x${window.innerHeight}`,
+                        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                    }
                 };
                 
                 // Save to IndexedDB
@@ -1717,7 +2048,7 @@
                 saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved to Database!';
                 saveBtn.style.background = '#10b981';
                 
-                showSaveNotification('Results saved to database successfully!');
+                showSaveNotification('Results saved to database successfully!', 'success');
                 
                 // Re-enable button after 3 seconds
                 setTimeout(() => {
@@ -1980,6 +2311,14 @@
                 report += `${rec}\n`;
             });
             
+            // Add debug info if available
+            report += `\nTechnical Information:\n`;
+            report += `=====================\n`;
+            report += `- User Agent: ${navigator.userAgent}\n`;
+            report += `- Platform: ${navigator.platform}\n`;
+            report += `- Screen: ${window.screen.width}x${window.screen.height}\n`;
+            report += `- Viewport: ${window.innerWidth}x${window.innerHeight}\n`;
+            
             // Create and trigger download
             const blob = new Blob([report], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
@@ -2013,7 +2352,7 @@
                 saveBtn.style.background = '#0f9d58';
                 
                 // Show success notification
-                showSaveNotification('Results saved to Google Sheets successfully!');
+                showSaveNotification('Results saved to Google Sheets successfully!', 'success');
                 
                 // Re-enable button after 3 seconds
                 setTimeout(() => {
@@ -2077,6 +2416,54 @@
             }, 3000);
         }
 
+        // Toggle debug panel
+        function toggleDebugPanel() {
+            mobileDebugPanel.classList.toggle('active');
+            
+            if (mobileDebugPanel.classList.contains('active')) {
+                updateDebugPanel();
+            }
+        }
+
+        // Update debug panel
+        function updateDebugPanel() {
+            if (!debugInfoEl) return;
+            
+            const logs = dbManager.getDebugLogs();
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            let debugHTML = `
+                <strong>Mobile Device:</strong> ${isMobile ? 'Yes' : 'No'}<br>
+                <strong>Platform:</strong> ${navigator.platform}<br>
+                <strong>Screen:</strong> ${window.screen.width}x${window.screen.height}<br>
+                <strong>Viewport:</strong> ${window.innerWidth}x${window.innerHeight}<br>
+                <strong>IndexedDB:</strong> ${window.indexedDB ? 'Supported' : 'Not Supported'}<br>
+                <strong>Debug Logs:</strong><br>
+                <div style="max-height: 200px; overflow-y: auto; background: rgba(255,255,255,0.1); padding: 5px; margin-top: 5px; font-size: 10px;">
+            `;
+            
+            // Show last 10 logs
+            logs.slice(-10).forEach(log => {
+                debugHTML += `${log}<br>`;
+            });
+            
+            debugHTML += `</div>`;
+            
+            debugInfoEl.innerHTML = debugHTML;
+        }
+
+        // Run mobile debug test
+        async function runMobileDebugTest() {
+            console.log('Running mobile debug test...');
+            const result = await dbManager.debugMobileIssues();
+            console.log('Mobile debug result:', result);
+            
+            // Update debug panel with results
+            updateDebugPanel();
+            
+            return result;
+        }
+
         // Show screen
         function showScreen(screenName) {
             console.log(`Switching to screen: ${screenName}`);
@@ -2094,6 +2481,11 @@
         }
         
         console.log('=== Page Setup Complete ===');
+        
+        // Initial debug test on page load
+        setTimeout(() => {
+            runMobileDebugTest().catch(console.error);
+        }, 1000);
     </script>
 </body>
 </html>
