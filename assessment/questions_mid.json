@@ -1,0 +1,940 @@
+{
+  "questions": [
+    {
+      "topic": "Communication",
+      "text": "How do you adjust your communication strategy when dealing with C-level executives versus mid-level managers?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you adjust your communication strategy when dealing with C-level executives versus mid-level managers? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you adjust your communication strategy when dealing with C-level executives versus mid-level managers? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you adjust your communication strategy when dealing with C-level executives versus mid-level managers? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Communication",
+      "text": "Describe a complex sale where you had to communicate with multiple stakeholders with different priorities. How did you manage it?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: Describe a complex sale where you had to communicate with multiple stakeholders with different priorities. How did you manage it? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: Describe a complex sale where you had to communicate with multiple stakeholders with different priorities. How did you manage it? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: Describe a complex sale where you had to communicate with multiple stakeholders with different priorities. How did you manage it? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Communication",
+      "text": "How do you use storytelling in your sales conversations, and can you provide an example of a story that has been particularly effective?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you use storytelling in your sales conversations, and can you provide an example of a story that has been particularly effective? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you use storytelling in your sales conversations, and can you provide an example of a story that has been particularly effective? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you use storytelling in your sales conversations, and can you provide an example of a story that has been particularly effective? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Communication",
+      "text": "When you sense resistance or skepticism from a prospect, what communication techniques do you employ to rebuild trust?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: When you sense resistance or skepticism from a prospect, what communication techniques do you employ to rebuild trust? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: When you sense resistance or skepticism from a prospect, what communication techniques do you employ to rebuild trust? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: When you sense resistance or skepticism from a prospect, what communication techniques do you employ to rebuild trust? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Sales Pitch",
+      "text": "How do you balance addressing immediate pain points with presenting long-term strategic value in your pitch?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you balance addressing immediate pain points with presenting long-term strategic value in your pitch? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you balance addressing immediate pain points with presenting long-term strategic value in your pitch? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you balance addressing immediate pain points with presenting long-term strategic value in your pitch? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Sales Pitch",
+      "text": "Describe how you've evolved your sales pitch over the years. What have you learned about what works and what doesn't?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: Describe how you've evolved your sales pitch over the years. What have you learned about what works and what doesn't? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: Describe how you've evolved your sales pitch over the years. What have you learned about what works and what doesn't? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: Describe how you've evolved your sales pitch over the years. What have you learned about what works and what doesn't? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Sales Pitch",
+      "text": "How do you handle a situation where your pitch is to a buying committee with conflicting interests and priorities?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you handle a situation where your pitch is to a buying committee with conflicting interests and priorities? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you handle a situation where your pitch is to a buying committee with conflicting interests and priorities? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you handle a situation where your pitch is to a buying committee with conflicting interests and priorities? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Sales Pitch",
+      "text": "What framework do you use to structure your pitch for different industries or verticals?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What framework do you use to structure your pitch for different industries or verticals? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What framework do you use to structure your pitch for different industries or verticals? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: What framework do you use to structure your pitch for different industries or verticals? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Cold Calling",
+      "text": "What is your strategy for getting past gatekeepers and reaching decision-makers consistently?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What is your strategy for getting past gatekeepers and reaching decision-makers consistently? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: What is your strategy for getting past gatekeepers and reaching decision-makers consistently? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: What is your strategy for getting past gatekeepers and reaching decision-makers consistently? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Cold Calling",
+      "text": "How do you research and personalize cold calls at scale without sacrificing efficiency?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you research and personalize cold calls at scale without sacrificing efficiency? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you research and personalize cold calls at scale without sacrificing efficiency? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you research and personalize cold calls at scale without sacrificing efficiency? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Cold Calling",
+      "text": "What metrics do you track for your cold calling activities, and how do you use that data to improve?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What metrics do you track for your cold calling activities, and how do you use that data to improve? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: What metrics do you track for your cold calling activities, and how do you use that data to improve? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What metrics do you track for your cold calling activities, and how do you use that data to improve? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Cold Calling",
+      "text": "How has your cold calling approach evolved with the rise of digital communication channels, and how do you integrate both?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How has your cold calling approach evolved with the rise of digital communication channels, and how do you integrate both? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How has your cold calling approach evolved with the rise of digital communication channels, and how do you integrate both? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How has your cold calling approach evolved with the rise of digital communication channels, and how do you integrate both? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Presentation Skill",
+      "text": "How do you facilitate interactive discussions during presentations rather than just delivering one-way information?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you facilitate interactive discussions during presentations rather than just delivering one-way information? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you facilitate interactive discussions during presentations rather than just delivering one-way information? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you facilitate interactive discussions during presentations rather than just delivering one-way information? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Presentation Skill",
+      "text": "Describe a presentation that didn't go as planned. How did you adapt in real-time, and what did you learn?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: Describe a presentation that didn't go as planned. How did you adapt in real-time, and what did you learn? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: Describe a presentation that didn't go as planned. How did you adapt in real-time, and what did you learn? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: Describe a presentation that didn't go as planned. How did you adapt in real-time, and what did you learn? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Presentation Skill",
+      "text": "How do you tailor your presentation style and content for virtual meetings versus in-person presentations?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you tailor your presentation style and content for virtual meetings versus in-person presentations? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you tailor your presentation style and content for virtual meetings versus in-person presentations? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you tailor your presentation style and content for virtual meetings versus in-person presentations? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Presentation Skill",
+      "text": "What techniques do you use to handle difficult questions or challenges during a presentation without losing control of the room?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What techniques do you use to handle difficult questions or challenges during a presentation without losing control of the room? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: What techniques do you use to handle difficult questions or challenges during a presentation without losing control of the room? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What techniques do you use to handle difficult questions or challenges during a presentation without losing control of the room? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Sales Process",
+      "text": "How do you identify and remove bottlenecks in your sales process to shorten the sales cycle?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you identify and remove bottlenecks in your sales process to shorten the sales cycle? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you identify and remove bottlenecks in your sales process to shorten the sales cycle? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you identify and remove bottlenecks in your sales process to shorten the sales cycle? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you manage complex, multi-threaded sales processes involving multiple decision-makers and departments.",
+      "text": "How do you balance following a structured sales process with the flexibility needed for different deal situations?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you balance following a structured sales process with the flexibility needed for different deal situations? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you balance following a structured sales process with the flexibility needed for different deal situations? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you balance following a structured sales process with the flexibility needed for different deal situations? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you manage complex, multi-threaded sales processes involving multiple decision-makers and departments.",
+      "text": "What leading and lagging indicators do you monitor to forecast your pipeline accuracy?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What leading and lagging indicators do you monitor to forecast your pipeline accuracy? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: What leading and lagging indicators do you monitor to forecast your pipeline accuracy? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: What leading and lagging indicators do you monitor to forecast your pipeline accuracy? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Questioning Skill",
+      "text": "How do you use the SPIN (Situation, Problem, Implication, Need-Payoff) selling methodology or similar frameworks in your questioning approach?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you use the SPIN (Situation, Problem, Implication, Need-Payoff) selling methodology or similar frameworks in your questioning approach? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you use the SPIN (Situation, Problem, Implication, Need-Payoff) selling methodology or similar frameworks in your questioning approach? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you use the SPIN (Situation, Problem, Implication, Need-Payoff) selling methodology or similar frameworks in your questioning approach? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you layer questions to move a prospect from awareness to urgency around solving their problem.",
+      "text": "How do you question effectively to uncover unstated needs or challenges that the prospect may not have articulated?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you question effectively to uncover unstated needs or challenges that the prospect may not have articulated? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you question effectively to uncover unstated needs or challenges that the prospect may not have articulated? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you question effectively to uncover unstated needs or challenges that the prospect may not have articulated? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you layer questions to move a prospect from awareness to urgency around solving their problem.",
+      "text": "What's your strategy for asking difficult or challenging questions without damaging rapport?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What's your strategy for asking difficult or challenging questions without damaging rapport? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: What's your strategy for asking difficult or challenging questions without damaging rapport? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What's your strategy for asking difficult or challenging questions without damaging rapport? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Buying Process",
+      "text": "How do you map out and navigate complex B2B buying processes with multiple stakeholders and approval layers?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you map out and navigate complex B2B buying processes with multiple stakeholders and approval layers? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you map out and navigate complex B2B buying processes with multiple stakeholders and approval layers? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you map out and navigate complex B2B buying processes with multiple stakeholders and approval layers? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Buying Process",
+      "text": "What strategies do you use to accelerate a buying process that has stalled or extended beyond the expected timeline?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What strategies do you use to accelerate a buying process that has stalled or extended beyond the expected timeline? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: What strategies do you use to accelerate a buying process that has stalled or extended beyond the expected timeline? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: What strategies do you use to accelerate a buying process that has stalled or extended beyond the expected timeline? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Buying Process",
+      "text": "How do you identify and influence the \"economic buyer\" versus technical evaluators in an organization?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you identify and influence the \"economic buyer\" versus technical evaluators in an organization? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you identify and influence the \"economic buyer\" versus technical evaluators in an organization? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you identify and influence the \"economic buyer\" versus technical evaluators in an organization? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Objection Handling",
+      "text": "How do you differentiate between surface-level objections and the real underlying concerns driving resistance?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you differentiate between surface-level objections and the real underlying concerns driving resistance? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you differentiate between surface-level objections and the real underlying concerns driving resistance? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you differentiate between surface-level objections and the real underlying concerns driving resistance? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Objection Handling",
+      "text": "What is your framework for handling objections proactively before they arise versus reactively when they're raised?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What is your framework for handling objections proactively before they arise versus reactively when they're raised? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What is your framework for handling objections proactively before they arise versus reactively when they're raised? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: What is your framework for handling objections proactively before they arise versus reactively when they're raised? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Objection Handling",
+      "text": "Describe a situation where you lost a deal despite handling objections well. What did you learn about the objection-handling process?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: Describe a situation where you lost a deal despite handling objections well. What did you learn about the objection-handling process? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: Describe a situation where you lost a deal despite handling objections well. What did you learn about the objection-handling process? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: Describe a situation where you lost a deal despite handling objections well. What did you learn about the objection-handling process? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Objection Handling",
+      "text": "How do you handle objections in competitive situations where prospects are using your competitors' strengths as reasons not to buy from you?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you handle objections in competitive situations where prospects are using your competitors' strengths as reasons not to buy from you? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you handle objections in competitive situations where prospects are using your competitors' strengths as reasons not to buy from you? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you handle objections in competitive situations where prospects are using your competitors' strengths as reasons not to buy from you? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Value Proposition",
+      "text": "How do you quantify and articulate ROI for prospects in different industries or with different business models?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you quantify and articulate ROI for prospects in different industries or with different business models? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you quantify and articulate ROI for prospects in different industries or with different business models? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you quantify and articulate ROI for prospects in different industries or with different business models? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you've developed industry-specific or persona-specific value propositions in your role.",
+      "text": "How do you evolve your value proposition when selling to existing customers versus new prospects?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you evolve your value proposition when selling to existing customers versus new prospects? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you evolve your value proposition when selling to existing customers versus new prospects? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you evolve your value proposition when selling to existing customers versus new prospects? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you've developed industry-specific or persona-specific value propositions in your role.",
+      "text": "What process do you use to validate that your value proposition resonates with your target market?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What process do you use to validate that your value proposition resonates with your target market? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What process do you use to validate that your value proposition resonates with your target market? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: What process do you use to validate that your value proposition resonates with your target market? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "ICP & Persona",
+      "text": "How have you contributed to refining your company's ICP based on your frontline sales experience?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How have you contributed to refining your company's ICP based on your frontline sales experience? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How have you contributed to refining your company's ICP based on your frontline sales experience? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How have you contributed to refining your company's ICP based on your frontline sales experience? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you've segmented your territory or book of business based on ICP fit and potential value.",
+      "text": "How do you handle situations where a prospect falls outside your ICP but expresses strong interest?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you handle situations where a prospect falls outside your ICP but expresses strong interest? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you handle situations where a prospect falls outside your ICP but expresses strong interest? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you handle situations where a prospect falls outside your ICP but expresses strong interest? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you've segmented your territory or book of business based on ICP fit and potential value.",
+      "text": "What patterns have you identified among your most successful deals that have helped you better target similar prospects?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What patterns have you identified among your most successful deals that have helped you better target similar prospects? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: What patterns have you identified among your most successful deals that have helped you better target similar prospects? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: What patterns have you identified among your most successful deals that have helped you better target similar prospects? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Follow-up",
+      "text": "What is your multi-touch, multi-channel follow-up strategy, and how do you sequence different touchpoints?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What is your multi-touch, multi-channel follow-up strategy, and how do you sequence different touchpoints? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: What is your multi-touch, multi-channel follow-up strategy, and how do you sequence different touchpoints? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What is your multi-touch, multi-channel follow-up strategy, and how do you sequence different touchpoints? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Follow-up",
+      "text": "How do you personalize follow-up at scale when managing a large pipeline of opportunities?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you personalize follow-up at scale when managing a large pipeline of opportunities? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you personalize follow-up at scale when managing a large pipeline of opportunities? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you personalize follow-up at scale when managing a large pipeline of opportunities? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Describe your approach to re-engaging prospects who have gone dark after showing initial interest.",
+      "text": "How do you use content, case studies, or resources strategically in your follow-up to add value and maintain engagement?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you use content, case studies, or resources strategically in your follow-up to add value and maintain engagement? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you use content, case studies, or resources strategically in your follow-up to add value and maintain engagement? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you use content, case studies, or resources strategically in your follow-up to add value and maintain engagement? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Sales Call Planning",
+      "text": "What framework do you use to plan discovery calls versus demo calls versus closing calls?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What framework do you use to plan discovery calls versus demo calls versus closing calls? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What framework do you use to plan discovery calls versus demo calls versus closing calls? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: What framework do you use to plan discovery calls versus demo calls versus closing calls? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Sales Call Planning",
+      "text": "How do you prepare for sales calls when you have limited information about the prospect or their needs?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you prepare for sales calls when you have limited information about the prospect or their needs? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you prepare for sales calls when you have limited information about the prospect or their needs? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you prepare for sales calls when you have limited information about the prospect or their needs? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you develop and test hypotheses about a prospect's business before a call to make the conversation more strategic.",
+      "text": "How do you balance having a structured call plan with remaining flexible to follow unexpected but valuable conversation threads?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you balance having a structured call plan with remaining flexible to follow unexpected but valuable conversation threads? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you balance having a structured call plan with remaining flexible to follow unexpected but valuable conversation threads? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you balance having a structured call plan with remaining flexible to follow unexpected but valuable conversation threads? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Negotiation",
+      "text": "How do you create and defend value during negotiations to avoid competing solely on price?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you create and defend value during negotiations to avoid competing solely on price? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you create and defend value during negotiations to avoid competing solely on price? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you create and defend value during negotiations to avoid competing solely on price? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Negotiation",
+      "text": "Describe a complex negotiation where you had to involve legal, finance, or other departments. How did you coordinate?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: Describe a complex negotiation where you had to involve legal, finance, or other departments. How did you coordinate? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: Describe a complex negotiation where you had to involve legal, finance, or other departments. How did you coordinate? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: Describe a complex negotiation where you had to involve legal, finance, or other departments. How did you coordinate? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Negotiation",
+      "text": "What tactics do you use when negotiating with procurement professionals who are trained negotiators?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What tactics do you use when negotiating with procurement professionals who are trained negotiators? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What tactics do you use when negotiating with procurement professionals who are trained negotiators? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: What tactics do you use when negotiating with procurement professionals who are trained negotiators? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Negotiation",
+      "text": "How do you negotiate when you have less leverage than the buyer, and what creative solutions have you employed?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you negotiate when you have less leverage than the buyer, and what creative solutions have you employed? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you negotiate when you have less leverage than the buyer, and what creative solutions have you employed? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you negotiate when you have less leverage than the buyer, and what creative solutions have you employed? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Customer Understanding",
+      "text": "How do you develop business acumen specific to the industries you sell into?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you develop business acumen specific to the industries you sell into? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you develop business acumen specific to the industries you sell into? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you develop business acumen specific to the industries you sell into? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you use financial statements, annual reports, or other business intelligence to understand a prospect's priorities.",
+      "text": "How do you identify the political dynamics and power structures within a prospect organization?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you identify the political dynamics and power structures within a prospect organization? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you identify the political dynamics and power structures within a prospect organization? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you identify the political dynamics and power structures within a prospect organization? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Describe how you use financial statements, annual reports, or other business intelligence to understand a prospect's priorities.",
+      "text": "What methods do you use to understand not just what customers say they need, but what they actually need?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What methods do you use to understand not just what customers say they need, but what they actually need? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: What methods do you use to understand not just what customers say they need, but what they actually need? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What methods do you use to understand not just what customers say they need, but what they actually need? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "How do you conduct competitive analysis and use competitive intelligence ethically and effectively?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you conduct competitive analysis and use competitive intelligence ethically and effectively? [Good: basic but correct approach]",
+          "points": 1
+        },
+        {
+          "text": "This is a senior-level response to: How do you conduct competitive analysis and use competitive intelligence ethically and effectively? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you conduct competitive analysis and use competitive intelligence ethically and effectively? [Better: more strategic and nuanced]",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "Describe a situation where you won a deal against a strong competitor. What was your differentiating strategy?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: Describe a situation where you won a deal against a strong competitor. What was your differentiating strategy? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: Describe a situation where you won a deal against a strong competitor. What was your differentiating strategy? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: Describe a situation where you won a deal against a strong competitor. What was your differentiating strategy? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "How do you position against competitors without disparaging them or appearing defensive?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: How do you position against competitors without disparaging them or appearing defensive? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: How do you position against competitors without disparaging them or appearing defensive? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: How do you position against competitors without disparaging them or appearing defensive? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "What competitive battle cards or frameworks have you developed or used to prepare for competitive situations?",
+      "answers": [
+        {
+          "text": "This is a senior-level response to: What competitive battle cards or frameworks have you developed or used to prepare for competitive situations? [Best: highly strategic, insightful, and tailored]",
+          "points": 3
+        },
+        {
+          "text": "This is a senior-level response to: What competitive battle cards or frameworks have you developed or used to prepare for competitive situations? [Better: more strategic and nuanced]",
+          "points": 2
+        },
+        {
+          "text": "This is a senior-level response to: What competitive battle cards or frameworks have you developed or used to prepare for competitive situations? [Good: basic but correct approach]",
+          "points": 1
+        }
+      ]
+    }
+  ]
+}
