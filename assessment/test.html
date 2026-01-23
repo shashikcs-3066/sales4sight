@@ -997,7 +997,7 @@
         }
         
         // ==============================
-        // ENHANCED INDEXEDDB CLASS WITH DEBUGGING
+        // ENHANCED INDEXEDDB CLASS WITH DEBUGGING + AUTO-UPGRADE
         // ==============================
         class AssessmentDB {
             constructor() {
@@ -1020,13 +1020,58 @@
 
                     request.onerror = (event) => {
                         const error = event.target.error;
-                        this.addDebugLog(`❌ IndexedDB error: ${error.message}`);
+                        this.addDebugLog(`❌ IndexedDB error: ${error && error.message ? error.message : error}`);
                         console.error('❌ IndexedDB error:', error);
                         reject(error);
                     };
 
                     request.onsuccess = (event) => {
                         this.db = event.target.result;
+
+                        // If object store is missing, attempt upgrade to create it
+                        if (!this.db.objectStoreNames.contains('assessments')) {
+                            this.addDebugLog('Assessments store missing, attempting DB upgrade to create it...');
+                            try {
+                                this.db.close();
+                                const upgradeReq = indexedDB.open(this.dbName, this.dbVersion + 1);
+                                upgradeReq.onupgradeneeded = (uevent) => {
+                                    const db = uevent.target.result;
+                                    if (!db.objectStoreNames.contains('assessments')) {
+                                        const store = db.createObjectStore('assessments', { keyPath: 'id' });
+                                        store.createIndex('timestamp', 'timestamp', { unique: false });
+                                        store.createIndex('name', 'name', { unique: false });
+                                        store.createIndex('email', 'email', { unique: false });
+                                        store.createIndex('score', 'score', { unique: false });
+                                        store.createIndex('experience', 'experience', { unique: false });
+                                        store.createIndex('accessCode', 'accessCode', { unique: false });
+                                        this.addDebugLog('✅ Created "assessments" object store during upgrade');
+                                    }
+                                };
+                                upgradeReq.onsuccess = (uevent) => {
+                                    this.db = uevent.target.result;
+                                    this.dbVersion = this.db.version;
+                                    this.isInitialized = true;
+                                    this.db.onversionchange = () => {
+                                        this.db.close();
+                                        this.addDebugLog('Database version changed, reloading page...');
+                                        console.log('Database is outdated, please reload the page.');
+                                    };
+                                    this.addDebugLog('✅ IndexedDB upgraded and initialized successfully');
+                                    resolve(this.db);
+                                };
+                                upgradeReq.onerror = (uevent) => {
+                                    const err = uevent.target.error;
+                                    this.addDebugLog(`❌ Upgrade error: ${err && err.message ? err.message : err}`);
+                                    console.error('❌ Upgrade error:', err);
+                                    reject(err);
+                                };
+                            } catch (err) {
+                                this.addDebugLog(`❌ Failed to auto-upgrade DB: ${err.message}`);
+                                reject(err);
+                            }
+                            return;
+                        }
+
                         this.isInitialized = true;
                         
                         // Listen for version changes
@@ -1103,9 +1148,10 @@
                     };
 
                     request.onerror = (event) => {
-                        this.addDebugLog(`❌ Save error: ${event.target.error.message}`);
-                        console.error('Error saving to IndexedDB:', event.target.error);
-                        reject(event.target.error);
+                        const err = event && event.target && event.target.error ? event.target.error : event;
+                        this.addDebugLog(`❌ Save error: ${err && err.message ? err.message : err}`);
+                        console.error('Error saving to IndexedDB:', err);
+                        reject(err);
                     };
                     
                     transaction.oncomplete = () => {
@@ -1113,7 +1159,8 @@
                     };
                     
                     transaction.onerror = (event) => {
-                        this.addDebugLog(`Transaction error: ${event.target.error.message}`);
+                        const err = event && event.target && event.target.error ? event.target.error : event;
+                        this.addDebugLog(`Transaction error: ${err && err.message ? err.message : err}`);
                     };
                 });
             }
@@ -1135,9 +1182,10 @@
                     };
 
                     request.onerror = (event) => {
-                        this.addDebugLog(`❌ Load error: ${event.target.error.message}`);
-                        console.error('Error loading from IndexedDB:', event.target.error);
-                        reject(event.target.error);
+                        const err = event && event.target && event.target.error ? event.target.error : event;
+                        this.addDebugLog(`❌ Load error: ${err && err.message ? err.message : err}`);
+                        console.error('Error loading from IndexedDB:', err);
+                        reject(err);
                     };
                 });
             }
@@ -1158,8 +1206,9 @@
                     };
 
                     request.onerror = (event) => {
-                        this.addDebugLog(`Count error: ${event.target.error.message}`);
-                        reject(event.target.error);
+                        const err = event && event.target && event.target.error ? event.target.error : event;
+                        this.addDebugLog(`Count error: ${err && err.message ? err.message : err}`);
+                        reject(err);
                     };
                 });
             }
@@ -1223,12 +1272,12 @@
                     return debugInfo;
                     
                 } catch (error) {
-                    this.addDebugLog(`❌ Mobile debug failed: ${error.message}`);
+                    this.addDebugLog(`❌ Mobile debug failed: ${error && error.message ? error.message : error}`);
                     
                     return {
                         success: false,
-                        error: error.message,
-                        stack: error.stack,
+                        error: error && error.message ? error.message : String(error),
+                        stack: error && error.stack ? error.stack : undefined,
                         userAgent: navigator.userAgent,
                         platform: navigator.platform,
                         debugLog: this.debugLog
@@ -1267,7 +1316,11 @@
                 }
                 
                 // Also update debug panel if it exists
-                updateDebugPanel();
+                try {
+                    if (typeof updateDebugPanel === 'function') updateDebugPanel();
+                } catch (e) {
+                    // ignore
+                }
                 
                 return logEntry;
             }
@@ -1280,7 +1333,9 @@
             // Clear debug logs
             clearDebugLogs() {
                 this.debugLog = [];
-                updateDebugPanel();
+                try {
+                    if (typeof updateDebugPanel === 'function') updateDebugPanel();
+                } catch (e) { }
             }
         }
         
@@ -1355,6 +1410,9 @@
         const mobileDebugPanel = document.getElementById('mobileDebugPanel');
         const debugInfoEl = document.getElementById('debugInfo');
 
+        // Pending-save queue key
+        const PENDING_SAVES_KEY = 's4s_pending_saves';
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM fully loaded and parsed');
@@ -1374,6 +1432,14 @@
             } catch (error) {
                 console.error('❌ Error setting up event listeners:', error);
             }
+
+            // Request persistent storage where supported and process pending saves
+            requestPersistentStorageIfPossible()
+                .then(() => {
+                    // Delay to allow DB init to complete in background
+                    setTimeout(() => processPendingSaves().catch(console.error), 1200);
+                })
+                .catch(e => console.warn('requestPersistentStorageIfPossible failed', e));
         });
 
         // Set up event listeners
@@ -1426,6 +1492,17 @@
                 debugToggle.addEventListener('click', toggleDebugPanel);
                 console.log('✅ Debug toggle listener added');
             }
+
+            // Visibility and online events to retry pending saves
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') {
+                    processPendingSaves().catch(e => dbManager.addDebugLog(`processPendingSaves error: ${e && e.message ? e.message : e}`));
+                }
+            });
+
+            window.addEventListener('online', () => {
+                processPendingSaves().catch(e => dbManager.addDebugLog(`processPendingSaves error: ${e && e.message ? e.message : e}`));
+            });
             
             console.log('✅ All event listeners set up successfully');
         }
@@ -1476,7 +1553,7 @@
             // ENHANCED: Validate mobile (better validation for different formats)
             const mobileValue = mobileInput.value.trim();
             const cleanMobile = mobileValue.replace(/\D/g, ''); // Remove non-digits
-            
+                        
             console.log(`Mobile input: "${mobileValue}" -> Clean: "${cleanMobile}"`);
             
             if (!mobileValue) {
@@ -1729,19 +1806,24 @@
             // Clear previous answers
             answersContainer.innerHTML = '';
             
-            // Get shuffled answers
-            const shuffledAnswers = shuffleArray([...question.answers]);
+            // Get shuffled answers and also keep mapping to original index
+            const answersWithOriginalIndex = question.answers.map((a, idx) => ({...a, __origIdx: idx}));
+            const shuffledAnswers = shuffleArray(answersWithOriginalIndex);
             
             // Add answer options
             shuffledAnswers.forEach((answer, answerIndex) => {
                 const answerElement = document.createElement('div');
-                answerElement.className = `answer-option ${userAnswers[index] === answerIndex ? 'selected' : ''}`;
+                answerElement.className = `answer-option ${userAnswers[index] === answer.__origIdx ? 'selected' : ''}`;
                 answerElement.innerHTML = `
                     <span class="answer-letter">${String.fromCharCode(65 + answerIndex)}</span>
                     <span class="answer-text">${answer.text}</span>
                 `;
                 
-                answerElement.addEventListener('click', () => selectAnswer(index, answerIndex, answer.points));
+                // store mapping on the element so selectAnswer can save original index
+                answerElement.dataset.origIndex = answer.__origIdx;
+                answerElement.dataset.points = answer.points;
+                
+                answerElement.addEventListener('click', () => selectAnswer(index, answerIndex, parseInt(answerElement.dataset.origIndex, 10), parseInt(answerElement.dataset.points, 10)));
                 answersContainer.appendChild(answerElement);
             });
             
@@ -1773,17 +1855,18 @@
         }
 
         // Select answer
-        function selectAnswer(questionIndex, answerIndex, points) {
-            console.log(`Question ${questionIndex + 1}: Selected answer ${answerIndex} worth ${points} points`);
+        // Modified to store original answer index (not shuffled index) so feedback & save remain consistent
+        function selectAnswer(questionIndex, shuffleIndex, originalAnswerIndex, points) {
+            console.log(`Question ${questionIndex + 1}: Selected shuffled answer ${shuffleIndex} (original ${originalAnswerIndex}) worth ${points} points`);
             
             // Update user answer and score
-            userAnswers[questionIndex] = answerIndex;
+            userAnswers[questionIndex] = originalAnswerIndex; // store original index
             userScores[questionIndex] = points;
             
             // Update UI
             const answerOptions = document.querySelectorAll('.answer-option');
-            answerOptions.forEach((option, index) => {
-                option.classList.toggle('selected', index === answerIndex);
+            answerOptions.forEach((option, idx) => {
+                option.classList.toggle('selected', idx === shuffleIndex);
             });
             
             // Disable all answer options to prevent changing answer
@@ -1810,7 +1893,8 @@
 
         // Update progress
         function updateProgress() {
-            const progress = ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
+            const total = selectedQuestions.length || 1;
+            const progress = ((currentQuestionIndex + 1) / total) * 100;
             progressFill.style.width = `${progress}%`;
         }
 
@@ -1860,12 +1944,12 @@
             // Generate recommendations
             generateRecommendations(topicScores);
             
-            // ENHANCED: Save results with better error handling
+            // ENHANCED: Save results with better error handling + pending queue
             saveAssessmentResult(percentage, topicScores);
         }
 
         // ==============================
-        // ENHANCED: Save Assessment Result Function
+        // ENHANCED: Save Assessment Result Function WITH PENDING QUEUE
         // ==============================
         async function saveAssessmentResult(percentage, topicScores) {
             console.log('Saving assessment results (enhanced version)...');
@@ -1916,11 +2000,11 @@
                     showSaveNotification('Results saved successfully!', 'success');
                     
                 } catch (indexedDBError) {
-                    console.warn('⚠️ IndexedDB save failed, using LocalStorage only:', indexedDBError);
+                    console.warn('⚠️ IndexedDB save failed, enqueueing for retry:', indexedDBError);
                     
-                    // Mark as LocalStorage only
+                    // Mark as pending
                     result._storage = 'localStorage_only';
-                    result._indexedDBError = indexedDBError.message;
+                    result._indexedDBError = indexedDBError && indexedDBError.message ? indexedDBError.message : String(indexedDBError);
                     
                     // Update LocalStorage with error info
                     const updatedResults = JSON.parse(localStorage.getItem('s4s_assessment_results') || '[]');
@@ -1928,8 +2012,11 @@
                         updatedResults[updatedResults.length - 1] = result;
                         localStorage.setItem('s4s_assessment_results', JSON.stringify(updatedResults));
                     }
-                    
-                    showSaveNotification('Results saved locally (database unavailable)', 'warning');
+
+                    // Enqueue for retry later
+                    enqueuePendingSave(result);
+
+                    showSaveNotification('Results saved locally; will retry saving to database shortly.', 'warning');
                 }
                 
                 // 3. Also save a backup copy with timestamp
@@ -1961,6 +2048,64 @@
             }
             
             return result;
+        }
+
+        // Enqueue pending save for later retries
+        function enqueuePendingSave(result) {
+            try {
+                const pending = JSON.parse(localStorage.getItem(PENDING_SAVES_KEY) || '[]');
+                pending.push(result);
+                localStorage.setItem(PENDING_SAVES_KEY, JSON.stringify(pending));
+                dbManager.addDebugLog(`Enqueued pending save (total pending=${pending.length})`);
+            } catch (err) {
+                dbManager.addDebugLog(`Failed to enqueue pending save: ${err && err.message ? err.message : err}`);
+            }
+        }
+
+        // Process pending saves with retries
+        async function processPendingSaves() {
+            try {
+                const pending = JSON.parse(localStorage.getItem(PENDING_SAVES_KEY) || '[]');
+                if (!pending || !pending.length) {
+                    dbManager.addDebugLog('No pending saves to process');
+                    return;
+                }
+                dbManager.addDebugLog(`Processing ${pending.length} pending saves...`);
+                const succeededIds = [];
+                for (const item of pending) {
+                    try {
+                        await dbManager.saveAssessment(item);
+                        succeededIds.push(item.id || item.timestamp);
+                        dbManager.addDebugLog(`Pending save succeeded: ${item.id || item.timestamp}`);
+                    } catch (err) {
+                        dbManager.addDebugLog(`Pending save failed for ${item.id || item.timestamp}: ${err && err.message ? err.message : err}`);
+                        // keep for retry
+                    }
+                }
+                if (succeededIds.length) {
+                    const remaining = pending.filter(p => !succeededIds.includes(p.id || p.timestamp));
+                    localStorage.setItem(PENDING_SAVES_KEY, JSON.stringify(remaining));
+                    dbManager.addDebugLog(`Pending queue updated, remaining=${remaining.length}`);
+                }
+            } catch (err) {
+                dbManager.addDebugLog(`processPendingSaves error: ${err && err.message ? err.message : err}`);
+            }
+        }
+
+        // Try to request persistent storage where supported
+        async function requestPersistentStorageIfPossible() {
+            try {
+                if (navigator.storage && navigator.storage.persist) {
+                    const granted = await navigator.storage.persist();
+                    dbManager.addDebugLog(`Storage.persist() requested -> granted=${granted}`);
+                    return granted;
+                }
+                dbManager.addDebugLog('Storage.persist() not supported');
+                return false;
+            } catch (err) {
+                dbManager.addDebugLog(`Storage.persist() error: ${err && err.message ? err.message : err}`);
+                return false;
+            }
         }
 
         // Analytics tracking
@@ -2060,11 +2205,30 @@
             } catch (error) {
                 console.error('❌ Error saving to IndexedDB:', error);
                 
+                // Enqueue for retry instead of failing silently
+                const fallbackResult = {
+                    id: `manual_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                    timestamp: new Date().toISOString(),
+                    name: userInfo.name,
+                    email: userInfo.email,
+                    mobile: userInfo.mobile,
+                    experience: ['Entry Level (0-2 Years)', 'Mid Level (2-10 Years)', 'Senior Level (Above 10 Years)'][userInfo.experience],
+                    experienceLevel: userInfo.experience,
+                    score: Math.round((userScores.reduce((s, p) => s + p, 0) / (selectedQuestions.length * 3)) * 100) || 0,
+                    totalScore: userScores.reduce((s, p) => s + p, 0),
+                    maxScore: selectedQuestions.length * 3,
+                    topics: calculateTopicScores(),
+                    _indexedDBError: error && error.message ? error.message : String(error),
+                    _source: 'manual_save_failed_then_enqueued'
+                };
+
+                enqueuePendingSave(fallbackResult);
+
                 // Show error message
-                saveBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed to Save';
-                saveBtn.style.background = '#ef4444';
+                saveBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Enqueued';
+                saveBtn.style.background = '#f59e0b';
                 
-                showSaveNotification('Failed to save to database. Please try again.', 'error');
+                showSaveNotification('Database unavailable. Save enqueued and will be retried.', 'warning');
                 
                 // Re-enable button after 3 seconds
                 setTimeout(() => {
@@ -2104,7 +2268,7 @@
                     };
                 }
                 
-                topicScores[topic].totalPoints += userScores[index];
+                topicScores[topic].totalPoints += userScores[index] || 0;
                 topicScores[topic].maxPoints += 3;
                 topicScores[topic].questions++;
             });
@@ -2212,10 +2376,10 @@
             
             selectedQuestions.forEach((question, index) => {
                 const userAnswerIndex = userAnswers[index];
-                const userScore = userScores[index];
+                const userScore = userScores[index] || 0;
                 const maxPoints = 3;
                 const bestAnswer = question.answers.find(a => a.points === maxPoints);
-                const userAnswer = userAnswerIndex !== null ? question.answers[userAnswerIndex] : null;
+                const userAnswer = typeof userAnswerIndex === 'number' ? question.answers[userAnswerIndex] : null;
                 
                 const feedbackItem = document.createElement('div');
                 feedbackItem.style.padding = '15px';
@@ -2285,7 +2449,7 @@
             report += `\nDetailed Question Analysis:\n`;
             report += `==========================\n`;
             selectedQuestions.forEach((question, index) => {
-                const score = userScores[index];
+                const score = userScores[index] || 0;
                 const maxPoints = 3;
                 const bestAnswer = question.answers.find(a => a.points === maxPoints);
                 report += `Q${index + 1}. ${question.topic}\n`;
@@ -2438,6 +2602,7 @@
                 <strong>Screen:</strong> ${window.screen.width}x${window.screen.height}<br>
                 <strong>Viewport:</strong> ${window.innerWidth}x${window.innerHeight}<br>
                 <strong>IndexedDB:</strong> ${window.indexedDB ? 'Supported' : 'Not Supported'}<br>
+                <strong>Pending Saves:</strong> ${(JSON.parse(localStorage.getItem(PENDING_SAVES_KEY) || '[]')).length}<br>
                 <strong>Debug Logs:</strong><br>
                 <div style="max-height: 200px; overflow-y: auto; background: rgba(255,255,255,0.1); padding: 5px; margin-top: 5px; font-size: 10px;">
             `;
