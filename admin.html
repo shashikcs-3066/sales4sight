@@ -3,534 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Sales4Sight</title>
+    <title>Sales4Sight - Admin Dashboard</title>
 
-    <!-- Styles (same layout you provided, untouched except minor additions for Supabase badge) -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
-        body { background: #f5f7fa; padding: 20px; color: #333; }
-
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 0;
+        }
+        .login-container {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg,#3b82f6,#1d4ed8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-box {
+            background: white;
+            padding: 35px;
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+        .login-box button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 12px;
+            background: #2563eb;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
         .container {
-            max-width: 1200px; margin: 0 auto; background: white; border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 30px;
+            max-width: 1200px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        h1 {
+            margin: 0 0 20px 0;
+            color: #1e3a8a;
         }
 
-        h1 { color: #2563eb; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0; }
-
-        /* Statistic cards */
-        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 20px; margin-bottom: 30px; }
+        /* Stats */
+        .stats-box {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
         .stat-card {
-            background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            flex: 1;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
         }
-        .stat-value { font-size: 2rem; font-weight: bold; color: #2563eb; margin-bottom: 5px; }
-        .stat-label { color: #64748b; font-size: 0.9rem; }
-
-        /* Controls */
-        .controls { margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-        button {
-            background: #2563eb; color: white; border: none; padding: 10px 20px;
-            border-radius: 5px; cursor: pointer; font-weight: 600; transition: background .3s;
+        .stat-value {
+            font-size: 30px;
+            font-weight: bold;
+            color: #2563eb;
         }
-        button:hover { background: #1d4ed8; }
-        button.secondary { background: #64748b; }
-        button.success { background: #10b981; }
-        button.danger { background: #ef4444; }
+        .stat-label {
+            font-size: 14px;
+            color: #64748b;
+        }
 
         /* Table */
         table {
-            width: 100%; border-collapse: collapse; margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
         }
         th {
-            background: #f8fafc; padding: 12px 15px; text-align: left;
-            border-bottom: 2px solid #e2e8f0; color: #475569; font-weight: 600;
+            background: #f1f5f9;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #e2e8f0;
         }
-        td { padding: 12px 15px; border-bottom: 1px solid #e2e8f0; }
-        tr:hover { background: #f8fafc; }
-
-        .score-badge {
-            display: inline-block; padding: 4px 8px; border-radius: 12px;
-            font-size: .8rem; font-weight: 600;
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
         }
-        .score-excellent { background: #d1fae5; color: #065f46; }
-        .score-good { background: #fef3c7; color: #92400e; }
-        .score-poor { background: #fee2e2; color: #991b1b; }
-
-        .empty-state {
-            text-align: center; padding: 50px 20px; color: #64748b;
+        tr:hover {
+            background: #f9fafb;
+        }
+        button.action-btn {
+            padding: 6px 12px;
+            background: #2563eb;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
         }
 
         /* Modal */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;
+        #detailModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.5);
         }
         .modal-content {
-            background: white; padding: 30px; border-radius: 10px;
-            max-width: 800px; width: 90%; max-height: 80vh; overflow-y: auto;
+            background: white;
+            width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 10px;
+            padding: 25px;
         }
-        .close-btn {
-            background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        /* Source badges */
-        .data-source-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; margin-left: 8px; }
-        .source-local { background: #dbeafe; color: #1e40af; }
-        .source-indexeddb { background: #f3e8ff; color: #6b21a8; }
-        .source-sheets { background: #dcfce7; color: #166534; }
-        .source-supabase { background: #e0f2fe; color: #0369a1; }
-
     </style>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 
 <body>
 
-<!-- ========================================= -->
-<!-- ADMIN LOGIN SCREEN                        -->
-<!-- ========================================= -->
-<div id="login-screen" style="
-    position: fixed; top:0; left:0; width:100%; height:100%;
-    background: linear-gradient(135deg,#667eea,#764ba2);
-    display:flex; align-items:center; justify-content:center; z-index:9999;">
-    
-    <div style="background:white; padding:40px; border-radius:15px; width:90%; max-width:380px; text-align:center;">
-        <h2 style="color:#2563eb; margin-bottom:10px;">Admin Login</h2>
-        <p style="color:#64748b; margin-bottom:25px;">Sales4Sight Dashboard</p>
-
-        <input id="admin-password" type="password" placeholder="Enter password"
-               style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px;">
-
-        <button onclick="checkPassword()" style="margin-top:20px; width:100%;">
-            <i class="fas fa-sign-in-alt"></i> Login
-        </button>
-
-        <p id="password-error" style="color:#ef4444; margin-top:10px; display:none;">
-            Incorrect password
-        </p>
+<!-- ============================
+       LOGIN SCREEN
+============================= -->
+<div id="loginScreen" class="login-container">
+    <div class="login-box">
+        <h2>Admin Login</h2>
+        <input type="password" id="adminPass" placeholder="Enter Admin Password">
+        <button onclick="validateLogin()">Login</button>
+        <p id="loginError" style="color:red; display:none; margin-top:10px;">Incorrect password</p>
     </div>
 </div>
 
-
-<!-- ========================================= -->
-<!-- MAIN ADMIN PANEL                          -->
-<!-- ========================================= -->
-<div id="admin-content" style="display:none;">
+<!-- ============================
+       ADMIN DASHBOARD
+============================= -->
+<div id="adminPanel" style="display:none;">
     <div class="container">
-
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1><i class="fas fa-chart-line"></i> Assessment Dashboard</h1>
-            <button onclick="logout()" class="danger"><i class="fas fa-sign-out-alt"></i> Logout</button>
-        </div>
-
-        <!-- Controls -->
-        <div class="controls">
-            <button onclick="loadFromIndexedDB()"><i class="fas fa-database"></i> IndexedDB</button>
-            <button onclick="loadFromLocalStorage()" class="secondary"><i class="fas fa-desktop"></i> LocalStorage</button>
-            <button onclick="loadFromGoogleSheets()" class="success"><i class="fab fa-google"></i> Google Sheets</button>
-
-            <!-- NEW BUTTON -->
-            <button onclick="loadFromSupabase()" class="success" style="background:#0ea5e9;">
-                <i class="fas fa-cloud"></i> Supabase
+        <div style="display:flex; justify-content:space-between;">
+            <h1>Assessment Dashboard</h1>
+            <button onclick="logout()" class="action-btn" style="background:#dc2626;">
+                <i class="fas fa-sign-out-alt"></i> Logout
             </button>
-
-            <button onclick="loadAllResults()" class="secondary"><i class="fas fa-sync-alt"></i> All Sources</button>
-            <button onclick="exportToCSV()" class="secondary"><i class="fas fa-download"></i> Export CSV</button>
-
-            <!-- =================================================== -->
-            <!-- NEW: FILTER CONTROLS (ADDED)                        -->
-            <!-- =================================================== -->
-            <input type="text" id="searchInput" placeholder="Search name/email/mobile..."
-                   style="padding:10px; border:1px solid #ccc; border-radius:5px; flex:1;">
-
-            <select id="experienceFilter" style="padding:10px; border-radius:5px;">
-                <option value="">Experience</option>
-                <option value="0">Fresher</option>
-                <option value="1-3">1–3 years</option>
-                <option value="3-5">3–5 years</option>
-                <option value="5+">5+ years</option>
-            </select>
-
-            <select id="accessCodeFilter" style="padding:10px; border-radius:5px;">
-                <option value="">Access Code</option>
-            </select>
-
-            <select id="dateFilter" style="padding:10px; border-radius:5px;">
-                <option value="">Date</option>
-                <option value="today">Today</option>
-                <option value="7">Last 7 days</option>
-                <option value="30">Last 30 days</option>
-            </select>
-
-            <button onclick="resetFilters()" class="secondary">
-                <i class="fas fa-filter-circle-xmark"></i> Reset
-            </button>
-            <!-- =================================================== -->
-
         </div>
 
         <!-- Stats -->
-        <div id="stats" class="stats"></div>
-
-        <!-- Results Table -->
-        <div id="results-table" style="margin-top:20px;">
-            <div class="empty-state">
-                <i class="fas fa-info-circle"></i>
-                <p>No results loaded.</p>
+        <div class="stats-box">
+            <div class="stat-card">
+                <div class="stat-value" id="statTotal">0</div>
+                <div class="stat-label">Total Assessments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statAvg">0%</div>
+                <div class="stat-label">Average Score</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statExcellent">0</div>
+                <div class="stat-label">Excellent (80%+)</div>
             </div>
         </div>
+
+        <!-- Actions -->
+        <button class="action-btn" onclick="exportCSV()">
+            <i class="fas fa-file-csv"></i> Export CSV
+        </button>
+        <button class="action-btn" onclick="exportJSON()">
+            <i class="fas fa-file-export"></i> Export JSON
+        </button>
+        <button class="action-btn" onclick="loadSupabaseData()" style="background:#0ea5e9;">
+            <i class="fas fa-cloud-download-alt"></i> Refresh Data
+        </button>
+
+        <!-- Results Table -->
+        <table id="resultsTable"></table>
+
     </div>
 </div>
 
-
-<!-- ========================================= -->
-<!-- MODAL DETAILS                             -->
-<!-- ========================================= -->
-<div class="modal" id="detailModal">
+<!-- ============================
+       DETAILS MODAL
+============================= -->
+<div id="detailModal">
     <div class="modal-content">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h2 id="modal-title">Details</h2>
-            <button class="close-btn" onclick="closeModal()">&times;</button>
+        <div class="modal-header">
+            <h3 id="modalTitle"></h3>
+            <button onclick="closeModal()" style="background:none; border:none; font-size:22px;">×</button>
         </div>
-
-        <div id="modal-content"></div>
+        <div id="modalBody"></div>
     </div>
 </div>
 
-
-<!-- ========================================= -->
-<!-- ADMIN DASHBOARD SCRIPT                    -->
-<!-- ========================================= -->
+<!-- ============================
+       SUPABASE SDK
+============================= -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
 <script>
-
-const ADMIN_PASSWORD = "SCS3066*";   // SAME AS YOUR FILE
-
-/* ===========================================================
-   SUPABASE CLIENT  (READ-ONLY MODE)
-=========================================================== */
+// =====================================
+// SUPABASE CONFIG
+// =====================================
 const SUPABASE_URL = "https://eejmswozatcmzjxjxvzh.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlam1zd296YXRjbXpqeGp4dnpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzMjYzNjcsImV4cCI6MjA4NDkwMjM2N30.8p9ChhYY1PiQN_0nKLS-XTMlSPu0149aAxOWXdA8f-w";
+const SUPABASE_ANON_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlam1zd296YXRjbXpqeGp4dnpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzMjYzNjcsImV4cCI6MjA4NDkwMjM2N30.8p9ChhYY1PiQN_0nKLS-XTMlSPu0149aAxOWXdA8f-w";
 
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-/* ===========================================================
-   LOGIN SYSTEM
-=========================================================== */
-function checkPassword() {
-    const input = document.getElementById("admin-password").value;
-    if (input === ADMIN_PASSWORD) {
-        document.getElementById("login-screen").style.display = "none";
-        document.getElementById("admin-content").style.display = "block";
+// =====================================
+// ADMIN LOGIN SYSTEM
+// =====================================
+function validateLogin() {
+    const pass = document.getElementById("adminPass").value;
+    if (pass === "SCS3066*") {
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+        loadSupabaseData();
     } else {
-        document.getElementById("password-error").style.display = "block";
+        document.getElementById("loginError").style.display = "block";
     }
 }
 
-function logout() { location.reload(); }
-
-
-/* ===========================================================
-   LOAD FROM SUPABASE (NEW)
-=========================================================== */
-async function loadFromSupabase() {
-    document.getElementById("results-table").innerHTML = "<p>Loading from Supabase...</p>";
-
-    try {
-        const { data, error } = await sb
-            .from("assessments")
-            .select("*")
-            .order("timestamp", { ascending: false });
-
-        if (error) {
-            console.error(error);
-            alert("Error loading Supabase data.");
-            return;
-        }
-
-        currentResults = data;
-        // NEW: Populate access code dropdown
-        populateAccessCodeDropdown(currentResults);
-        updateStats(data);
-        updateTable(data, "supabase");
-
-    } catch (err) {
-        alert("Supabase connection failed.");
-        console.error(err);
-    }
+function logout() {
+    location.reload();
 }
 
+// =====================================
+// LOAD DATA FROM SUPABASE
+// =====================================
+let latestData = [];
 
-/* ===========================================================
-   LOAD FROM OTHER SOURCES (Your original logic kept)
-=========================================================== */
-let currentResults = [];
-// ===================================================
-// NEW: ADDED FILTERED RESULTS VARIABLE
-// ===================================================
-let filteredResults = [];
+async function loadSupabaseData() {
+    document.getElementById("resultsTable").innerHTML = "<tr><td>Loading...</td></tr>";
 
-async function loadFromIndexedDB() {
-    document.getElementById("results-table").innerHTML = "<p>Loading IndexedDB...</p>";
+    const { data, error } = await sb
+        .from("assessments")
+        .select("*")
+        .order("timestamp", { ascending: false });
 
-    currentResults = JSON.parse(localStorage.getItem("indexeddb_backup") || "[]");
-    // NEW: Populate access code dropdown
-    populateAccessCodeDropdown(currentResults);
-    updateStats(currentResults);
-    updateTable(currentResults, "indexeddb");
-}
-
-async function loadFromLocalStorage() {
-    currentResults = JSON.parse(localStorage.getItem("s4s_assessment_results") || "[]");
-    // NEW: Populate access code dropdown
-    populateAccessCodeDropdown(currentResults);
-    updateStats(currentResults);
-    updateTable(currentResults, "local");
-}
-
-async function loadFromGoogleSheets() {
-    currentResults = [];
-    // NEW: Populate access code dropdown
-    populateAccessCodeDropdown(currentResults);
-    updateStats(currentResults);
-    updateTable(currentResults, "sheets");
-}
-
-
-/* ===========================================================
-   LOAD FROM ALL SOURCES (Supabase + Local + IndexedDB)
-=========================================================== */
-async function loadAllResults() {
-    let all = [];
-
-    // Supabase
-    const { data: sData } = await sb.from("assessments").select("*");
-    if (sData) all.push(...sData);
-
-    // IndexedDB fallback
-    const idx = JSON.parse(localStorage.getItem("indexeddb_backup") || "[]");
-    all.push(...idx);
-
-    // LocalStorage fallback
-    const loc = JSON.parse(localStorage.getItem("s4s_assessment_results") || "[]");
-    all.push(...loc);
-
-    currentResults = all;
-    // NEW: Populate access code dropdown
-    populateAccessCodeDropdown(currentResults);
-    filteredResults = [...all];
-    updateStats(all);
-    updateTable(all, "all");
-}
-
-
-/* ===========================================================
-   TABLE RENDERING
-=========================================================== */
-function updateTable(results, source) {
-    if (results.length === 0) {
-        document.getElementById("results-table").innerHTML = `
-            <div class="empty-state"><p>No results found.</p></div>`;
+    if (error) {
+        alert("Error loading Supabase data: " + error.message);
         return;
     }
 
-    let html = `<table>
-        <thead>
-            <tr>
-                <th>#</th><th>Name</th><th>Email</th><th>Experience</th>
-                <th>Score</th><th>Date</th><th>Source</th><th>View</th>
-            </tr>
-        </thead>
-        <tbody>
+    latestData = data;
+
+    updateStats();
+    renderTable();
+}
+
+// =====================================
+// UPDATE DASHBOARD STATISTICS
+// =====================================
+function updateStats() {
+    const total = latestData.length;
+
+    let avg = 0;
+    let excellent = 0;
+
+    latestData.forEach(r => {
+        const pct = r.percentage || 0;
+        avg += pct;
+        if (pct >= 80) excellent++;
+    });
+
+    avg = total ? Math.round(avg / total) : 0;
+
+    document.getElementById("statTotal").innerText = total;
+    document.getElementById("statAvg").innerText = avg + "%";
+    document.getElementById("statExcellent").innerText = excellent;
+}
+
+// =====================================
+// RENDER TABLE
+// =====================================
+function renderTable() {
+    let html = `
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Score</th>
+            <th>Access Code</th>
+            <th>Date</th>
+            <th>View</th>
+        </tr>
     `;
 
-    results.forEach((r, i) => {
-        let score = r.percentage || r.score || 0;
-        let badgeClass = score >= 80 ? "score-excellent" : score >= 60 ? "score-good" : "score-poor";
-
+    latestData.forEach((r, i) => {
         html += `
-            <tr>
-                <td>${i+1}</td>
-                <td>${r.name || "N/A"}</td>
-                <td>${r.email || "N/A"}</td>
-                <td>${r.experience || "N/A"}</td>
-                <td><span class="score-badge ${badgeClass}">${score}%</span></td>
-                <td>${new Date(r.timestamp).toLocaleString()}</td>
-                <td>
-                    <span class="data-source-badge source-${source}">
-                        ${source}
-                    </span>
-                </td>
-                <td><button onclick="viewDetails(${i})">View</button></td>
-            </tr>
+        <tr>
+            <td>${i+1}</td>
+            <td>${r.name}</td>
+            <td>${r.email}</td>
+            <td>${r.percentage || 0}%</td>
+            <td>${r.access_code || "-"}</td>
+            <td>${new Date(r.timestamp).toLocaleString()}</td>
+	    
+            <td><button class="action-btn" onclick="openDetail(${i})">View</button></td>
+        </tr>
         `;
     });
 
-    html += `</tbody></table>`;
-
-    document.getElementById("results-table").innerHTML = html;
+    document.getElementById("resultsTable").innerHTML = html;
 }
 
+// =====================================
+// OPEN DETAILS MODAL
+// =====================================
+function openDetail(i) {
+    const r = latestData[i];
 
-/* ===========================================================
-   STATS
-=========================================================== */
-function updateStats(data) {
-    if (!data.length) {
-        document.getElementById("stats").innerHTML =
-            `<div class="empty-state"><p>No stats available</p></div>`;
-        return;
-    }
-
-    let avg = Math.round(data.reduce((a,b)=>a+(b.percentage||0),0) / data.length);
-
-    document.getElementById("stats").innerHTML = `
-        <div class="stat-card"><div class="stat-value">${data.length}</div><div class="stat-label">Total</div></div>
-        <div class="stat-card"><div class="stat-value">${avg}%</div><div class="stat-label">Average Score</div></div>
-    `;
-}
-
-
-/* ===========================================================
-   MODAL VIEWER
-=========================================================== */
-function viewDetails(i) {
-    let r = currentResults[i];
-
-    document.getElementById("modal-title").textContent = r.name;
+    document.getElementById("modalTitle").innerText =
+        `${r.name} — ${r.percentage}%`;
 
     let html = `
         <p><strong>Email:</strong> ${r.email}</p>
         <p><strong>Mobile:</strong> ${r.mobile}</p>
         <p><strong>Experience:</strong> ${r.experience}</p>
-        <p><strong>Score:</strong> ${r.percentage || 0}%</p>
-        <p><strong>Date:</strong> ${new Date(r.timestamp).toLocaleString()}</p>
-
-        <h3 style="margin-top:15px;">Answers</h3>
+        <p><strong>Access Code:</strong> ${r.access_code}</p>
+        <hr><h3>Topic Scores</h3>
     `;
+
+    if (r.topic_scores) {
+        Object.entries(r.topic_scores).forEach(([topic, score]) => {
+            html += `<p><strong>${topic}:</strong> ${score}</p>`;
+        });
+    }
+
+    html += `<hr><h3>Answers</h3>`;
 
     if (r.answers) {
         r.answers.forEach((a, idx) => {
             html += `
-                <div style="margin-bottom:10px;">
+                <p>
                     <strong>Q${idx+1}:</strong> ${a.question}<br>
-                    <strong>Answer:</strong> ${a.selected_answer}
-                    <br><em>(${a.points} pts)</em>
-                </div>
-            `;
+                    <em>Points:</em> ${a.points}
+                </p>`;
         });
     }
 
-    document.getElementById("modal-content").innerHTML = html;
+    document.getElementById("modalBody").innerHTML = html;
     document.getElementById("detailModal").style.display = "flex";
 }
-function closeModal() { document.getElementById("detailModal").style.display = "none"; }
 
+function closeModal() {
+    document.getElementById("detailModal").style.display = "none";
+}
 
-/* ===========================================================
-   EXPORT CSV
-=========================================================== */
-function exportToCSV() {
-    if (!currentResults.length) return alert("No data.");
+// =====================================
+// EXPORT CSV
+// =====================================
+function exportCSV() {
+    if (!latestData.length) return alert("No data to export.");
 
-    let csv = "Name,Email,Experience,Score,Date\n";
+    let csv = "Name,Email,Score,Access Code,Date\n";
 
-    currentResults.forEach(r => {
-        csv += `"${r.name}","${r.email}","${r.experience}","${r.percentage}","${r.timestamp}"\n`;
+    latestData.forEach(r => {
+        csv += `"${r.name}","${r.email}","${r.percentage}%","${r.access_code}","${r.completed_at}"\n`;
     });
 
-    let blob = new Blob([csv], {type:"text/csv"});
-    let url = URL.createObjectURL(blob);
-    let a = document.createElement("a");
-    a.href = url;
-    a.download = "Sales4Sight_Results.csv";
-    a.click();
-    URL.revokeObjectURL(url);
+    const blob = new Blob([csv], { type: "text/csv" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "assessments.csv";
+    link.click();
 }
 
-// ===================================================
-// NEW: FILTER FUNCTIONS (ADDED)
-// ===================================================
-function applyFilters() {
-    let query = document.getElementById("searchInput").value.toLowerCase();
-    let exp = document.getElementById("experienceFilter").value;
-    let ac = document.getElementById("accessCodeFilter").value;
-    let dateFilter = document.getElementById("dateFilter").value;
-
-    filteredResults = currentResults.filter(r => {
-        // Search (name/email/mobile)
-        let matchSearch =
-            (r.name && r.name.toLowerCase().includes(query)) ||
-            (r.email && r.email.toLowerCase().includes(query)) ||
-            (r.mobile && r.mobile.includes(query));
-
-        if (!matchSearch) return false;
-
-        // Experience Filter
-        if (exp) {
-            const years = parseInt(r.experience || 0);
-            if (exp === "0" && years !== 0) return false;
-            if (exp === "1-3" && !(years >= 1 && years <= 3)) return false;
-            if (exp === "3-5" && !(years >= 3 && years <= 5)) return false;
-            if (exp === "5+" && !(years >= 5)) return false;
-        }
-
-        // Access Code Filter
-        if (ac && r.access_code !== ac) return false;
-
-        // Date Filter
-        if (dateFilter) {
-            let d = new Date(r.timestamp);
-            let now = new Date();
-            let diffDays = (now - d) / (1000*60*60*24);
-
-            if (dateFilter === "today" && d.toDateString() !== now.toDateString()) return false;
-            if (dateFilter === "7" && diffDays > 7) return false;
-            if (dateFilter === "30" && diffDays > 30) return false;
-        }
-
-        return true;
-    });
-
-    updateStats(filteredResults);
-    updateTable(filteredResults, "filtered");
+// =====================================
+// EXPORT JSON
+// =====================================
+function exportJSON() {
+    const blob = new Blob([JSON.stringify(latestData, null, 2)], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "assessments.json";
+    link.click();
 }
-
-function populateAccessCodeDropdown(data) {
-    const select = document.getElementById("accessCodeFilter");
-    const codes = [...new Set(data.map(r => r.access_code).filter(Boolean))];
-    
-    select.innerHTML = `<option value="">Access Code</option>`;
-    codes.forEach(c => {
-        select.innerHTML += `<option value="${c}">${c}</option>`;
-    });
-}
-
-function resetFilters() {
-    document.getElementById("searchInput").value = "";
-    document.getElementById("experienceFilter").value = "";
-    document.getElementById("accessCodeFilter").value = "";
-    document.getElementById("dateFilter").value = "";
-
-    filteredResults = currentResults;
-    updateStats(currentResults);
-    updateTable(currentResults, "all");
-}
-// ===================================================
-
-/* ===========================================================
-   EVENT LISTENERS
-=========================================================== */
-document.addEventListener("DOMContentLoaded", function() {
-    // NEW: Add filter event listeners
-    document.getElementById("searchInput").addEventListener("input", applyFilters);
-    document.getElementById("experienceFilter").addEventListener("change", applyFilters);
-    document.getElementById("accessCodeFilter").addEventListener("change", applyFilters);
-    document.getElementById("dateFilter").addEventListener("change", applyFilters);
-});
 
 </script>
 
