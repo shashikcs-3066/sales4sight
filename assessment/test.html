@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Assessment - Sales4Sight</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- =============================== -->
+    <!-- ADD SUPABASE SCRIPT (NEW) -->
+    <!-- =============================== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+    const SUPABASE_URL = "https://eejmswozatcmzjxjxvzh.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlam1zd296YXRjbXpqeGp4dnpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzMjYzNjcsImV4cCI6MjA4NDkwMjM2N30.8p9ChhYY1PiQN_0nKLS-XTMlSPu0149aAxOWXdA8f-w";
+
+    //const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    // Changes as per chatgpt
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    </script>
+    
     <style>
         /* ==============================
            ACCESS CONTROL STYLES
@@ -997,6 +1011,15 @@
         }
         
         // ==============================
+        // NEW: SUPABASE GLOBAL VARIABLES
+        // ==============================
+        // REQUIRED: Connect final score variables to save logic
+        // These lines attach values already calculated in your existing code
+        let finalScore = 0;
+        let finalPercentage = 0;
+        let topicScores = {};
+        
+        // ==============================
         // ENHANCED INDEXEDDB CLASS WITH DEBUGGING + AUTO-UPGRADE
         // ==============================
         class AssessmentDB {
@@ -1472,11 +1495,16 @@
                 console.warn('⚠️ Google Sheets button not found');
             }
             
-            // Add IndexedDB button listener
+            // Add IndexedDB button listener - MODIFIED to also save to Supabase
             const saveToIndexedDBBtn = document.getElementById('save-to-indexeddb-btn');
             if (saveToIndexedDBBtn) {
-                saveToIndexedDBBtn.addEventListener('click', saveToIndexedDB);
-                console.log('✅ IndexedDB button listener added');
+                saveToIndexedDBBtn.addEventListener('click', function() {
+                    // Save to IndexedDB (original functionality)
+                    saveToIndexedDB();
+                    // NEW: Also save to Supabase
+                    saveToSupabase();
+                });
+                console.log('✅ IndexedDB/Supabase button listener added');
             } else {
                 console.warn('⚠️ IndexedDB button not found');
             }
@@ -1918,6 +1946,8 @@
             showScreen('results');
             
             // Calculate scores
+
+
             const totalScore = userScores.reduce((sum, score) => sum + score, 0);
             const maxScore = selectedQuestions.length * 3;
             const percentage = Math.round((totalScore / maxScore) * 100);
@@ -1936,16 +1966,21 @@
             setPerformanceLevel(percentage);
             
             // Calculate topic-wise scores
-            const topicScores = calculateTopicScores();
+            const calculatedTopicScoresObject = calculateTopicScores();
+            
+            // NEW: Set global variables for Supabase save
+            finalScore = totalScore;
+            finalPercentage = percentage;
+            topicScores = calculatedTopicScoresObject;
             
             // Display topic scores
-            displayTopicScores(topicScores);
+            displayTopicScores(calculatedTopicScoresObject);
             
             // Generate recommendations
-            generateRecommendations(topicScores);
+            generateRecommendations(calculatedTopicScoresObject);
             
             // ENHANCED: Save results with better error handling + pending queue
-            saveAssessmentResult(percentage, topicScores);
+            saveAssessmentResult(percentage, calculatedTopicScoresObject);
         }
 
         // ==============================
@@ -2236,6 +2271,54 @@
                     saveBtn.disabled = false;
                     saveBtn.style.background = '';
                 }, 3000);
+            }
+        }
+
+        // =================================================================
+        // NEW FUNCTION: SAVE TO SUPABASE (ADDED)
+        // =================================================================
+        async function saveToSupabase() {
+            try {
+                // Build assessment object
+                const assessment = {
+                    name: userInfo.name,
+                    mobile: userInfo.mobile,
+                    email: userInfo.email,
+                    experience: userInfo.experience,
+                    access_code: new URLSearchParams(window.location.search).get("code") || 'test-mode',
+
+                    total_score: finalScore,          // from your results logic
+                    percentage: finalPercentage,      // from your results logic
+                    topic_scores: topicScores,        // JSON: e.g. { Communication: 80, Objections: 70 }
+                    
+                    answers: selectedQuestions.map((q, i) => ({
+                        topic: q.topic,
+                        question: q.text,
+                        selected_answer: userAnswers[i],
+                        points: userScores[i]
+                    })),
+
+                    timestamp: new Date().toISOString()
+                };
+
+                console.log("Saving to Supabase:", assessment);
+
+                // Insert into Supabase
+                const { data, error } = await supabase
+                    .from("assessments")
+                    .insert([assessment]);
+
+                if (error) {
+                    alert("❌ Error saving to Supabase: " + error.message);
+                    console.error(error);
+                } else {
+                    alert("✅ Saved to Supabase!");
+                    console.log(data);
+                }
+
+            } catch (err) {
+                alert("Unexpected error: " + err.message);
+                console.error(err);
             }
         }
 
