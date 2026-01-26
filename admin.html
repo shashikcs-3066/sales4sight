@@ -157,7 +157,7 @@
 </div>
 
 <!-- ============================
-       ADMIN DASHBOARD
+       ADMIN PANEL
 ============================= -->
 <div id="adminPanel" style="display:none;">
     <div class="container">
@@ -248,7 +248,7 @@ function logout() {
 }
 
 // =====================================
-// LOAD DATA FROM SUPABASE
+// LOAD DATA FROM SUPABASE (FIXED)
 // =====================================
 let latestData = [];
 
@@ -258,7 +258,7 @@ async function loadSupabaseData() {
     const { data, error } = await sb
         .from("assessments")
         .select("*")
-        .order("timestamp", { ascending: false });
+        .order("timestamp", { ascending: false });   // FIXED
 
     if (error) {
         alert("Error loading Supabase data: " + error.message);
@@ -272,7 +272,7 @@ async function loadSupabaseData() {
 }
 
 // =====================================
-// UPDATE DASHBOARD STATISTICS
+// UPDATE DASHBOARD STATS
 // =====================================
 function updateStats() {
     const total = latestData.length;
@@ -317,8 +317,7 @@ function renderTable() {
             <td>${r.email}</td>
             <td>${r.percentage || 0}%</td>
             <td>${r.access_code || "-"}</td>
-            <td>${new Date(r.timestamp).toLocaleString()}</td>
-	    
+            <td>${new Date(r.timestamp).toLocaleString()}</td>   <!-- FIXED -->
             <td><button class="action-btn" onclick="openDetail(${i})">View</button></td>
         </tr>
         `;
@@ -341,6 +340,7 @@ function openDetail(i) {
         <p><strong>Mobile:</strong> ${r.mobile}</p>
         <p><strong>Experience:</strong> ${r.experience}</p>
         <p><strong>Access Code:</strong> ${r.access_code}</p>
+        <p><strong>Date:</strong> ${new Date(r.timestamp).toLocaleString()}</p>  <!-- FIXED -->
         <hr><h3>Topic Scores</h3>
     `;
 
@@ -379,7 +379,7 @@ function exportCSV() {
     let csv = "Name,Email,Score,Access Code,Date\n";
 
     latestData.forEach(r => {
-        csv += `"${r.name}","${r.email}","${r.percentage}%","${r.access_code}","${r.completed_at}"\n`;
+        csv += `"${r.name}","${r.email}","${r.percentage}%","${r.access_code}","${r.timestamp}"\n`;
     });
 
     const blob = new Blob([csv], { type: "text/csv" });
