@@ -405,11 +405,26 @@ function openDetail(i){
     <p><b>Date:</b> ${new Date(r.timestamp).toLocaleString()}</p>
     <hr><h3>Topic Scores</h3>`;
 
-    if(r.topic_scores){
-        Object.entries(r.topic_scores).forEach(([t,s])=>{
-            html+=`<p><b>${t}:</b> ${s}</p>`;
-        });
-    }
+   if (r.topic_scores) {
+    Object.entries(r.topic_scores).forEach(([topic, data]) => {
+        let percent = data.percentage ?? data.score ?? 0;
+        let total = data.totalPoints ?? data.total ?? data.points ?? 0;
+        let max = data.maxPoints ?? data.max ?? 0;
+        let status = data.statusText ?? data.status ?? "";
+
+        html += `
+            <p>
+                <b>${topic}:</b> 
+                ${percent}% (${total}/${max}) – 
+                <span style="color:${
+                    percent >= 80 ? '#16a34a' : percent >= 60 ? '#f59e0b' : '#dc2626'
+                }">
+                    ${status}
+                </span>
+            </p>
+        `;
+    });
+}
 
     html+=`<hr><h3>Answers</h3>`;
     if(r.answers){
@@ -436,93 +451,131 @@ const LOGO_BASE64 = `
 data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAB8j0aVAAAA
 ... (your full Base64 logo will appear here automatically) ...
 `;
+async function downloadPDF(index) {
+    const r = filteredData[index];
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
+    const width = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
 
-async function downloadPDF(index){
-    const r=filteredData[index];
-    const {jsPDF}=window.jspdf;
-    const doc=new jsPDF({unit:"pt",format:"a4"});
-    const width=doc.internal.pageSize.getWidth();
+    /* HEADER BAR */
+    doc.setFillColor(30, 58, 138);
+    doc.rect(0, 0, width, 80, "F");
 
-    doc.setFillColor(30,58,138);
-    doc.rect(0,0,width,80,"F");
-
-    try{ doc.addImage(LOGO_BASE64,"PNG",30,15,110,50); }catch(e){}
+    try {
+        doc.addImage(LOGO_BASE64, "PNG", 30, 15, 110, 50);
+    } catch (e) {}
 
     doc.setFontSize(24);
-    doc.setTextColor("#fff");
-    doc.text("Sales4Sight Assessment Report",width-40,50,{align:"right"});
+    doc.setTextColor("#ffffff");
+    doc.text("Assessment Report", width - 40, 50, { align: "right" });
 
-    let y=120;
-    doc.setFontSize(16);
-    doc.setTextColor("#000");
-    doc.text("Candidate Details",30,y);
+    let y = 120;
 
-    y+=15;
-    const details=[
-        ["Name",r.name],
-        ["Email",r.email],
-        ["Mobile",r.mobile],
-        ["Experience",r.experience],
-        ["Access Code",r.access_code],
-        ["Score",`${r.percentage}%`],
-        ["Date",new Date(r.timestamp).toLocaleString()],
-    ];
+    /* SECTION TITLE */
+    doc.setFontSize(18);
+    doc.setTextColor("#1e3a8a");
+    doc.text("Candidate Summary", 30, y);
 
-    doc.autoTable({
-        startY:y+10,
-        head:[["Field","Value"]],
-        body:details,
-        theme:"striped",
-        headStyles:{fillColor:[37,99,235]}
+    /* SUMMARY CARDS (UI STYLE) */
+    y += 20;
+
+    function drawCard(label, value, x, y) {
+        doc.setFillColor(241, 245, 249);
+        doc.roundedRect(x, y, 170, 60, 8, 8, "F");
+
+        doc.setFontSize(10);
+        doc.setTextColor("#475569");
+        doc.text(label, x + 10, y + 20);
+
+        doc.setFontSize(16);
+        doc.setTextColor("#1e3a8a");
+        doc.text(String(value), x + 10, y + 45);
+    }
+
+    drawCard("Name", r.name, 30, y);
+    drawCard("Email", r.email, 220, y);
+    drawCard("Score", r.percentage + "%", 410, y);
+
+    y += 80;
+    drawCard("Mobile", r.mobile, 30, y);
+    drawCard("Experience", r.experience, 220, y);
+    drawCard("Date", new Date(r.timestamp).toLocaleString(), 410, y);
+
+    y += 100;
+
+    /* BIG BLUE SCORE CIRCLE (matches UI) */
+    const centerX = width / 2;
+    doc.setLineWidth(8);
+    doc.setDrawColor(37, 99, 235);
+    doc.circle(centerX, y + 60, 50);
+
+    doc.setFontSize(26);
+    doc.setTextColor("#2563eb");
+    doc.text(r.percentage + "%", centerX, y + 70, { align: "center" });
+
+    y += 140;
+
+    /* TOPIC PERFORMANCE SECTION */
+    doc.setFontSize(18);
+    doc.setTextColor("#1e3a8a");
+    doc.text("Topic Performance", 30, y);
+
+    y += 20;
+
+    let topicRows = Object.entries(r.topic_scores).map(([topic, data]) => {
+        return [
+            topic,
+            `${data.percentage}% (${data.totalPoints}/${data.maxPoints})`,
+            data.statusText || data.status || ""
+        ];
     });
 
-    y=doc.lastAutoTable.finalY+20;
+    doc.autoTable({
+        startY: y,
+        head: [["Topic", "Score", "Status"]],
+        body: topicRows,
+        theme: "striped",
+        headStyles: { fillColor: [37, 99, 235], textColor: "#fff" },
+        styles: { fontSize: 10 }
+    });
 
-    if(r.topic_scores){
-        doc.setFontSize(16);
-        doc.text("Topic Performance",30,y);
+    y = doc.lastAutoTable.finalY + 30;
 
-        let rows=Object.entries(r.topic_scores).map(([t,s])=>[t,s]);
-	
-        doc.autoTable({
-            startY:y+10,
-            head:[["Topic","Score"]],
-            body:rows,
-            theme:"striped",
-            headStyles:{fillColor:[37,99,235]}
-        });
+    /* ANSWER DETAILS */
+    doc.setFontSize(18);
+    doc.setTextColor("#1e3a8a");
+    doc.text("Answer Sheet", 30, y);
 
-        y=doc.lastAutoTable.finalY+20;
-    }
+    let answerRows = r.answers.map((a, i) => [
+        `Q${i + 1}`,
+        a.question,
+        a.points
+    ]);
 
-    if(r.answers){
-        doc.setFontSize(10);
-        doc.text("Answer Sheet",30,y);
+    doc.autoTable({
+        startY: y + 10,
+        head: [["#", "Question", "Points"]],
+        body: answerRows,
+        theme: "striped",
+        styles: { fontSize: 9, cellWidth: "wrap" },
+        headStyles: { fillColor: [37, 99, 235], textColor: "#fff" }
+    });
 
-        let rows=r.answers.map((a,i)=>[`Q${i+1}`,a.question,a.points]);
-
-        doc.autoTable({
-            startY:y+10,
-            head:[["#","Question","Points"]],
-            body:rows,
-            theme:"striped",
-            styles:{fontSize:9,cellWidth:"wrap"},
-            headStyles:{fillColor:[37,99,235]}
-        });
-    }
-
+    /* FOOTER */
     doc.setFontSize(10);
     doc.setTextColor("#6b7280");
     doc.text(
-        "© 2026 Sales4Sight Inc. | Foresight. Hindsight. Insight. Oversight.",
-        width/2,
-        doc.internal.pageSize.getHeight()-20,
-        {align:"center"}
+        "© 2026 Sales4Sight Inc. | Four Pillars, One Framework | Foresight. Hindsight. Insight. Oversight.",
+        width / 2,
+        pageHeight - 20,
+        { align: "center" }
     );
 
-    const safe=r.name.replace(/[^a-z0-9]/gi,"_");
+    const safe = r.name.replace(/[^a-z0-9]/gi, "_");
     doc.save(`${safe}_assessment_report.pdf`);
 }
+
 </script>
 
 </body>
