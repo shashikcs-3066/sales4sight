@@ -218,6 +218,10 @@
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
         }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
 
         /* Game Screen Styles */
         .game-header {
@@ -694,6 +698,106 @@
             z-index: 10001;
         }
 
+        /* View Results Screen Styles */
+        .view-results-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .results-list {
+            margin: 30px 0;
+        }
+        
+        .result-item {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .result-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .result-info h4 {
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+        
+        .result-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .result-score {
+            text-align: center;
+            min-width: 100px;
+        }
+        
+        .result-percentage {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .result-level {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--border-color);
+        }
+        
+        /* Autosave Indicator */
+        .autosave-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #10b981;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .autosave-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .autosave-indicator.error {
+            background: #ef4444;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -748,6 +852,19 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+            
+            .result-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .result-score {
+                width: 100%;
+                text-align: left;
+                border-top: 1px solid var(--border-color);
+                padding-top: 15px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -773,6 +890,12 @@
     <div class="mobile-debug-panel" id="mobileDebugPanel">
         <strong>Mobile Debug Info:</strong><br>
         <div id="debugInfo">Loading...</div>
+    </div>
+    
+    <!-- Autosave Indicator -->
+    <div class="autosave-indicator" id="autosaveIndicator">
+        <i class="fas fa-check-circle"></i>
+        <span>Results saved successfully!</span>
     </div>
 
     <!-- Game Container -->
@@ -824,12 +947,37 @@
                             <div class="error-message" id="experience-error">Please select your experience level</div>
                         </div>
                         
-                        <div style="text-align: center; margin-top: 40px;">
+                        <div style="text-align: center; margin-top: 40px; display: flex; flex-direction: column; gap: 15px;">
                             <button type="submit" class="btn" style="min-width: 200px;">
                                 Start Assessment
+                            <!--
+			    </button>
+                            <button type="button" id="view-results-btn" class="btn btn-outline" style="min-width: 200px;">
+                                <i class="fas fa-chart-bar"></i> View Previous Results
                             </button>
+			    -->
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <!-- View Results Screen -->
+            <div id="screen-view-results" class="screen">
+                <div class="view-results-container">
+                    <h2 style="margin-bottom: 20px; color: var(--text-dark);">Your Previous Results</h2>
+                    <p style="color: var(--text-light); margin-bottom: 30px;">
+                        Here are your completed assessments. Click on any result to view detailed feedback.
+                    </p>
+                    
+                    <div class="results-list" id="resultsList">
+                        <!-- Results will be loaded here -->
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 40px;">
+                        <button id="back-to-home" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Home
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -976,15 +1124,24 @@
                         <button id="download-btn" class="btn btn-secondary">
                             Download Report
                         </button>
-                        <button id="save-to-sheets-btn" class="btn" style="background: #0f9d58;">
+                        <!--
+			<button id="save-to-sheets-btn" class="btn" style="background: #0f9d58;">
                             <i class="fab fa-google"></i> Save to Google Sheets
                         </button>
-                        <button id="save-to-indexeddb-btn" class="btn" style="background: #6b21a8;">
+			-->
+                        <!--
+			<button id="save-to-indexeddb-btn" class="btn" style="background: #6b21a8;">
                             <i class="fas fa-database"></i> Save to Database
                         </button>
-                        <button id="view-feedback-btn" class="btn btn-outline">
+                        -->
+			<button id="view-feedback-btn" class="btn btn-outline">
                             View Detailed Feedback
                         </button>
+                        <!--
+			<button id="view-all-results-btn" class="btn btn-success">
+                            <i class="fas fa-list"></i> View All Results
+                        </button>
+			-->
                     </div>
                 </div>
             </div>
@@ -1018,6 +1175,7 @@
         let finalScore = 0;
         let finalPercentage = 0;
         let topicScores = {};
+        let currentUserId = null;
         
         // ==============================
         // ENHANCED INDEXEDDB CLASS WITH DEBUGGING + AUTO-UPGRADE
@@ -1212,6 +1370,35 @@
                     };
                 });
             }
+            
+            async getAssessmentsByEmail(email) {
+                await this.init();
+
+                return new Promise((resolve, reject) => {
+                    this.addDebugLog(`Fetching assessments for email: ${email}`);
+                    
+                    const transaction = this.db.transaction(['assessments'], 'readonly');
+                    const store = transaction.objectStore('assessments');
+                    const request = store.getAll();
+
+                    request.onsuccess = () => {
+                        const allAssessments = request.result;
+                        // Filter by email (case-insensitive)
+                        const userAssessments = allAssessments.filter(assessment => 
+                            assessment.email && assessment.email.toLowerCase() === email.toLowerCase()
+                        );
+                        this.addDebugLog(`✅ Found ${userAssessments.length} assessments for ${email}`);
+                        resolve(userAssessments);
+                    };
+
+                    request.onerror = (event) => {
+                        const err = event && event.target && event.target.error ? event.target.error : event;
+                        this.addDebugLog(`❌ Load error: ${err && err.message ? err.message : err}`);
+                        console.error('Error loading from IndexedDB:', err);
+                        reject(err);
+                    };
+                });
+            }
 
             async countAssessments() {
                 await this.init();
@@ -1384,6 +1571,7 @@
         // DOM Elements
         const screens = {
             register: document.getElementById('screen-register'),
+            viewResults: document.getElementById('screen-view-results'),
             instructions: document.getElementById('screen-instructions'),
             loading: document.getElementById('screen-loading'),
             game: document.getElementById('screen-game'),
@@ -1396,6 +1584,12 @@
         const mobileInput = document.getElementById('mobile');
         const emailInput = document.getElementById('email');
         const experienceSelect = document.getElementById('experience');
+
+        // NEW: View Results button
+        const viewResultsBtn = document.getElementById('view-results-btn');
+        const backToHomeBtn = document.getElementById('back-to-home');
+        const resultsList = document.getElementById('resultsList');
+        const viewAllResultsBtn = document.getElementById('view-all-results-btn');
 
         // Instruction screen elements
         const userNameDisplay = document.getElementById('user-name');
@@ -1428,6 +1622,9 @@
         const viewFeedbackBtn = document.getElementById('view-feedback-btn');
         const detailedFeedbackContainer = document.getElementById('detailed-feedback-container');
 
+        // Autosave indicator
+        const autosaveIndicator = document.getElementById('autosaveIndicator');
+
         // Debug elements
         const debugToggle = document.getElementById('debugToggle');
         const mobileDebugPanel = document.getElementById('mobileDebugPanel');
@@ -1443,6 +1640,7 @@
             // Debug: Check if screens exist
             console.log('Screen elements check:', {
                 register: screens.register ? 'FOUND' : 'MISSING',
+                viewResults: screens.viewResults ? 'FOUND' : 'MISSING',
                 instructions: screens.instructions ? 'FOUND' : 'MISSING',
                 loading: screens.loading ? 'FOUND' : 'MISSING',
                 game: screens.game ? 'FOUND' : 'MISSING',
@@ -1472,6 +1670,24 @@
             // Registration form submission
             registrationForm.addEventListener('submit', handleRegistration);
             console.log('✅ Registration form listener added');
+            
+            // NEW: View Results button
+            if (viewResultsBtn) {
+                viewResultsBtn.addEventListener('click', showViewResultsScreen);
+                console.log('✅ View Results button listener added');
+            }
+            
+            // NEW: Back to Home button
+            if (backToHomeBtn) {
+                backToHomeBtn.addEventListener('click', () => showScreen('register'));
+                console.log('✅ Back to Home button listener added');
+            }
+            
+            // NEW: View All Results button
+            if (viewAllResultsBtn) {
+                viewAllResultsBtn.addEventListener('click', showViewResultsScreen);
+                console.log('✅ View All Results button listener added');
+            }
             
             // Start assessment button
             startAssessmentBtn.addEventListener('click', startAssessment);
@@ -1946,8 +2162,6 @@
             showScreen('results');
             
             // Calculate scores
-
-
             const totalScore = userScores.reduce((sum, score) => sum + score, 0);
             const maxScore = selectedQuestions.length * 3;
             const percentage = Math.round((totalScore / maxScore) * 100);
@@ -1981,6 +2195,105 @@
             
             // ENHANCED: Save results with better error handling + pending queue
             saveAssessmentResult(percentage, calculatedTopicScoresObject);
+            
+            // NEW: Auto-save to Supabase
+            autoSaveToSupabase(totalScore, percentage, calculatedTopicScoresObject);
+        }
+
+        // =================================================================
+        // NEW FUNCTION: AUTO-SAVE TO SUPABASE ON COMPLETION
+        // =================================================================
+        async function autoSaveToSupabase(totalScore, percentage, topicScores) {
+            try {
+                console.log('Auto-saving to Supabase...');
+                
+                // Show autosave indicator
+                showAutosaveIndicator('Saving results to cloud...', 'saving');
+                
+                // Build assessment object - USING ONLY EXISTING COLUMNS
+                const assessment = {
+                    name: userInfo.name,
+                    mobile: userInfo.mobile,
+                    email: userInfo.email,
+                    experience: userInfo.experience, // 0, 1, or 2
+                    access_code: new URLSearchParams(window.location.search).get("code") || 'test-mode',
+                    total_score: totalScore,
+                    percentage: percentage,
+                    topic_scores: JSON.stringify(topicScores), // Store as JSON string
+                    answers: JSON.stringify(selectedQuestions.map((q, i) => ({
+                        topic: q.topic,
+                        question: q.text,
+                        selected_answer: userAnswers[i],
+                        points: userScores[i]
+                    }))),
+                    timestamp: new Date().toISOString()
+                };
+
+                console.log("Auto-saving to Supabase:", assessment);
+
+                // Insert into Supabase
+                const { data, error } = await sb
+                    .from("assessments")
+                    .insert([assessment]);
+
+                if (error) {
+                    console.error("❌ Auto-save to Supabase failed:", error.message);
+                    showAutosaveIndicator('Could not auto-save. Please save manually.', 'error');
+                    
+                    // Store in pending saves for retry
+                    assessment._supabaseError = error.message;
+                    enqueuePendingSave(assessment);
+                } else {
+                    console.log("✅ Auto-saved to Supabase successfully!");
+                    showAutosaveIndicator('Results auto-saved to cloud!', 'success');
+                    
+                    // Store the Supabase ID for reference
+                    if (data && data[0] && data[0].id) {
+                        currentUserId = data[0].id;
+                        console.log(`Supabase record ID: ${currentUserId}`);
+                    }
+                }
+
+            } catch (err) {
+                console.error("❌ Unexpected error in auto-save:", err);
+                showAutosaveIndicator('Auto-save error. Please save manually.', 'error');
+            }
+        }
+        
+        // Show autosave indicator
+        function showAutosaveIndicator(message, type = 'saving') {
+            const indicator = document.getElementById('autosaveIndicator');
+            if (!indicator) return;
+            
+            // Update message and icon based on type
+            let icon = 'fa-spinner fa-spin';
+            let bgColor = '#10b981';
+            
+            if (type === 'saving') {
+                icon = 'fa-spinner fa-spin';
+                bgColor = '#f59e0b';
+            } else if (type === 'error') {
+                icon = 'fa-exclamation-triangle';
+                bgColor = '#ef4444';
+            } else if (type === 'success') {
+                icon = 'fa-check-circle';
+                bgColor = '#10b981';
+            }
+            
+            indicator.innerHTML = `<i class="fas ${icon}"></i> <span>${message}</span>`;
+            indicator.style.background = bgColor;
+            
+            // Show indicator
+            indicator.classList.add('show');
+            
+            // Auto-hide after 5 seconds for success, 8 seconds for error
+            const hideTime = type === 'success' ? 5000 : (type === 'error' ? 8000 : 0);
+            
+            if (hideTime > 0) {
+                setTimeout(() => {
+                    indicator.classList.remove('show');
+                }, hideTime);
+            }
         }
 
         // ==============================
@@ -2176,6 +2489,297 @@
             }
         }
 
+        // =================================================================
+        // NEW FUNCTION: SAVE TO SUPABASE (MANUAL SAVE)
+        // =================================================================
+        async function saveToSupabase() {
+            try {
+                // Build assessment object - USING ONLY EXISTING COLUMNS
+                const assessment = {
+                    name: userInfo.name,
+                    mobile: userInfo.mobile,
+                    email: userInfo.email,
+                    experience: userInfo.experience,
+                    access_code: new URLSearchParams(window.location.search).get("code") || 'test-mode',
+                    total_score: finalScore,
+                    percentage: finalPercentage,
+                    topic_scores: JSON.stringify(topicScores),
+                    answers: JSON.stringify(selectedQuestions.map((q, i) => ({
+                        topic: q.topic,
+                        question: q.text,
+                        selected_answer: userAnswers[i],
+                        points: userScores[i]
+                    }))),
+                    timestamp: new Date().toISOString()
+                };
+
+                console.log("Saving to Supabase:", assessment);
+
+                // Insert into Supabase
+                const { data, error } = await sb
+                    .from("assessments")
+                    .insert([assessment]);
+
+                if (error) {
+                    alert("❌ Error saving to Supabase: " + error.message);
+                    console.error(error);
+                } else {
+                    alert("✅ Saved to Supabase!");
+                    console.log(data);
+                }
+
+            } catch (err) {
+                alert("Unexpected error: " + err.message);
+                console.error(err);
+            }
+        }
+
+        // =================================================================
+        // NEW FUNCTION: SHOW VIEW RESULTS SCREEN
+        // =================================================================
+        async function showViewResultsScreen() {
+            console.log('Loading view results screen...');
+            
+            // Show loading state
+            resultsList.innerHTML = `
+                <div class="loading" style="padding: 40px;">
+                    <div class="spinner"></div>
+                    <p style="color: var(--text-light); margin-top: 15px;">Loading your previous results...</p>
+                </div>
+            `;
+            
+            showScreen('view-results');
+            
+            try {
+                // Check if we have user info (from current session or localStorage)
+                let userEmail = userInfo.email;
+                
+                if (!userEmail) {
+                    // Try to get from localStorage or prompt
+                    const savedEmail = localStorage.getItem('s4s_last_email');
+                    if (savedEmail) {
+                        userEmail = savedEmail;
+                    } else {
+                        // Prompt for email
+                        userEmail = prompt("Please enter your email address to view your results:");
+                        if (!userEmail) {
+                            resultsList.innerHTML = `
+                                <div class="no-results">
+                                    <i class="fas fa-envelope"></i>
+                                    <h3>Email Required</h3>
+                                    <p>Please enter your email address to view your results.</p>
+                                    <button id="enter-email-btn" class="btn" style="margin-top: 20px;">
+                                        Enter Email
+                                    </button>
+                                </div>
+                            `;
+                            
+                            document.getElementById('enter-email-btn').addEventListener('click', () => {
+                                const email = prompt("Please enter your email address:");
+                                if (email) {
+                                    localStorage.setItem('s4s_last_email', email);
+                                    showViewResultsScreen();
+                                }
+                            });
+                            return;
+                        }
+                    }
+                    localStorage.setItem('s4s_last_email', userEmail);
+                }
+                
+                // Load results from IndexedDB
+                const userAssessments = await dbManager.getAssessmentsByEmail(userEmail);
+                
+                if (!userAssessments || userAssessments.length === 0) {
+                    // Try loading from localStorage as fallback
+                    const localResults = JSON.parse(localStorage.getItem('s4s_assessment_results') || '[]');
+                    const filteredResults = localResults.filter(r => r.email && r.email.toLowerCase() === userEmail.toLowerCase());
+                    
+                    if (filteredResults.length === 0) {
+                        resultsList.innerHTML = `
+                            <div class="no-results">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>No Results Found</h3>
+                                <p>No assessment results found for ${userEmail}.</p>
+                                <p>Complete an assessment to see your results here.</p>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    // Display results from localStorage
+                    displayResultsList(filteredResults);
+                } else {
+                    // Display results from IndexedDB
+                    displayResultsList(userAssessments);
+                }
+                
+            } catch (error) {
+                console.error('Error loading results:', error);
+                resultsList.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Error Loading Results</h3>
+                        <p>There was an error loading your assessment results.</p>
+                        <p>Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // =================================================================
+        // NEW FUNCTION: DISPLAY RESULTS LIST
+        // =================================================================
+        function displayResultsList(assessments) {
+            if (!assessments || assessments.length === 0) {
+                resultsList.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>No Results Found</h3>
+                        <p>No assessment results found.</p>
+                        <p>Complete an assessment to see your results here.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort by timestamp (newest first)
+            assessments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            resultsList.innerHTML = '';
+            
+            assessments.forEach((assessment, index) => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                
+                // Format date
+                const date = new Date(assessment.timestamp);
+                const formattedDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Determine performance level and color
+                let levelClass = '';
+                let levelText = '';
+                const score = assessment.score || 0;
+                
+                if (score >= 80) {
+                    levelClass = 'excellent';
+                    levelText = 'Excellent';
+                } else if (score >= 60) {
+                    levelClass = 'good';
+                    levelText = 'Good';
+                } else {
+                    levelClass = 'needs-improvement';
+                    levelText = 'Needs Improvement';
+                }
+                
+                // Truncate name if too long
+                const displayName = assessment.name.length > 25 ? 
+                    assessment.name.substring(0, 25) + '...' : assessment.name;
+                
+                resultItem.innerHTML = `
+                    <div class="result-info">
+                        <h4>${displayName}</h4>
+                        <p>
+                            <i class="far fa-calendar"></i> ${formattedDate}
+                            <span style="margin-left: 15px;">
+                                <i class="fas fa-user-tie"></i> ${assessment.experience || 'Not specified'}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="result-score">
+                        <div class="result-percentage">${score}%</div>
+                        <div class="result-level ${levelClass}">${levelText}</div>
+                    </div>
+                `;
+                
+                // Add click event to view detailed results
+                resultItem.style.cursor = 'pointer';
+                resultItem.addEventListener('click', () => {
+                    viewDetailedResult(assessment);
+                });
+                
+                resultsList.appendChild(resultItem);
+            });
+            
+            // Add stats
+            const statsDiv = document.createElement('div');
+            statsDiv.style.marginTop = '30px';
+            statsDiv.style.padding = '15px';
+            statsDiv.style.backgroundColor = 'var(--light-bg)';
+            statsDiv.style.borderRadius = '10px';
+            statsDiv.style.fontSize = '0.9rem';
+            statsDiv.style.color = 'var(--text-light)';
+            
+            const totalAssessments = assessments.length;
+            const avgScore = assessments.reduce((sum, a) => sum + (a.score || 0), 0) / totalAssessments;
+            
+            statsDiv.innerHTML = `
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                    <div><strong>Total Assessments:</strong> ${totalAssessments}</div>
+                    <div><strong>Average Score:</strong> ${avgScore.toFixed(1)}%</div>
+                    <div><strong>Best Score:</strong> ${Math.max(...assessments.map(a => a.score || 0))}%</div>
+                </div>
+            `;
+            
+            resultsList.appendChild(statsDiv);
+        }
+        
+        // =================================================================
+        // NEW FUNCTION: VIEW DETAILED RESULT
+        // =================================================================
+        function viewDetailedResult(assessment) {
+            // Store the assessment data temporarily
+            window.tempAssessmentData = assessment;
+            
+            // Update the results screen with this assessment's data
+            userGreeting.textContent = `Assessment Result for ${assessment.name}`;
+            scorePercentage.textContent = `${assessment.score}%`;
+            
+            // Calculate total score if not available
+            const totalScore = assessment.totalScore || Math.round((assessment.score * (assessment.maxScore || 180)) / 100);
+            scoreTotal.textContent = totalScore;
+            
+            // Update score circle
+            scoreCircle.style.setProperty('--percentage', `${assessment.score}%`);
+            
+            // Set performance level
+            setPerformanceLevel(assessment.score);
+            
+            // Display topic scores if available
+            if (assessment.topics) {
+                displayTopicScores(assessment.topics);
+            } else {
+                topicsGrid.innerHTML = '<p style="color: var(--text-light); text-align: center; grid-column: 1/-1;">Topic scores not available for this assessment.</p>';
+            }
+            
+            // Generate recommendations if topic scores available
+            if (assessment.topics) {
+                generateRecommendations(assessment.topics);
+            } else {
+                recommendationList.innerHTML = '<li>Detailed recommendations not available for this assessment.</li>';
+            }
+            
+            // Update buttons
+            const saveToIndexedDBBtn = document.getElementById('save-to-indexeddb-btn');
+            if (saveToIndexedDBBtn) {
+                saveToIndexedDBBtn.style.display = 'none';
+            }
+            
+            const saveToSheetsBtn = document.getElementById('save-to-sheets-btn');
+            if (saveToSheetsBtn) {
+                saveToSheetsBtn.style.display = 'none';
+            }
+            
+            // Show the results screen
+            showScreen('results');
+        }
+
         // Save to IndexedDB button handler
         async function saveToIndexedDB() {
             console.log('Manual save to IndexedDB triggered');
@@ -2271,54 +2875,6 @@
                     saveBtn.disabled = false;
                     saveBtn.style.background = '';
                 }, 3000);
-            }
-        }
-
-        // =================================================================
-        // NEW FUNCTION: SAVE TO SUPABASE (ADDED)
-        // =================================================================
-        async function saveToSupabase() {
-            try {
-                // Build assessment object
-                const assessment = {
-                    name: userInfo.name,
-                    mobile: userInfo.mobile,
-                    email: userInfo.email,
-                    experience: userInfo.experience,
-                    access_code: new URLSearchParams(window.location.search).get("code") || 'test-mode',
-
-                    total_score: finalScore,          // from your results logic
-                    percentage: finalPercentage,      // from your results logic
-                    topic_scores: topicScores,        // JSON: e.g. { Communication: 80, Objections: 70 }
-                    
-                    answers: selectedQuestions.map((q, i) => ({
-                        topic: q.topic,
-                        question: q.text,
-                        selected_answer: userAnswers[i],
-                        points: userScores[i]
-                    })),
-
-                    timestamp: new Date().toISOString()
-                };
-
-                console.log("Saving to Supabase:", assessment);
-
-                // Insert into Supabase
-                const { data, error } = await sb
-                    .from("assessments")
-                    .insert([assessment]);
-
-                if (error) {
-                    alert("❌ Error saving to Supabase: " + error.message);
-                    console.error(error);
-                } else {
-                    alert("✅ Saved to Supabase!");
-                    console.log(data);
-                }
-
-            } catch (err) {
-                alert("Unexpected error: " + err.message);
-                console.error(err);
             }
         }
 
@@ -2457,42 +3013,69 @@
             const detailedFeedbackContent = document.getElementById('detailed-feedback-content');
             detailedFeedbackContent.innerHTML = '';
             
-            selectedQuestions.forEach((question, index) => {
-                const userAnswerIndex = userAnswers[index];
-                const userScore = userScores[index] || 0;
-                const maxPoints = 3;
-                const bestAnswer = question.answers.find(a => a.points === maxPoints);
-                const userAnswer = typeof userAnswerIndex === 'number' ? question.answers[userAnswerIndex] : null;
-                
-                const feedbackItem = document.createElement('div');
-                feedbackItem.style.padding = '15px';
-                feedbackItem.style.marginBottom = '10px';
-                feedbackItem.style.border = '1px solid var(--border-color)';
-                feedbackItem.style.borderRadius = '8px';
-                feedbackItem.style.background = userScore === maxPoints ? '#f0f9ff' : '#fff8f8';
-                
-                let feedbackHTML = `
-                    <strong>Q${index + 1}: ${question.topic}</strong><br>
-                    <small>${question.text}</small><br><br>
-                    <strong>Your Score:</strong> ${userScore}/${maxPoints} points<br>
-                `;
-                
-                if (userAnswer) {
-                    feedbackHTML += `<strong>Your Answer:</strong> ${userAnswer.text} (${userScore} points)<br>`;
-                } else {
-                    feedbackHTML += `<strong>Your Answer:</strong> Not answered (0 points)<br>`;
-                }
-                
-                feedbackHTML += `<strong>Best Answer:</strong> ${bestAnswer.text} (3 points)`;
-                
-                feedbackItem.innerHTML = feedbackHTML;
-                detailedFeedbackContent.appendChild(feedbackItem);
-            });
+            // Check if we're viewing a saved result or current result
+            const assessmentData = window.tempAssessmentData || null;
+            
+            if (assessmentData && assessmentData.answers) {
+                // Show saved assessment feedback
+                assessmentData.answers.forEach((answer, index) => {
+                    const feedbackItem = document.createElement('div');
+                    feedbackItem.style.padding = '15px';
+                    feedbackItem.style.marginBottom = '10px';
+                    feedbackItem.style.border = '1px solid var(--border-color)';
+                    feedbackItem.style.borderRadius = '8px';
+                    feedbackItem.style.background = answer.points === 3 ? '#f0f9ff' : '#fff8f8';
+                    
+                    const feedbackHTML = `
+                        <strong>Q${index + 1}: ${answer.topic}</strong><br>
+                        <small>${answer.question}</small><br><br>
+                        <strong>Your Score:</strong> ${answer.points}/3 points<br>
+                    `;
+                    
+                    feedbackItem.innerHTML = feedbackHTML;
+                    detailedFeedbackContent.appendChild(feedbackItem);
+                });
+            } else {
+                // Show current assessment feedback
+                selectedQuestions.forEach((question, index) => {
+                    const userAnswerIndex = userAnswers[index];
+                    const userScore = userScores[index] || 0;
+                    const maxPoints = 3;
+                    const bestAnswer = question.answers.find(a => a.points === maxPoints);
+                    const userAnswer = typeof userAnswerIndex === 'number' ? question.answers[userAnswerIndex] : null;
+                    
+                    const feedbackItem = document.createElement('div');
+                    feedbackItem.style.padding = '15px';
+                    feedbackItem.style.marginBottom = '10px';
+                    feedbackItem.style.border = '1px solid var(--border-color)';
+                    feedbackItem.style.borderRadius = '8px';
+                    feedbackItem.style.background = userScore === maxPoints ? '#f0f9ff' : '#fff8f8';
+                    
+                    let feedbackHTML = `
+                        <strong>Q${index + 1}: ${question.topic}</strong><br>
+                        <small>${question.text}</small><br><br>
+                        <strong>Your Score:</strong> ${userScore}/${maxPoints} points<br>
+                    `;
+                    
+                    if (userAnswer) {
+                        feedbackHTML += `<strong>Your Answer:</strong> ${userAnswer.text} (${userScore} points)<br>`;
+                    } else {
+                        feedbackHTML += `<strong>Your Answer:</strong> Not answered (0 points)<br>`;
+                    }
+                    
+                    feedbackHTML += `<strong>Best Answer:</strong> ${bestAnswer.text} (3 points)`;
+                    
+                    feedbackItem.innerHTML = feedbackHTML;
+                    detailedFeedbackContent.appendChild(feedbackItem);
+                });
+            }
         }
 
         // Restart assessment
         function restartAssessment() {
             console.log('Restarting assessment');
+            // Clear temp data
+            window.tempAssessmentData = null;
             // Reset to registration
             registrationForm.reset();
             showScreen('register');
@@ -2501,62 +3084,95 @@
         // Download report
         function downloadReport() {
             console.log('Downloading report');
-            const totalScore = userScores.reduce((sum, score) => sum + score, 0);
-            const maxScore = selectedQuestions.length * 3;
-            const percentage = Math.round((totalScore / maxScore) * 100);
             
-            const topicScores = calculateTopicScores();
+            // Check if we're viewing a saved result or current result
+            const assessmentData = window.tempAssessmentData || null;
             
-            // Create report content
-            let report = `SALES4SIGHT ASSESSMENT REPORT\n`;
-            report += `==============================\n\n`;
-            report += `Candidate Information:\n`;
-            report += `- Name: ${userInfo.name}\n`;
-            report += `- Email: ${userInfo.email}\n`;
-            report += `- Mobile: ${userInfo.mobile}\n`;
-            report += `- Experience Level: ${['Entry Level (0-2 Years)', 'Mid Level (2-10 Years)', 'Senior Level (Above 10 Years)'][userInfo.experience]}\n`;
-            report += `- Assessment Date: ${new Date().toLocaleDateString()}\n`;
-            report += `- Assessment Time: ${new Date().toLocaleTimeString()}\n\n`;
+            let report = '';
             
-            report += `Overall Performance:\n`;
-            report += `- Score: ${totalScore}/${maxScore} points\n`;
-            report += `- Percentage: ${percentage}%\n`;
-            report += `- Performance Level: ${percentage >= 80 ? 'Excellent' : percentage >= 60 ? 'Good' : 'Needs Improvement'}\n\n`;
-            
-            report += `Topic-wise Performance:\n`;
-            report += `=======================\n`;
-            Object.entries(topicScores).forEach(([topic, data]) => {
-                report += `${topic}: ${data.percentage}% (${data.totalPoints}/${data.maxPoints} points) - ${data.statusText}\n`;
-            });
-            
-            report += `\nDetailed Question Analysis:\n`;
-            report += `==========================\n`;
-            selectedQuestions.forEach((question, index) => {
-                const score = userScores[index] || 0;
-                const maxPoints = 3;
-                const bestAnswer = question.answers.find(a => a.points === maxPoints);
-                report += `Q${index + 1}. ${question.topic}\n`;
-                report += `   Question: ${question.text}\n`;
-                report += `   Your Score: ${score}/${maxPoints}\n`;
-                report += `   Best Answer: ${bestAnswer.text}\n\n`;
-            });
-            
-            report += `\nRecommendations:\n`;
-            report += `================\n`;
-            const sortedTopics = Object.entries(topicScores)
-                .sort((a, b) => a[1].percentage - b[1].percentage);
-            
-            sortedTopics.forEach(([topic, data], index) => {
-                let rec = '';
-                if (data.status === 'weak') {
-                    rec = `Priority ${index + 1}: Focus on improving ${topic} skills`;
-                } else if (data.status === 'average') {
-                    rec = `Priority ${index + 1}: Continue developing ${topic} skills`;
-                } else {
-                    rec = `Strength: Maintain excellence in ${topic}`;
+            if (assessmentData) {
+                // Generate report from saved data
+                report = `SALES4SIGHT ASSESSMENT REPORT\n`;
+                report += `==============================\n\n`;
+                report += `Candidate Information:\n`;
+                report += `- Name: ${assessmentData.name}\n`;
+                report += `- Email: ${assessmentData.email || 'Not available'}\n`;
+                report += `- Mobile: ${assessmentData.mobile || 'Not available'}\n`;
+                report += `- Experience Level: ${assessmentData.experience || 'Not specified'}\n`;
+                report += `- Assessment Date: ${new Date(assessmentData.timestamp).toLocaleDateString()}\n`;
+                report += `- Assessment Time: ${new Date(assessmentData.timestamp).toLocaleTimeString()}\n\n`;
+                
+                report += `Overall Performance:\n`;
+                report += `- Score: ${assessmentData.score}%\n`;
+                report += `- Total Score: ${assessmentData.totalScore || 'Not available'}\n`;
+                report += `- Performance Level: ${assessmentData.performanceLevel || 'Not available'}\n\n`;
+                
+                if (assessmentData.topics) {
+                    report += `Topic-wise Performance:\n`;
+                    report += `=======================\n`;
+                    Object.entries(assessmentData.topics).forEach(([topic, data]) => {
+                        report += `${topic}: ${data.percentage}% (${data.totalPoints}/${data.maxPoints} points) - ${data.statusText}\n`;
+                    });
+                    report += `\n`;
                 }
-                report += `${rec}\n`;
-            });
+            } else {
+                // Generate report from current data
+                const totalScore = userScores.reduce((sum, score) => sum + score, 0);
+                const maxScore = selectedQuestions.length * 3;
+                const percentage = Math.round((totalScore / maxScore) * 100);
+                
+                const topicScores = calculateTopicScores();
+                
+                report = `SALES4SIGHT ASSESSMENT REPORT\n`;
+                report += `==============================\n\n`;
+                report += `Candidate Information:\n`;
+                report += `- Name: ${userInfo.name}\n`;
+                report += `- Email: ${userInfo.email}\n`;
+                report += `- Mobile: ${userInfo.mobile}\n`;
+                report += `- Experience Level: ${['Entry Level (0-2 Years)', 'Mid Level (2-10 Years)', 'Senior Level (Above 10 Years)'][userInfo.experience]}\n`;
+                report += `- Assessment Date: ${new Date().toLocaleDateString()}\n`;
+                report += `- Assessment Time: ${new Date().toLocaleTimeString()}\n\n`;
+                
+                report += `Overall Performance:\n`;
+                report += `- Score: ${totalScore}/${maxScore} points\n`;
+                report += `- Percentage: ${percentage}%\n`;
+                report += `- Performance Level: ${percentage >= 80 ? 'Excellent' : percentage >= 60 ? 'Good' : 'Needs Improvement'}\n\n`;
+                
+                report += `Topic-wise Performance:\n`;
+                report += `=======================\n`;
+                Object.entries(topicScores).forEach(([topic, data]) => {
+                    report += `${topic}: ${data.percentage}% (${data.totalPoints}/${data.maxPoints} points) - ${data.statusText}\n`;
+                });
+                
+                report += `\nDetailed Question Analysis:\n`;
+                report += `==========================\n`;
+                selectedQuestions.forEach((question, index) => {
+                    const score = userScores[index] || 0;
+                    const maxPoints = 3;
+                    const bestAnswer = question.answers.find(a => a.points === maxPoints);
+                    report += `Q${index + 1}. ${question.topic}\n`;
+                    report += `   Question: ${question.text}\n`;
+                    report += `   Your Score: ${score}/${maxPoints}\n`;
+                    report += `   Best Answer: ${bestAnswer.text}\n\n`;
+                });
+                
+                report += `\nRecommendations:\n`;
+                report += `================\n`;
+                const sortedTopics = Object.entries(topicScores)
+                    .sort((a, b) => a[1].percentage - b[1].percentage);
+                
+                sortedTopics.forEach(([topic, data], index) => {
+                    let rec = '';
+                    if (data.status === 'weak') {
+                        rec = `Priority ${index + 1}: Focus on improving ${topic} skills`;
+                    } else if (data.status === 'average') {
+                        rec = `Priority ${index + 1}: Continue developing ${topic} skills`;
+                    } else {
+                        rec = `Strength: Maintain excellence in ${topic}`;
+                    }
+                    report += `${rec}\n`;
+                });
+            }
             
             // Add debug info if available
             report += `\nTechnical Information:\n`;
@@ -2571,7 +3187,12 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Sales4Sight_Report_${userInfo.name.replace(/\s+/g, '_')}_${new Date().getTime()}.txt`;
+            
+            const fileName = assessmentData ? 
+                `Sales4Sight_Report_${assessmentData.name.replace(/\s+/g, '_')}_${new Date(assessmentData.timestamp).getTime()}.txt` :
+                `Sales4Sight_Report_${userInfo.name.replace(/\s+/g, '_')}_${new Date().getTime()}.txt`;
+                
+            a.download = fileName;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
