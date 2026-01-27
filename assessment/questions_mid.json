@@ -5,16 +5,16 @@
       "text": "How do you adjust your communication strategy when dealing with C-level executives versus mid-level managers?",
       "answers": [
         {
-          "text": "I simplify the message for managers and keep it brief for executives.",
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
           "points": 1
         },
         {
-          "text": "I adjust the level of detail and examples based on the audience's role and responsibilities.",
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
           "points": 2
-        },
-        {
-          "text": "I tailor the message to focus on strategic goals for executives and operational details for managers.",
-          "points": 3
         }
       ]
     },
@@ -23,16 +23,52 @@
       "text": "Describe a complex sale where you had to communicate with multiple stakeholders with different priorities. How did you manage it?",
       "answers": [
         {
-          "text": "I kept everyone informed through regular updates and group emails.",
+          "text": "A basic but correct approach demonstrating practical understanding.",
           "points": 1
         },
         {
-          "text": "I met with each stakeholder to understand their needs and created a shared plan that addressed key concerns.",
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Communication",
+      "text": "How do you use storytelling in your sales conversations, and can you provide an example of a story that has been particularly effective?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
           "points": 3
         },
         {
-          "text": "I documented each stakeholder's input and used it to guide my proposal.",
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
           "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Communication",
+      "text": "When you sense resistance or skepticism from a prospect, what communication techniques do you employ to rebuild trust?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
         }
       ]
     },
@@ -41,16 +77,70 @@
       "text": "How do you balance addressing immediate pain points with presenting long-term strategic value in your pitch?",
       "answers": [
         {
-          "text": "I focus mainly on solving the current issue.",
-          "points": 1
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
         },
         {
-          "text": "I start with the immediate need and then introduce future opportunities.",
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
           "points": 2
         },
         {
-          "text": "I connect short-term solutions to long-term goals to show how both are addressed.",
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Sales Pitch",
+      "text": "Describe how you've evolved your sales pitch over the years. What have you learned about what works and what doesn't?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
           "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Sales Pitch",
+      "text": "How do you handle a situation where your pitch is to a buying committee with conflicting interests and priorities?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Sales Pitch",
+      "text": "What framework do you use to structure your pitch for different industries or verticals?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
         }
       ]
     },
@@ -59,16 +149,106 @@
       "text": "What is your strategy for getting past gatekeepers and reaching decision-makers consistently?",
       "answers": [
         {
-          "text": "I ask direct questions to uncover who the decision-maker is and request a warm transfer.",
-          "points": 2
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
         },
         {
-          "text": "I build rapport with gatekeepers and use referrals or insights to gain access to decision-makers.",
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
           "points": 3
         },
         {
-          "text": "I keep calling until I reach the right person.",
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Cold Calling",
+      "text": "How do you research and personalize cold calls at scale without sacrificing efficiency?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
           "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Cold Calling",
+      "text": "What metrics do you track for your cold calling activities, and how do you use that data to improve?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Cold Calling",
+      "text": "How has your cold calling approach evolved with the rise of digital communication channels, and how do you integrate both?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Presentation Skill",
+      "text": "How do you facilitate interactive discussions during presentations rather than just delivering one-way information?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Presentation Skill",
+      "text": "Describe a presentation that didn't go as planned. How did you adapt in real-time, and what did you learn?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
         }
       ]
     },
@@ -77,15 +257,33 @@
       "text": "How do you tailor your presentation style and content for virtual meetings versus in-person presentations?",
       "answers": [
         {
-          "text": "I adjust my tone and pacing depending on the format and audience.",
-          "points": 2
-        },
-        {
-          "text": "I try to keep the presentation short regardless of format.",
+          "text": "A basic but correct approach demonstrating practical understanding.",
           "points": 1
         },
         {
-          "text": "I use more visuals and interactive tools in virtual meetings to keep engagement high.",
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Presentation Skill",
+      "text": "What techniques do you use to handle difficult questions or challenges during a presentation without losing control of the room?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
           "points": 3
         }
       ]
@@ -95,16 +293,70 @@
       "text": "How do you identify and remove bottlenecks in your sales process to shorten the sales cycle?",
       "answers": [
         {
-          "text": "I analyze deal stages and timelines to find delays and work with the team to address them.",
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
           "points": 3
         },
         {
-          "text": "I review pipeline reports to spot where deals are getting stuck.",
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
           "points": 2
         },
         {
-          "text": "I follow up more frequently when deals slow down.",
+          "text": "A basic but correct approach demonstrating practical understanding.",
           "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Sales Process",
+      "text": "Describe how you manage complex, multi-threaded sales processes involving multiple decision-makers and departments.",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Sales Process",
+      "text": "How do you balance following a structured sales process with the flexibility needed for different deal situations?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Sales Process",
+      "text": "What leading and lagging indicators do you monitor to forecast your pipeline accuracy?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
         }
       ]
     },
@@ -113,15 +365,69 @@
       "text": "How do you use the SPIN (Situation, Problem, Implication, Need-Payoff) selling methodology or similar frameworks in your questioning approach?",
       "answers": [
         {
-          "text": "I ask basic questions to understand the situation.",
-          "points": 1
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
         },
         {
-          "text": "I use SPIN to guide discovery conversations and uncover deeper needs.",
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
           "points": 3
         },
         {
-          "text": "I ask questions that help prospects think about the impact of their problems.",
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Questioning Skill",
+      "text": "Describe how you layer questions to move a prospect from awareness to urgency around solving their problem.",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Questioning Skill",
+      "text": "How do you question effectively to uncover unstated needs or challenges that the prospect may not have articulated?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Questioning Skill",
+      "text": "What's your strategy for asking difficult or challenging questions without damaging rapport?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
           "points": 2
         }
       ]
@@ -131,15 +437,69 @@
       "text": "How do you map out and navigate complex B2B buying processes with multiple stakeholders and approval layers?",
       "answers": [
         {
-          "text": "I ask my main contact to help me understand the approval process.",
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
           "points": 2
         },
         {
-          "text": "I wait for the buyer to tell me who else is involved.",
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Buying Process",
+      "text": "What strategies do you use to accelerate a buying process that has stalled or extended beyond the expected timeline?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
           "points": 1
         },
         {
-          "text": "I identify key influencers and decision-makers early and build a stakeholder map.",
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Buying Process",
+      "text": "How do you identify and influence the \"economic buyer\" versus technical evaluators in an organization?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Buying Process",
+      "text": "Describe how you've coached a champion within a prospect organization to help move the buying process forward.",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
           "points": 3
         }
       ]
@@ -149,16 +509,70 @@
       "text": "How do you differentiate between surface-level objections and the real underlying concerns driving resistance?",
       "answers": [
         {
-          "text": "I ask follow-up questions to uncover the root cause behind the objection.",
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
           "points": 3
         },
         {
-          "text": "I listen carefully and try to read between the lines.",
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Objection Handling",
+      "text": "What is your framework for handling objections proactively before they arise versus reactively when they're raised?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Objection Handling",
+      "text": "Describe a situation where you lost a deal despite handling objections well. What did you learn about the objection-handling process?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
           "points": 2
         },
         {
-          "text": "I respond to the objection with standard answers.",
+          "text": "A basic but correct approach demonstrating practical understanding.",
           "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Objection Handling",
+      "text": "How do you handle objections in competitive situations where prospects are using your competitors' strengths as reasons not to buy from you?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
         }
       ]
     },
@@ -167,16 +581,502 @@
       "text": "How do you quantify and articulate ROI for prospects in different industries or with different business models?",
       "answers": [
         {
-          "text": "I use industry benchmarks and customer data to estimate potential ROI.",
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
           "points": 3
         },
         {
-          "text": "I mention that our product helps save time and money.",
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Value Proposition",
+      "text": "Describe how you've developed industry-specific or persona-specific value propositions in your role.",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
           "points": 1
         },
         {
-          "text": "I highlight cost savings and productivity improvements.",
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
           "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Value Proposition",
+      "text": "How do you evolve your value proposition when selling to existing customers versus new prospects?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Value Proposition",
+      "text": "What process do you use to validate that your value proposition resonates with your target market?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "ICP & Persona",
+      "text": "How have you contributed to refining your company's ICP based on your frontline sales experience?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "ICP & Persona",
+      "text": "Describe how you've segmented your territory or book of business based on ICP fit and potential value.",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "ICP & Persona",
+      "text": "How do you handle situations where a prospect falls outside your ICP but expresses strong interest?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "ICP & Persona",
+      "text": "What patterns have you identified among your most successful deals that have helped you better target similar prospects?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Follow-up",
+      "text": "What is your multi-touch, multi-channel follow-up strategy, and how do you sequence different touchpoints?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Follow-up",
+      "text": "How do you personalize follow-up at scale when managing a large pipeline of opportunities?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Follow-up",
+      "text": "Describe your approach to re-engaging prospects who have gone dark after showing initial interest.",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Follow-up",
+      "text": "How do you use content, case studies, or resources strategically in your follow-up to add value and maintain engagement?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Sales Call Planning",
+      "text": "What framework do you use to plan discovery calls versus demo calls versus closing calls?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Sales Call Planning",
+      "text": "How do you prepare for sales calls when you have limited information about the prospect or their needs?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Sales Call Planning",
+      "text": "Describe how you develop and test hypotheses about a prospect's business before a call to make the conversation more strategic.",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Sales Call Planning",
+      "text": "How do you balance having a structured call plan with remaining flexible to follow unexpected but valuable conversation threads?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Negotiation",
+      "text": "How do you create and defend value during negotiations to avoid competing solely on price?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Negotiation",
+      "text": "Describe a complex negotiation where you had to involve legal, finance, or other departments. How did you coordinate?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Negotiation",
+      "text": "What tactics do you use when negotiating with procurement professionals who are trained negotiators?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Negotiation",
+      "text": "How do you negotiate when you have less leverage than the buyer, and what creative solutions have you employed?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Customer Understanding",
+      "text": "How do you develop business acumen specific to the industries you sell into?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Customer Understanding",
+      "text": "Describe how you use financial statements, annual reports, or other business intelligence to understand a prospect's priorities.",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Customer Understanding",
+      "text": "How do you identify the political dynamics and power structures within a prospect organization?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Customer Understanding",
+      "text": "What methods do you use to understand not just what customers say they need, but what they actually need?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "How do you conduct competitive analysis and use competitive intelligence ethically and effectively?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "Describe a situation where you won a deal against a strong competitor. What was your differentiating strategy?",
+      "answers": [
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "How do you position against competitors without disparaging them or appearing defensive?",
+      "answers": [
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "What competitive battle cards or frameworks have you developed or used to prepare for competitive situations?",
+      "answers": [
+        {
+          "text": "A basic but correct approach demonstrating practical understanding.",
+          "points": 1
+        },
+        {
+          "text": "A more structured and thoughtful method showing stronger sales competency.",
+          "points": 2
+        },
+        {
+          "text": "A high-quality strategic approach reflecting strong analytical and situational mastery.",
+          "points": 3
         }
       ]
     }
