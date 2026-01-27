@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales4Sight - Assessment Portal</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -57,11 +60,6 @@
             font-weight: 700;
         }
 
-        .portal-header p {
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
-
         .logo {
             max-width: 150px;
             margin: 0 auto 20px;
@@ -72,20 +70,16 @@
             padding: 40px;
         }
 
-        .access-form {
-            margin-bottom: 30px;
-        }
-
         .form-group {
             margin-bottom: 25px;
         }
 
         .form-group label {
-            display: block;
             margin-bottom: 10px;
             font-weight: 600;
             color: #444;
             font-size: 1.1rem;
+            display: block;
         }
 
         .access-input {
@@ -123,13 +117,9 @@
             gap: 10px;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn:active {
-            transform: translateY(0);
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .error-message {
@@ -144,69 +134,12 @@
 
         .error-message.show {
             display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .instructions {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 30px;
-            border-left: 4px solid #2563eb;
-        }
-
-        .instructions h3 {
-            color: #2563eb;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .instructions ul {
-            list-style: none;
-            padding-left: 5px;
-        }
-
-        .instructions li {
-            padding: 8px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .instructions li i {
-            color: #2563eb;
-            margin-top: 4px;
-        }
-
-        .contact-support {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 1px solid #e2e8f0;
-            color: #64748b;
-        }
-
-        .contact-support a {
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-support a:hover {
-            text-decoration: underline;
         }
 
         .loading {
             display: none;
             text-align: center;
-            padding: 20px;
+            padding-top: 20px;
         }
 
         .spinner {
@@ -216,7 +149,7 @@
             border-top-color: #2563eb;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+            margin: auto;
         }
 
         @keyframes spin {
@@ -224,318 +157,206 @@
         }
 
         @media (max-width: 768px) {
-            .portal-container {
-                margin: 10px;
-            }
-            
-            .portal-header {
-                padding: 30px 20px;
-            }
-            
-            .portal-header h1 {
-                font-size: 2rem;
-            }
-            
             .portal-content {
                 padding: 30px 20px;
-            }
-            
-            .access-input {
-                font-size: 16px;
-                padding: 14px 16px;
-            }
-            
-            .btn {
-                padding: 16px 20px;
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            
-            .portal-header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .instructions {
-                padding: 20px 15px;
             }
         }
     </style>
 </head>
+
 <body>
-    <div class="portal-container">
-        <div class="portal-header">
-            <!-- Replace with your actual logo -->
-            <div class="logo">
-                <h1 style="color: white; margin: 0;">Sales4Sight</h1>
-            </div>
-            <h1>Sales Assessment Portal</h1>
-            <p>Enter your access code to begin</p>
+<div class="portal-container">
+    <div class="portal-header">
+        <div class="logo">
+            <h1 style="color: white; margin: 0;">Sales4Sight Inc.</h1>
         </div>
-        
-        <div class="portal-content">
-            <form id="accessForm" class="access-form">
-                <div class="form-group">
-                    <label for="accessCode">
-                        <i class="fas fa-key"></i> Access Code
-                    </label>
-                    <input type="text" 
-                           id="accessCode" 
-                           class="access-input" 
-                           placeholder="Enter your 8-digit access code"
-                           maxlength="8"
-                           required
-                           autocomplete="off">
-                    <div class="error-message" id="errorMessage">
-                        Invalid access code. Please check and try again.
-                    </div>
-                </div>
-                
-                <button type="submit" class="btn" id="submitBtn">
-                    <i class="fas fa-play-circle"></i> Start Assessment
-                </button>
-                
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                    <p>Verifying access code...</p>
-                </div>
-            </form>
-            
-            <div class="instructions">
-                <h3><i class="fas fa-info-circle"></i> Instructions</h3>
-                <ul>
-                    <li>
-                        <i class="fas fa-envelope"></i>
-                        <div>You should have received an access code via email</div>
-                    </li>
-                    <li>
-                        <i class="fas fa-clock"></i>
-                        <div>The assessment takes approximately 45-60 minutes</div>
-                    </li>
-                    <li>
-                        <i class="fas fa-laptop"></i>
-                        <div>Use a computer with stable internet connection</div>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>Complete all questions to receive your report</div>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="contact-support">
-                <p>
-                    <i class="fas fa-question-circle"></i>
-                    Need help? <a href="mailto:shashikant@sales4sight.com">Contact Support</a>
-                </p>
-            </div>
-        </div>
+        <h1>Sales Assessment</h1>
+        <p>Enter your access code to begin</p>
     </div>
 
-    <script>
-        // ==============================
-        // ACCESS CODE MANAGEMENT
-        // ==============================
-        
-        // Active access codes (you can update these)
-        const ACTIVE_CODES = {
-            // Format: "CODE": { uses: 0, maxUses: 1, expires: "2024-12-31", name: "Corporate Training" }
-            "MSS2601Z": { uses: 0, maxUses: 15, expires: "2026-03-30", name: "Mondial Sales Solutions" },
-            "S4S2601Z": { uses: 0, maxUses: 15, expires: "2026-03-30", name: "Sales4Sight Inc" },
-            "S4S2601X": { uses: 0, maxUses: 10, expires: "2026-03-30", name: "Executive Assessment" },
-            "TEST1243": { uses: 0, maxUses: 10, expires: "2026-03-30", name: "Testing" }
-        };
-        
-        // Get saved usage data from localStorage
-        function loadUsageData() {
-            const savedData = localStorage.getItem('s4s_access_usage');
-            if (savedData) {
-                const usageData = JSON.parse(savedData);
-                for (const code in usageData) {
-                    if (ACTIVE_CODES[code]) {
-                        ACTIVE_CODES[code].uses = usageData[code];
-                    }
-                }
-            }
-        }
-        
-        // Save usage data to localStorage
-        function saveUsageData() {
-            const usageData = {};
-            for (const code in ACTIVE_CODES) {
-                usageData[code] = ACTIVE_CODES[code].uses;
-            }
-            localStorage.setItem('s4s_access_usage', JSON.stringify(usageData));
-        }
-        
-        // Initialize usage data
-        loadUsageData();
-        
-        // ==============================
-        // FORM HANDLING
-        // ==============================
-        
-        document.getElementById('accessForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            validateAccessCode();
+    <div class="portal-content">
+
+        <form id="accessForm">
+            <div class="form-group">
+                <label for="accessCode"><i class="fas fa-key"></i> Access Code</label>
+
+                <input type="text"
+                       id="accessCode"
+                       class="access-input"
+                       placeholder="Enter your 8-digit access code"
+                       maxlength="8"
+                       required
+                       inputmode="verbatim"
+                       autocorrect="off"
+                       autocapitalize="characters"
+                       autocomplete="one-time-code"
+                       spellcheck="false">
+
+                <div class="error-message" id="errorMessage">
+                    Invalid access code.
+                </div>
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">
+                <i class="fas fa-play-circle"></i> Start Assessment
+            </button>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Verifying access code...</p>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+/*===========================================
+  SAFER LOCAL STORAGE WRAPPER
+===========================================*/
+function safeStorage() {
+    try {
+        const testKey = "__test__";
+        localStorage.setItem(testKey, "1");
+        localStorage.removeItem(testKey);
+        return localStorage;
+    } catch (e) {
+        return null;
+    }
+}
+
+const storage = safeStorage();
+
+/*===========================================
+  ACCESS CODES
+===========================================*/
+const ACTIVE_CODES = {
+    "MSS2026A": { uses: 0, maxUses: 15, expires: "2026-03-30" },
+    "S4S2026F": { uses: 0, maxUses: 15, expires: "2026-03-30" },
+    "S4S2026C": { uses: 0, maxUses: 15, expires: "2026-03-30" },
+    "TEST1234": { uses: 0, maxUses: 15, expires: "2026-03-30" }
+};
+
+if (storage) {
+    const saved = storage.getItem("s4s_usage");
+    if (saved) {
+        const parsed = JSON.parse(saved);
+        Object.keys(parsed).forEach(c => {
+            if (ACTIVE_CODES[c]) ACTIVE_CODES[c].uses = parsed[c];
         });
-        
-        // Auto-format access code (uppercase, no spaces)
-        document.getElementById('accessCode').addEventListener('input', function(e) {
-            this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-            document.getElementById('errorMessage').classList.remove('show');
-        });
-        
-        // Enter key support
-        document.getElementById('accessCode').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                validateAccessCode();
-            }
-        });
-        
-        // ==============================
-        // ACCESS CODE VALIDATION
-        // ==============================
-        
-        function validateAccessCode() {
-            const code = document.getElementById('accessCode').value.trim();
-            const submitBtn = document.getElementById('submitBtn');
-            const loading = document.getElementById('loading');
-            const errorMsg = document.getElementById('errorMessage');
-            
-            // Show loading
-            submitBtn.style.display = 'none';
-            loading.style.display = 'block';
-            
-            // Simulate network delay (remove in production)
-            setTimeout(() => {
-                if (!code) {
-                    showError("Please enter an access code");
-                    return;
-                }
-                
-                // Check if code exists
-                const codeData = ACTIVE_CODES[code];
-                
-                if (!codeData) {
-                    showError("Invalid access code. Please check and try again.");
-                    return;
-                }
-                
-                // Check expiry
-                const today = new Date();
-                const expiryDate = new Date(codeData.expires);
-                
-                if (today > expiryDate) {
-                    showError("This access code has expired.");
-                    return;
-                }
-                
-                // Check max uses
-                if (codeData.maxUses > 0 && codeData.uses >= codeData.maxUses) {
-                    showError("This access code has reached its usage limit.");
-                    return;
-                }
-                
-                // Code is valid!
-                grantAccess(code, codeData);
-                
-            }, 800); // Simulated delay
+    }
+}
+
+/*===========================================
+  FORM VALIDATION
+===========================================*/
+document.getElementById("accessForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    validateAccessCode();
+});
+
+/* Enable Enter key on Android */
+document.getElementById("accessCode").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        validateAccessCode();
+    }
+});
+
+/* Clean input */
+document.getElementById("accessCode").addEventListener("input", function () {
+    let clean = this.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+    this.value = clean.substring(0, 8);
+    document.getElementById("errorMessage").classList.remove("show");
+});
+
+/*===========================================
+  VALIDATE ACCESS CODE
+===========================================*/
+function validateAccessCode() {
+    const code = document.getElementById("accessCode").value.trim();
+    const submitBtn = document.getElementById("submitBtn");
+    const loading = document.getElementById("loading");
+    const errorMsg = document.getElementById("errorMessage");
+
+    if (!code || !ACTIVE_CODES[code]) {
+        showError("Invalid access code.");
+        return;
+    }
+
+    const today = new Date();
+    const expiry = new Date(ACTIVE_CODES[code].expires);
+
+    if (today > expiry) {
+        showError("This code has expired.");
+        return;
+    }
+
+    if (ACTIVE_CODES[code].uses >= ACTIVE_CODES[code].maxUses) {
+        showError("Usage limit reached.");
+        return;
+    }
+
+    submitBtn.disabled = true;
+    loading.style.display = "block";
+
+    setTimeout(() => {
+        grantAccess(code);
+    }, 600);
+}
+
+function showError(msg) {
+    const errorMsg = document.getElementById("errorMessage");
+    const submitBtn = document.getElementById("submitBtn");
+    const loading = document.getElementById("loading");
+
+    errorMsg.textContent = msg;
+    errorMsg.classList.add("show");
+
+    loading.style.display = "none";
+    submitBtn.disabled = false;
+}
+
+/*===========================================
+  SUCCESS
+===========================================*/
+function grantAccess(code) {
+    ACTIVE_CODES[code].uses++;
+
+    if (storage) {
+        const usage = {};
+        Object.keys(ACTIVE_CODES).forEach(c => usage[c] = ACTIVE_CODES[c].uses);
+        storage.setItem("s4s_usage", JSON.stringify(usage));
+    }
+
+    window.location.href = "test.html?code=" + code;
+}
+
+/*===========================================
+  ADMIN TRIPLE-CLICK
+===========================================*/
+let clicks = 0;
+let lastClick = 0;
+
+document.querySelector(".logo").addEventListener("click", () => {
+    const now = Date.now();
+
+    if (now - lastClick > 1000) clicks = 0;
+
+    clicks++;
+    lastClick = now;
+
+    if (clicks === 3) {
+        let pwd = "";
+        try { pwd = prompt("Enter admin password:"); }
+        catch {}
+
+        if (pwd === "sales4sight_admin") {
+            window.location.href = "admin/";
         }
-        
-        function showError(message) {
-            const errorMsg = document.getElementById('errorMessage');
-            const submitBtn = document.getElementById('submitBtn');
-            const loading = document.getElementById('loading');
-            
-            errorMsg.textContent = message;
-            errorMsg.classList.add('show');
-            loading.style.display = 'none';
-            submitBtn.style.display = 'flex';
-            
-            // Scroll to error
-            errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        
-        function grantAccess(code, codeData) {
-            // Track usage
-            ACTIVE_CODES[code].uses++;
-            saveUsageData();
-            
-            // Store access in session
-            const accessData = {
-                code: code,
-                timestamp: new Date().toISOString(),
-                validFor: 24 * 60 * 60 * 1000 // 24 hours
-            };
-            
-            localStorage.setItem('s4s_current_access', JSON.stringify(accessData));
-            
-            // Redirect to assessment
-            window.location.href = 'test.html?code=' + code;
-        }
-        
-        // ==============================
-        // ADMIN ACCESS (Hidden Feature)
-        // ==============================
-        
-        // Secret admin access: Triple-click the logo
-        let clickCount = 0;
-        let lastClickTime = 0;
-        
-        document.querySelector('.logo').addEventListener('click', function() {
-            const now = Date.now();
-            
-            if (now - lastClickTime > 1000) {
-                clickCount = 0; // Reset if too slow
-            }
-            
-            clickCount++;
-            lastClickTime = now;
-            
-            if (clickCount === 3) {
-                // Ask for admin password
-                const password = prompt("Enter admin password:");
-                if (password === "sales4sight_admin") {
-                    window.location.href = "admin/";
-                } else {
-                    alert("Incorrect password");
-                }
-                clickCount = 0;
-            }
-        });
-        
-        // ==============================
-        // INITIALIZATION
-        // ==============================
-        
-        // Check for existing valid session
-        window.addEventListener('load', function() {
-            const currentAccess = localStorage.getItem('s4s_current_access');
-            
-            if (currentAccess) {
-                const accessData = JSON.parse(currentAccess);
-                const accessTime = new Date(accessData.timestamp);
-                const now = new Date();
-                
-                // Check if access is still valid (within 24 hours)
-                if (now - accessTime < accessData.validFor) {
-                    // Auto-redirect if session is valid
-                    // Comment out if you want users to enter code every time
-                    // window.location.href = 'test.html?code=' + accessData.code;
-                } else {
-                    // Session expired
-                    localStorage.removeItem('s4s_current_access');
-                }
-            }
-            
-            // Focus on input
-            document.getElementById('accessCode').focus();
-        });
-    </script>
+        clicks = 0;
+    }
+});
+</script>
 </body>
 </html>
