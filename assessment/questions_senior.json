@@ -2,217 +2,217 @@
   "questions": [
     {
       "topic": "Communication",
-      "text": "How do you coach and develop communication skills in junior sales team members, and what are the most common gaps you see?",
+      "text": "How do you train junior sales team members to communicate better? What common problems do you see in them?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
-        },
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I use role-plays, record their calls, and teach them from real examples to improve their skills.",
           "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        }
-      ]
-    },
-    {
-      "topic": "Communication",
-      "text": "Describe how you've influenced organizational change or strategic direction through your communication with senior leadership.",
-      "answers": [
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
-        },
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
-        },
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        }
-      ]
-    },
-    {
-      "topic": "Communication",
-      "text": "How do you navigate and communicate effectively in politically complex enterprise sales situations involving conflicting agendas?",
-      "answers": [
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I do regular practice sessions and give feedback to help them communicate better.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I share tips from my experience and guide them when they face problems.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Communication",
-      "text": "What is your approach to executive presence, and how do you establish credibility and influence with C-suite buyers you've just met?",
+      "text": "Tell us how you influenced company changes or big decisions by talking to senior management.",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I understand what management wants and present my ideas in a structured way that matches their goals.",
+          "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I prepare detailed presentations with data and work with different teams to show the benefits of my suggestions.",
           "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I share my ideas and past success stories to convince senior management.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Communication",
+      "text": "How do you handle complex situations where different people in a company have different goals?",
+      "answers": [
+        {
+          "text": "I bring all parties together, share clear data, and help them see the bigger picture to align their goals.",
+          "points": 3
+        },
+        {
+          "text": "I use my judgment and past experience to handle such situations carefully.",
+          "points": 1
+        },
+        {
+          "text": "I listen to everyone's concerns and find a middle path that works for most people.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Communication",
+      "text": "How do you build trust and influence with top management when you meet them for the first time?",
+      "answers": [
+        {
+          "text": "I research their business challenges beforehand, speak their language, and show how my solution solves their key problems.",
+          "points": 3
+        },
+        {
+          "text": "I prepare well, focus on business outcomes, and use a professional approach to build trust.",
+          "points": 2
+        },
+        {
+          "text": "I stay confident and speak clearly about how I can help their business.",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "topic": "Sales Pitch",
+      "text": "How have you helped improve or change your company's sales messages and market positioning?",
+      "answers": [
+        {
+          "text": "I work with marketing and product teams, test different messages with customers, and use feedback to improve our pitch.",
+          "points": 3
+        },
+        {
+          "text": "I share my field experience and suggest what messaging works with customers.",
+          "points": 1
+        },
+        {
+          "text": "I follow a clear process to create messages, test them, and train the team on what works best.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Sales Pitch",
-      "text": "How have you contributed to developing or transforming your organization's sales messaging and positioning strategy?",
+      "text": "How do you change your approach when selling big transformations versus small improvements?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
-        },
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "For big changes, I focus on long-term vision and ROI. For small improvements, I focus on quick wins and easy implementation.",
           "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I change my approach based on what the customer wants and is ready for.",
+          "points": 1
+        },
+        {
+          "text": "I understand the customer's readiness and use different frameworks for big versus small changes.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Sales Pitch",
-      "text": "Describe how you customize your approach when selling transformational change versus incremental improvement to organizations.",
+      "text": "How do you create pitches that connect with the customer's business goals instead of just talking about product features?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I understand their business goals first, then connect my solution to their transformation journey with clear examples and data.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I talk about business benefits and outcomes instead of just features.",
           "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I focus on business problems like cost savings, growth, and efficiency rather than just listing product features.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Sales Pitch",
-      "text": "How do you craft and deliver pitches that align with broader business transformation initiatives rather than just product features?",
+      "text": "How do you test and improve your sales messages for different markets, and how do you use what works across all markets?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I test messages in pilot programs, collect feedback and data, analyze what works, and then train the entire team on successful approaches.",
+          "points": 3
+        },
+        {
+          "text": "I create structured tests for different market segments, measure results, and scale the winning messages.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I try different messages with customers and use what gets the best response.",
           "points": 1
-        },
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
         }
       ]
     },
     {
-      "topic": "Sales Pitch",
-      "text": "What is your methodology for testing and iterating on sales messaging across different market segments, and how do you scale what works?",
+      "topic": "Cold Calling",
+      "text": "With so many digital channels today, what role does cold calling play in your prospecting?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
-        },
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "Cold calling is still important - I use it smartly by researching prospects first and combining it with other digital touches for better results.",
           "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I mainly focus on digital channels and use cold calling only when necessary.",
+          "points": 1
+        },
+        {
+          "text": "I use a mix of cold calling, emails, and LinkedIn to reach prospects through multiple channels.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Cold Calling",
-      "text": "In the modern sales environment with multiple digital channels, what role does cold calling play in your overall prospecting strategy?",
+      "text": "How have you built programs that regularly bring in good quality leads?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I set up clear steps for the team to follow, track results, and keep improving the process.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I created a clear process with target lists, scripts, follow-up sequences, and regular training to generate consistent leads.",
+          "points": 3
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I share best practices and guide the team on prospecting based on what has worked for me.",
+          "points": 1
         }
       ]
     },
     {
       "topic": "Cold Calling",
-      "text": "How have you built or refined outbound prospecting programs that consistently generate qualified pipeline?",
+      "text": "How have you trained teams to do better cold calling and handle rejection?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I teach them to handle rejection positively, practice with them, and celebrate small wins to build confidence.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I create training programs and provide frameworks for handling objections and rejection.",
+          "points": 2
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
+          "text": "I share my experiences and motivate them to keep trying despite rejections.",
+          "points": 1
         }
       ]
     },
     {
       "topic": "Cold Calling",
-      "text": "Describe how you've mentored teams to improve their cold calling effectiveness and overcome the common challenges of resistance and rejection.",
+      "text": "What's your view on the future of cold calling, and how are you changing your approach as buyer habits change?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I'm keeping up with changes and adjusting strategies as needed.",
           "points": 1
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
-        }
-      ]
-    },
-    {
-      "topic": "Cold Calling",
-      "text": "What is your perspective on the future of cold calling, and how are you adapting your strategies for changing buyer preferences and regulations?",
-      "answers": [
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I'm adapting by combining cold calling with digital methods and following all regulations.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "Cold calling will become more targeted and personalized, so I'm training the team to do better research and add more value in calls.",
           "points": 3
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
         }
       ]
     },
@@ -221,16 +221,16 @@
       "text": "How do you orchestrate and facilitate executive-level business reviews or strategic presentations involving multiple departments?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I create genuine urgency by showing business value and deadlines, while maintaining honest and helpful relationships.",
+          "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I focus on building trust first, then create urgency based on their business needs and timelines.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I balance both by being honest and understanding their situation.",
+          "points": 1
         }
       ]
     },
@@ -239,16 +239,16 @@
       "text": "Describe a high-stakes presentation where the outcome significantly impacted your company. How did you prepare and execute?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I document all steps, responsibilities, and dates, and share it with everyone involved.",
+          "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I work with all decision-makers to create a plan that everyone follows.",
           "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
+          "text": "I create a clear timeline with all stakeholders, listing what needs to be done by when, and get everyone's agreement on the plan.",
+          "points": 3
         }
       ]
     },
@@ -257,16 +257,16 @@
       "text": "What is your approach to thought leadership presentations that position you and your company as industry experts rather than just vendors?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I talk to all stakeholders to find the real issue - whether it's budget, fear, politics, or changing priorities - then address it directly.",
+          "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I identify if it's a champion issue, budget problem, or internal politics, and take action accordingly.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I follow up regularly and try to understand what's blocking the deal.",
+          "points": 1
         }
       ]
     },
@@ -275,33 +275,33 @@
       "text": "How do you train and develop presentation skills in your team, and what frameworks or methodologies do you use?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        },
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I rarely give discounts without getting something in return - like longer commitment, references, or faster payment terms.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I try to avoid big discounts and only give them when necessary to close the deal.",
           "points": 1
+        },
+        {
+          "text": "I give concessions strategically, only when needed, and always protect our key terms and margins.",
+          "points": 2
         }
       ]
     },
     {
       "topic": "Sales Process",
-      "text": "How have you designed, implemented, or significantly improved sales processes in your organizations?",
+      "text": "How have you created or improved sales processes in your company?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I use a qualification framework to assess budget, authority, need, and timing before investing time.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I qualify based on budget availability and decision-maker access.",
           "points": 1
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I check if they have budget, clear decision-makers, realistic timeline, and if our solution fits their needs. I walk away if any key element is missing.",
           "points": 3
         }
       ]
@@ -311,16 +311,16 @@
       "text": "Describe how you balance process standardization with the need for sales creativity and individual selling styles.",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I check if they have the right team and commitment to make it work.",
           "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
+          "text": "I evaluate their pain level, leadership commitment, past change history, and implementation resources to see if they're truly ready.",
+          "points": 3
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I assess their willingness to change, internal support, and capability to implement successfully.",
+          "points": 2
         }
       ]
     },
@@ -329,16 +329,16 @@
       "text": "How do you integrate sales process with marketing, customer success, and other revenue-generating functions for a cohesive customer journey?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I try to balance both based on what management expects.",
+          "points": 1
+        },
+        {
+          "text": "I maintain standards for qualification but also keep enough opportunities to meet targets.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I focus on quality over quantity - I'd rather have fewer good deals than many bad ones that waste time and won't close.",
           "points": 3
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
         }
       ]
     },
@@ -347,16 +347,16 @@
       "text": "What methodologies have you implemented (MEDDIC, Challenger, Sandler, etc.), and how did you drive adoption and measure effectiveness?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I find out who makes the final decision and try to meet them.",
           "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I identify key stakeholders, their roles, and make sure I have relationships with important people.",
           "points": 2
+        },
+        {
+          "text": "I map out all decision-makers and influencers, understand each person's concerns, and ensure I have a champion and access to the final decision-maker.",
+          "points": 3
         }
       ]
     },
@@ -365,15 +365,15 @@
       "text": "How do you use advanced questioning techniques to shape a prospect's thinking and create urgency around problems they may not have fully recognized?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
-        },
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I acknowledge their concern, show ROI calculations comparing build vs buy, including hidden costs and time, and bring in case studies of similar companies.",
           "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I explain why buying makes more sense than building in-house.",
+          "points": 1
+        },
+        {
+          "text": "I present a detailed comparison showing total costs, risks, and time for each option with data.",
           "points": 2
         }
       ]
@@ -383,16 +383,16 @@
       "text": "Describe how you've coached sales teams to improve their discovery and questioning capabilities. What frameworks do you teach?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I kept presenting facts and eventually convinced them with evidence.",
+          "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I used case studies and data to address their concerns and gradually changed their thinking.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I brought in industry experts, shared success stories from similar companies, and worked with their internal champion to present data that changed their view.",
+          "points": 3
         }
       ]
     },
@@ -401,16 +401,16 @@
       "text": "How do you design questioning strategies for different stages of complex, multi-year enterprise sales cycles?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
-        },
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I train them differently based on who they're talking to - junior staff need different approaches than C-level executives.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I create objection-handling guides for different levels, do role-plays, and teach them to listen first, understand the real concern, then respond appropriately.",
           "points": 3
+        },
+        {
+          "text": "I share common objections and how to answer them at different organizational levels.",
+          "points": 1
         }
       ]
     },
@@ -419,15 +419,15 @@
       "text": "What is your approach to provocative or insight-led questioning that challenges a prospect's status quo thinking?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I'm transparent about what we can and cannot do.",
           "points": 1
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I'm honest about the gap, discuss workarounds or our product roadmap, and sometimes walk away if it's not a good fit.",
           "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I acknowledge the limitation honestly and try to find alternative solutions or partnerships.",
           "points": 2
         }
       ]
@@ -437,15 +437,15 @@
       "text": "How do you influence and architect buying processes in large enterprises where formal procurement procedures can span 12-18 months?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I share relevant industry insights, introduce them to useful contacts, and check in periodically without any sales agenda to stay valuable.",
           "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I keep in touch regularly, share useful information, and maintain the relationship beyond just deals.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I stay connected and reach out occasionally to maintain the relationship.",
           "points": 1
         }
       ]
@@ -455,16 +455,16 @@
       "text": "Describe how you've navigated a situation where the buying process changed mid-cycle due to organizational restructuring or leadership changes.",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I delivered exceptional results, became a trusted advisor, aligned our success with their success, and created joint business planning for the future.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I focused on their success, provided extra value, and built deep relationships that led to longer commitments.",
+          "points": 2
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
+          "text": "I worked closely with them and proved our value over time.",
+          "points": 1
         }
       ]
     },
@@ -473,16 +473,16 @@
       "text": "What strategies have you employed to become the \"incumbent\" choice even when entering a competitive buying process late?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I address issues quickly, stay transparent, and work hard to resolve problems and rebuild trust.",
+          "points": 2
+        },
+        {
+          "text": "I take ownership immediately, communicate openly about the problem, create a fix plan, and involve my leadership to show commitment to making things right.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I handle it carefully and try to fix the problem while keeping the relationship intact.",
           "points": 1
-        },
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
         }
       ]
     },
@@ -491,16 +491,16 @@
       "text": "How do you build business cases and ROI models that help your champions navigate internal buying processes and secure budget?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I build strong relationships, deliver value, and turn satisfied users into champions who promote us internally.",
+          "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I help them succeed, make them look good to their management, provide tools and support they need, and create win-win situations.",
           "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
+          "text": "I identify potential champions and work closely with them to get their support.",
+          "points": 1
         }
       ]
     },
@@ -509,15 +509,15 @@
       "text": "How have you analyzed patterns in objections across your team or organization to address root causes in positioning, targeting, or qualification?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
-        },
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "A large enterprise deal with difficult pricing, payment terms, and multiple decision-makers that took months to close.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "A challenging deal where I had to negotiate with many people and find a solution that worked for everyone.",
+          "points": 1
+        },
+        {
+          "text": "It was a multi-million dollar, multi-year deal with 10+ stakeholders, complex legal terms, and conflicting department needs. I created separate value propositions for each stakeholder and brought everyone together.",
           "points": 3
         }
       ]
@@ -527,16 +527,16 @@
       "text": "Describe a major deal you saved by reframing or resolving fundamental objections late in the sales cycle.",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I take help from experts and negotiate patiently on complex terms.",
           "points": 1
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I involve legal early, understand all their concerns, create flexibility in terms, and ensure both sides feel they won on their key priorities.",
           "points": 3
+        },
+        {
+          "text": "I work closely with our legal and finance teams, understand their requirements, and negotiate terms carefully.",
+          "points": 2
         }
       ]
     },
@@ -545,15 +545,15 @@
       "text": "What is your philosophy on when to walk away from a deal versus continuing to work through objections?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I bring in senior leadership when needed for big deals, after preparing them well on the situation.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I involve senior leaders when I need their help or when customers ask for them.",
           "points": 1
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I involve them when the deal is strategic, high-value, or stuck on senior-level issues. I brief them thoroughly on customer's business, key people, our position, and what we need from them.",
           "points": 3
         }
       ]
@@ -563,16 +563,16 @@
       "text": "How do you prepare your team to handle objections in highly competitive or commoditized markets where differentiation is challenging?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
+          "text": "I collect customer feedback systematically, identify patterns, and present these insights to product and marketing teams with specific recommendations that influence our strategy.",
+          "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I pass on customer feedback to internal teams when I hear important things.",
           "points": 1
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I share what customers are saying with relevant teams to help improve products and positioning.",
+          "points": 2
         }
       ]
     },
@@ -581,15 +581,15 @@
       "text": "How have you led the development of value propositions for new products, markets, or strategic initiatives?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I deeply understand their industry, share valuable insights even when not selling, introduce them to helpful contacts, and focus on their success over my commission.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I try to help them beyond just selling and build a consultative relationship.",
           "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I learn their business well, provide useful advice, and position myself as a partner rather than just a vendor.",
           "points": 2
         }
       ]
@@ -599,16 +599,16 @@
       "text": "Describe how you've evolved value propositions based on changing market conditions, competitive dynamics, or economic factors.",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I share what I learn from customers with my team and other departments.",
           "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I document customer insights and share them in team meetings and reports.",
           "points": 2
+        },
+        {
+          "text": "I create regular reports and presentations sharing customer trends, competitive intelligence, and market changes with product, marketing, and leadership teams.",
+          "points": 3
         }
       ]
     },
@@ -617,15 +617,15 @@
       "text": "How do you create and validate value propositions for different economic buyers (CFO, CIO, COO) within the same organization?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I ask about their main objectives and try to align our offering with what they want to achieve.",
           "points": 1
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I research their business before meetings, ask about their top 3-5 priorities, understand their KPIs, and map our solution to their specific strategic goals.",
           "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I use discovery frameworks to understand their priorities and connect our solution to their goals.",
           "points": 2
         }
       ]
@@ -635,16 +635,16 @@
       "text": "What frameworks do you use to help sales teams articulate business value and strategic impact rather than just product capabilities?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I analyze competitor wins/losses, identify their strengths and weaknesses, and help marketing create positioning that highlights our unique advantages.",
+          "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I share competitive intelligence and help develop strategies to compete better.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I provide input on how to position against competitors based on what I see in deals.",
+          "points": 1
         }
       ]
     },
@@ -653,16 +653,16 @@
       "text": "How have you used data analytics and CRM insights to refine ICP definitions and improve targeting accuracy across your organization?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I spotted a competitive threat early and worked with the team to respond with a better approach.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I noticed a new competitor winning deals with a different approach, alerted leadership immediately, and helped create a counter-strategy including new messaging and pricing options.",
+          "points": 3
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I informed management about a new competitor and we adjusted our strategy.",
+          "points": 1
         }
       ]
     },
@@ -671,16 +671,16 @@
       "text": "Describe how you've segmented markets and developed go-to-market strategies for different ICPs or personas.",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I analyze what makes them different and help position our advantages against their approach.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I study their model, identify their limitations, highlight our advantages, and sometimes adapt our approach to match market changes while staying true to our strengths.",
+          "points": 3
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I understand their offering and adjust how we present our solution.",
+          "points": 1
         }
       ]
     },
@@ -689,15 +689,15 @@
       "text": "How do you balance focus on ideal customers with the need to explore adjacent markets or expand your addressable market?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I analyze why we win or lose deals and use that information to improve our approach.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I conduct detailed interviews after wins and losses, identify patterns, share findings with teams, and implement specific changes to improve our win rate.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I review wins and losses to understand what works and what doesn't.",
           "points": 1
         }
       ]
@@ -707,16 +707,16 @@
       "text": "What is your approach to identifying early adopters and lighthouse customers when entering new markets or launching new solutions?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I improved existing processes based on what works and what doesn't.",
+          "points": 1
+        },
+        {
+          "text": "I designed clear sales processes with defined stages and trained the team to follow them.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I mapped the entire sales journey, identified bottlenecks, created standard processes with flexibility, and trained everyone on the new system while measuring results.",
           "points": 3
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
         }
       ]
     },
@@ -725,15 +725,15 @@
       "text": "How have you built or optimized follow-up systems and cadences that work at scale across a sales organization?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I set up regular meetings with product, marketing, and customer success teams, share customer insights, and work on joint initiatives that benefit customers.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I work with other teams when needed to support sales efforts.",
           "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I maintain good relationships with other departments and collaborate on important projects.",
           "points": 2
         }
       ]
@@ -743,15 +743,15 @@
       "text": "Describe your approach to account-based strategies where follow-up is coordinated across multiple team members and touchpoints.",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
-        },
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I carefully review all opportunities and provide realistic forecasts based on deal stages.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I use a disciplined process to assess each deal's probability, review pipeline weekly with the team, and only commit to what I'm confident about delivering.",
+          "points": 3
+        },
+        {
+          "text": "I estimate based on my pipeline and past experience.",
           "points": 1
         }
       ]
@@ -761,16 +761,16 @@
       "text": "How do you maintain relationships and follow-up with strategic accounts over multi-year sales cycles without being perceived as pushy?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I analyze market potential, prioritize high-value accounts, allocate time based on opportunity size, and create a balanced mix of new and existing business.",
+          "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I plan my territory by identifying key accounts and allocating time appropriately.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I organize my territory based on which accounts have the most potential.",
+          "points": 1
         }
       ]
     },
@@ -779,16 +779,16 @@
       "text": "What metrics and systems do you use to ensure follow-up discipline across your team while maintaining quality and personalization?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I track multiple deals carefully, prioritize actions, and manage my time effectively.",
+          "points": 2
+        },
+        {
+          "text": "I stay organized and follow up regularly on all opportunities.",
           "points": 1
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I create detailed account plans, map all stakeholders, set milestones, review progress regularly, and adjust strategies based on what I learn.",
           "points": 3
-        },
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
         }
       ]
     },
@@ -797,15 +797,15 @@
       "text": "How do you prepare for and conduct executive briefings or strategic advisory sessions with C-suite buyers?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I guide them and help them learn from my experience.",
           "points": 1
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I mentor them through regular coaching sessions and share my knowledge and experience.",
+          "points": 2
+        },
+        {
+          "text": "I provide hands-on coaching, let them shadow my calls, give specific feedback, set clear goals, and celebrate their progress to build confidence.",
           "points": 3
         }
       ]
@@ -815,16 +815,16 @@
       "text": "Describe how you've coached teams to elevate their call planning from tactical to strategic, focusing on business outcomes.",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        },
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I first understand the root cause - is it skills, motivation, or fit? Then I create a clear improvement plan with support, but also know when it's time to make tough decisions.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I address issues directly and try to help them improve.",
           "points": 1
+        },
+        {
+          "text": "I provide feedback, create improvement plans, and give them time to improve.",
+          "points": 2
         }
       ]
     },
@@ -833,16 +833,16 @@
       "text": "What is your approach to orchestrating complex sales calls involving multiple stakeholders from both organizations?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I promote teamwork, celebrate wins, and create a positive environment.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I encourage the team and set a good example.",
+          "points": 1
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I lead by example, recognize good work publicly, create healthy competition, foster collaboration, and ensure the team feels valued and motivated.",
+          "points": 3
         }
       ]
     },
@@ -851,16 +851,16 @@
       "text": "How do you use call planning as a qualification and deal strategy tool rather than just a preparation activity?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I look for coachability, resilience, curiosity, and cultural fit over just experience. I use role-play scenarios and multiple interviews to assess real capabilities.",
+          "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I assess their skills, attitude, and fit with our company during the interview process.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I hire people with relevant experience and good communication skills.",
+          "points": 1
         }
       ]
     },
@@ -869,214 +869,214 @@
       "text": "How have you developed negotiation frameworks and strategies for your organization to protect margins while closing business?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I try to empower my team and avoid being a bottleneck.",
+          "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I train others, delegate tasks, and focus on strategic work.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I document best practices, create training materials, delegate to capable team members, and focus my time on highest-impact activities and mentoring.",
+          "points": 3
         }
       ]
     },
     {
       "topic": "Negotiation",
-      "text": "Describe the most complex negotiation of your career. What was at stake, and how did you navigate it?",
+      "text": "Tell us about your most complex negotiation. What was at risk, and how did you handle it?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I read industry reports, attend conferences, network with peers, talk to customers about their challenges, and use this knowledge to adapt our approach proactively.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I keep myself informed about what's happening in the market.",
           "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I follow industry news, learn from customers, and stay updated on market changes.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Negotiation",
-      "text": "How do you approach multi-year, enterprise-level negotiations involving complex commercial terms, MSAs, and SLAs?",
+      "text": "How do you handle multi-year negotiations with complex terms like contracts and service agreements?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
+          "text": "I think ahead and plan for the future while working on current deals.",
+          "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I set clear goals, plan my approach, and align my work with company strategy.",
           "points": 2
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
+          "text": "I analyze market potential, identify growth opportunities, set quarterly objectives aligned with company goals, and create action plans with metrics to track progress.",
+          "points": 3
         }
       ]
     },
     {
       "topic": "Negotiation",
-      "text": "What is your philosophy on when to involve senior leadership in negotiations, and how do you prepare them to be effective?",
+      "text": "When do you involve senior management in negotiations, and how do you prepare them?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I study the market, adapt our approach, and work to establish presence.",
+          "points": 2
+        },
+        {
+          "text": "I apply my experience to understand and enter new markets.",
           "points": 1
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I research the market thoroughly, identify early adopters, test messaging, adjust based on feedback, and build case studies to create momentum.",
           "points": 3
-        },
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
         }
       ]
     },
     {
       "topic": "Customer Understanding",
-      "text": "How do you use deep customer insights to influence product strategy, market positioning, or go-to-market approaches?",
+      "text": "How do you use customer feedback to influence product strategy and marketing approach?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I collaborate with product and marketing from the beginning, provide customer perspective, help with positioning, and create sales enablement materials before launch.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
-        },
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        }
-      ]
-    },
-    {
-      "topic": "Customer Understanding",
-      "text": "Describe how you've leveraged industry expertise to become a trusted advisor rather than a salesperson to your customers.",
-      "answers": [
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I work with product teams, understand the new offering, and prepare to sell it.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I learn about new products and start selling them when they launch.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Customer Understanding",
-      "text": "How do you develop and share customer intelligence across your organization to improve overall market understanding?",
+      "text": "How have you become a trusted advisor to customers instead of just being a salesperson?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        },
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I provide market feedback on competitive pricing, customer willingness to pay, and value perception to help leadership make informed pricing decisions.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I share customer feedback on pricing and suggest adjustments when needed.",
+          "points": 2
+        },
+        {
+          "text": "I give input on pricing based on customer reactions.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Customer Understanding",
-      "text": "What frameworks do you use to understand customers' strategic priorities and align your solutions to their business transformation goals?",
+      "text": "How do you gather and share customer insights across your company?",
       "answers": [
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        },
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I track key metrics like conversion rates, deal velocity, and win rates to identify patterns, make decisions, and prioritize where to focus my efforts.",
           "points": 3
         },
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I review sales data regularly to understand performance and identify areas for improvement.",
+          "points": 2
+        },
+        {
+          "text": "I use available data to track my progress and results.",
           "points": 1
         }
       ]
     },
     {
-      "topic": "Competitor Understanding",
-      "text": "How have you shaped competitive strategy and positioning for your organization based on market intelligence?",
+      "topic": "Customer Understanding",
+      "text": "How do you understand what's most important to customers and connect your solution to their business goals?",
       "answers": [
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I keep CRM updated and use it for basic tracking.",
           "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        }
-      ]
-    },
-    {
-      "topic": "Competitor Understanding",
-      "text": "Describe a situation where you identified a competitive threat early and helped your organization respond effectively.",
-      "answers": [
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I ensure CRM is updated accurately, use it for pipeline management and forecasting, and leverage reports to make better decisions and share insights.",
           "points": 3
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
-          "points": 2
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
-        }
-      ]
-    },
-    {
-      "topic": "Competitor Understanding",
-      "text": "How do you analyze and respond to disruptive competitors or new market entrants that challenge your established position?",
-      "answers": [
-        {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
-          "points": 3
-        },
-        {
-          "text": "I rely on my experience and adapt based on the situation.",
-          "points": 1
-        },
-        {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I maintain CRM discipline and use it to track all opportunities and activities.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Competitor Understanding",
-      "text": "What is your approach to competitive win/loss analysis, and how have you used those insights to improve win rates?",
+      "text": "How have you helped shape your company's competitive strategy based on what you see in the market?",
       "answers": [
         {
-          "text": "I rely on my experience and adapt based on the situation.",
+          "text": "I explain the value in financial terms that justify the investment.",
           "points": 1
         },
         {
-          "text": "I tailor my approach based on organizational dynamics and use structured frameworks to guide decisions.",
+          "text": "I create ROI calculations showing the value and benefits of our solution.",
           "points": 2
         },
         {
-          "text": "I leverage cross-functional collaboration and data-driven insights to align stakeholders and drive strategic outcomes.",
+          "text": "I gather their financial data, calculate specific ROI including cost savings and revenue impact, and present a detailed business case with clear payback period.",
           "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "Tell us about a time when you spotted a competitor threat early and helped your company respond.",
+      "answers": [
+        {
+          "text": "I track important metrics like pipeline coverage, conversion rates, and revenue achievement.",
+          "points": 2
+        },
+        {
+          "text": "I monitor my numbers and key performance indicators.",
+          "points": 1
+        },
+        {
+          "text": "I focus on pipeline health, win rate, average deal size, sales cycle length, and quota attainment as key indicators of sales effectiveness.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "How do you respond to new competitors who challenge your position in the market?",
+      "answers": [
+        {
+          "text": "I review performance data, identify weak areas, and take action to improve them.",
+          "points": 2
+        },
+        {
+          "text": "I look at results and try to do better in areas that need improvement.",
+          "points": 1
+        },
+        {
+          "text": "I analyze data to find bottlenecks, test different approaches, implement what works, and continuously coach the team on best practices.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "How do you analyze why you win or lose deals, and how do you use that to improve?",
+      "answers": [
+        {
+          "text": "I attend training, read about sales, and learn from my experiences.",
+          "points": 2
+        },
+        {
+          "text": "I read sales books and blogs, take courses, learn from lost deals, seek feedback from colleagues, and experiment with new techniques regularly.",
+          "points": 3
+        },
+        {
+          "text": "I try to learn from my work and improve over time.",
+          "points": 1
         }
       ]
     }
