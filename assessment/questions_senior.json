@@ -2,1081 +2,1081 @@
   "questions": [
     {
       "topic": "Communication",
-      "text": "How do you train junior sales team members to communicate better? What common problems do you see in them?",
+      "text": "After 10+ years in sales, how have you changed the way you communicate with prospects — what do you do now that you didn't do early in your career?",
       "answers": [
         {
-          "text": "I use role-plays, record their calls, and teach them from real examples to improve their skills.",
-          "points": 3
-        },
-        {
-          "text": "I do regular practice sessions and give feedback to help them communicate better.",
-          "points": 2
-        },
-        {
-          "text": "I share tips from my experience and guide them when they face problems.",
-          "points": 1
-        }
-      ]
-    },
-    {
-      "topic": "Communication",
-      "text": "Tell us how you influenced company changes or big decisions by talking to senior management.",
-      "answers": [
-        {
-          "text": "I understand what management wants and present my ideas in a structured way that matches their goals.",
-          "points": 2
-        },
-        {
-          "text": "I prepare detailed presentations with data and work with different teams to show the benefits of my suggestions.",
-          "points": 3
-        },
-        {
-          "text": "I share my ideas and past success stories to convince senior management.",
-          "points": 1
-        }
-      ]
-    },
-    {
-      "topic": "Communication",
-      "text": "How do you handle complex situations where different people in a company have different goals?",
-      "answers": [
-        {
-          "text": "I bring all parties together, share clear data, and help them see the bigger picture to align their goals.",
-          "points": 3
-        },
-        {
-          "text": "I use my judgment and past experience to handle such situations carefully.",
+          "text": "I communicate more clearly and professionally than I used to. I've picked up a lot of skills over the years that help me connect better with different types of people.",
           "points": 1
         },
         {
-          "text": "I listen to everyone's concerns and find a middle path that works for most people.",
+          "text": "I listen way more than I talk now. Early on I thought my job was to present and persuade. Now I know the best thing I can do is ask the right question and then get out of the way.",
+          "points": 3
+        },
+        {
+          "text": "I've learned to be more patient and not rush the conversation. I let the prospect set the pace instead of pushing my agenda.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Communication",
-      "text": "How do you build trust and influence with top management when you meet them for the first time?",
+      "text": "When you're in a room with a C-suite executive and a mid-level manager at the same time, how do you make sure both of them feel like you're speaking directly to them?",
       "answers": [
         {
-          "text": "I research their business challenges beforehand, speak their language, and show how my solution solves their key problems.",
+          "text": "I structure the conversation so I open with the big picture for the executive — what's at stake, what the outcome looks like — and then naturally bring in the operational detail that the manager cares about. I also physically make eye contact with both and use 'this affects your team directly' type language to keep everyone in the room.",
           "points": 3
         },
         {
-          "text": "I prepare well, focus on business outcomes, and use a professional approach to build trust.",
+          "text": "I focus more on the executive since they're the decision maker, but I make sure to acknowledge the manager's concerns too.",
+          "points": 1
+        },
+        {
+          "text": "I try to balance my messaging by addressing both levels — strategic outcomes for the executive and practical details for the manager. I make sure neither feels ignored.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Communication",
+      "text": "Have you ever been in a situation where you could tell a prospect wasn't buying what you were saying, even though they weren't saying it out loud? What did you do?",
+      "answers": [
+        {
+          "text": "Yes, I've noticed it through body language and short answers. When I sense it, I stop what I'm doing, acknowledge the room, and ask an open question to get them talking again.",
           "points": 2
         },
         {
-          "text": "I stay confident and speak clearly about how I can help their business.",
+          "text": "I've been in that situation. I usually try to slow down, ask a question, and see if I can figure out what's bothering them.",
+          "points": 1
+        },
+        {
+          "text": "Yes, and I've learned to just name it. I'll say something like 'I get the sense something I said isn't landing right — what am I missing?' It feels risky but it always moves the conversation forward.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Communication",
+      "text": "You've had a tough message to deliver to a prospect — maybe bad news about pricing, a delay, or a limitation in your product. How do you handle those conversations without losing the deal or the relationship?",
+      "answers": [
+        {
+          "text": "I prepare for these conversations by thinking through their likely reaction and having a solution or a plan ready. I'm honest about the issue and make it clear I'm on their side in figuring it out.",
+          "points": 2
+        },
+        {
+          "text": "I'm direct and I don't drag it out. I lead with the issue, explain the context honestly, and come prepared with how we're going to work through it together. Prospects respect honesty a lot more than spin.",
+          "points": 3
+        },
+        {
+          "text": "I try to soften the news by surrounding it with positives. I explain the situation and offer alternatives wherever I can.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Sales Pitch",
-      "text": "How have you helped improve or change your company's sales messages and market positioning?",
+      "text": "After years of pitching, what's the one thing you've completely stopped doing in your pitch because you realized it just doesn't work?",
       "answers": [
         {
-          "text": "I work with marketing and product teams, test different messages with customers, and use feedback to improve our pitch.",
-          "points": 3
-        },
-        {
-          "text": "I share my field experience and suggest what messaging works with customers.",
+          "text": "I stopped trying to cover everything in one pitch. I've learned to be more focused and selective about what I present.",
           "points": 1
         },
         {
-          "text": "I follow a clear process to create messages, test them, and train the team on what works best.",
+          "text": "Leading with the company history and background. Nobody cares. I used to spend the first five minutes on 'who we are' — now I open with their problem and we get into the real conversation immediately.",
+          "points": 3
+        },
+        {
+          "text": "I stopped using slides as a crutch. I used to hide behind a deck — now I use it as a support, not the main event.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Sales Pitch",
-      "text": "How do you change your approach when selling big transformations versus small improvements?",
+      "text": "How do you pitch differently when you know the prospect is also talking to two or three of your competitors at the same time?",
       "answers": [
         {
-          "text": "For big changes, I focus on long-term vision and ROI. For small improvements, I focus on quick wins and easy implementation.",
-          "points": 3
+          "text": "I make sure my pitch is sharper and more tailored than what they're probably hearing from others. I focus on differentiation and relevant proof points.",
+          "points": 2
         },
         {
-          "text": "I change my approach based on what the customer wants and is ready for.",
+          "text": "I try to present our product clearly and make sure they understand what makes us unique compared to the competition.",
           "points": 1
         },
         {
-          "text": "I understand the customer's readiness and use different frameworks for big versus small changes.",
+          "text": "I shift my pitch to focus on what I know our competitors can't do as well. I also try to shape how they think about the decision — the criteria they use to evaluate — so they're naturally thinking in terms of our strengths.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Sales Pitch",
+      "text": "Walk me through how you'd pitch to a company that's never bought a solution like yours before — they don't fully understand the problem yet, let alone the solution.",
+      "answers": [
+        {
+          "text": "I'd take my time to explain our product carefully and use simple language so they can understand what we do and why it would help them.",
+          "points": 1
+        },
+        {
+          "text": "First, I'd educate them on the problem — not the solution. I'd help them see what's costing them by not having it. Once they feel the pain clearly, the solution conversation becomes a lot easier.",
+          "points": 3
+        },
+        {
+          "text": "I'd start simple. Explain what the problem is, why it matters, and how we solve it. I wouldn't assume any prior knowledge and would check in regularly to make sure they're following.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Sales Pitch",
-      "text": "How do you create pitches that connect with the customer's business goals instead of just talking about product features?",
+      "text": "When you're pitching to a group of people who all have different priorities — finance wants cost savings, IT wants ease of integration, and the business owner wants speed — how do you structure your pitch so it works for all of them?",
       "answers": [
         {
-          "text": "I understand their business goals first, then connect my solution to their transformation journey with clear examples and data.",
+          "text": "I build my pitch around the common goal they all share and then weave in how we deliver for each person's priority specifically. I try not to make it feel like I'm switching audiences — it should feel like one story that happens to be relevant to everyone in the room.",
           "points": 3
         },
         {
-          "text": "I talk about business benefits and outcomes instead of just features.",
-          "points": 1
-        },
-        {
-          "text": "I focus on business problems like cost savings, growth, and efficiency rather than just listing product features.",
-          "points": 2
-        }
-      ]
-    },
-    {
-      "topic": "Sales Pitch",
-      "text": "How do you test and improve your sales messages for different markets, and how do you use what works across all markets?",
-      "answers": [
-        {
-          "text": "I test messages in pilot programs, collect feedback and data, analyze what works, and then train the entire team on successful approaches.",
-          "points": 3
-        },
-        {
-          "text": "I create structured tests for different market segments, measure results, and scale the winning messages.",
+          "text": "I open with the overarching business outcome and then address each stakeholder's specific concern as I go. I make sure the pitch flows naturally and doesn't feel like three different presentations stitched together.",
           "points": 2
         },
         {
-          "text": "I try different messages with customers and use what gets the best response.",
+          "text": "I address each priority one by one so everyone feels heard. I make sure finance, IT, and the business owner each get a section of the pitch that speaks to what they care about.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Cold Calling",
-      "text": "With so many digital channels today, what role does cold calling play in your prospecting?",
+      "text": "With 10+ years of experience, what's your honest take on cold calling — does it still work, and how has your approach to it changed over the years?",
       "answers": [
         {
-          "text": "Cold calling is still important - I use it smartly by researching prospects first and combining it with other digital touches for better results.",
-          "points": 3
-        },
-        {
-          "text": "I mainly focus on digital channels and use cold calling only when necessary.",
+          "text": "Cold calling is harder now but I still believe in it. I've had to adapt my approach as buyers have become more resistant to unsolicited calls.",
           "points": 1
         },
         {
-          "text": "I use a mix of cold calling, emails, and LinkedIn to reach prospects through multiple channels.",
+          "text": "It works — but not the way it used to. I spend more time researching before I dial now. One well-prepared call beats ten random ones every time.",
+          "points": 3
+        },
+        {
+          "text": "Cold calling still has a place but it has to be combined with other channels. I use it as part of a bigger outreach strategy rather than the only tool.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Cold Calling",
-      "text": "How have you built programs that regularly bring in good quality leads?",
+      "text": "What's the best opening line or approach you've found that actually gets a cold call past the first 20 seconds without the prospect hanging up or shutting you down?",
       "answers": [
         {
-          "text": "I set up clear steps for the team to follow, track results, and keep improving the process.",
+          "text": "I keep it short and get to the point quickly. I tell them who I am, why I'm calling, and ask if it's relevant to them — all in about 15 seconds.",
           "points": 2
         },
         {
-          "text": "I created a clear process with target lists, scripts, follow-up sequences, and regular training to generate consistent leads.",
-          "points": 3
+          "text": "I try to be friendly and engaging right away. A good tone and a clear introduction usually gets me a fair hearing.",
+          "points": 1
         },
         {
-          "text": "I share best practices and guide the team on prospecting based on what has worked for me.",
-          "points": 1
+          "text": "I reference something specific and real about their business in the first sentence. Not generic — something I actually researched. It shows I'm not just dialing a list and they give me a few more seconds.",
+          "points": 3
         }
       ]
     },
     {
       "topic": "Cold Calling",
-      "text": "How have you trained teams to do better cold calling and handle rejection?",
+      "text": "You've called someone cold, and they say 'I'm really not interested.' What do you say next — and how do you decide when to keep going versus when to let it go?",
       "answers": [
         {
-          "text": "I teach them to handle rejection positively, practice with them, and celebrate small wins to build confidence.",
+          "text": "I'll ask one question — something like 'Is it the timing or is this just not relevant to you right now?' If they engage, great. If they shut down again, I thank them and move on. I don't burn a bridge over a cold call.",
           "points": 3
         },
         {
-          "text": "I create training programs and provide frameworks for handling objections and rejection.",
-          "points": 2
+          "text": "I'll try to give them a quick reason why it might be worth a few more minutes of their time. If they're still not interested, I let them go.",
+          "points": 1
         },
         {
-          "text": "I share my experiences and motivate them to keep trying despite rejections.",
-          "points": 1
+          "text": "I try to ask a quick question to understand if it's a timing issue or a fit issue. If there's any opening, I'll take it. If not, I respect their time.",
+          "points": 2
         }
       ]
     },
     {
       "topic": "Cold Calling",
-      "text": "What's your view on the future of cold calling, and how are you changing your approach as buyer habits change?",
+      "text": "How do you prepare for a cold call today versus how you used to prepare early in your career — what's different and why?",
       "answers": [
         {
-          "text": "I'm keeping up with changes and adjusting strategies as needed.",
-          "points": 1
-        },
-        {
-          "text": "I'm adapting by combining cold calling with digital methods and following all regulations.",
+          "text": "I used to rely on a script. Now I prepare with context — their industry, recent activity, likely pain points — and use that to guide a more natural conversation.",
           "points": 2
         },
         {
-          "text": "Cold calling will become more targeted and personalized, so I'm training the team to do better research and add more value in calls.",
+          "text": "I do a lot more research now. I look at their website and LinkedIn before calling so the conversation feels more relevant to them.",
+          "points": 1
+        },
+        {
+          "text": "Early on I'd just dial. Now I spend real time looking at the company, their recent news, what the person's role involves, and what problems companies like theirs usually have. The call itself is shorter but the prep is much deeper.",
           "points": 3
         }
       ]
     },
     {
       "topic": "Presentation Skill",
-      "text": "How do you orchestrate and facilitate executive-level business reviews or strategic presentations involving multiple departments?",
+      "text": "Tell me about a time when a presentation you gave didn't go the way you planned. What happened, how did you handle it in the moment, and what did you change after that?",
       "answers": [
         {
-          "text": "I create genuine urgency by showing business value and deadlines, while maintaining honest and helpful relationships.",
+          "text": "I've had presentations go off track when the audience started asking questions I wasn't expecting. I learned to be more flexible and not stick too rigidly to my agenda.",
+          "points": 1
+        },
+        {
+          "text": "My demo crashed mid-presentation in front of a room full of senior stakeholders. I put my laptop away, picked up a marker, and drew out the workflow on the whiteboard while asking them questions about their process. It ended up being the best conversation I'd had with that account. After that, I always have a non-tech backup ready.",
           "points": 3
         },
         {
-          "text": "I focus on building trust first, then create urgency based on their business needs and timelines.",
+          "text": "I once had a key decision maker join late and miss the context I'd built up. I had to quickly summarize without losing the room. After that I started front-loading the most important points so latecomers can still follow.",
           "points": 2
-        },
-        {
-          "text": "I balance both by being honest and understanding their situation.",
-          "points": 1
         }
       ]
     },
     {
       "topic": "Presentation Skill",
-      "text": "Describe a high-stakes presentation where the outcome significantly impacted your company. How did you prepare and execute?",
+      "text": "How do you keep senior executives engaged during a presentation when you can tell they're getting impatient or distracted?",
       "answers": [
         {
-          "text": "I document all steps, responsibilities, and dates, and share it with everyone involved.",
-          "points": 2
+          "text": "I stop and ask them something directly. Something like 'Are we spending time on the right things for you?' It snaps them back in and usually redirects the whole conversation to what they actually care about.",
+          "points": 3
         },
         {
-          "text": "I work with all decision-makers to create a plan that everyone follows.",
+          "text": "I try to make the presentation more engaging by asking questions and making sure I'm covering what matters to them.",
           "points": 1
         },
         {
-          "text": "I create a clear timeline with all stakeholders, listing what needs to be done by when, and get everyone's agreement on the plan.",
-          "points": 3
+          "text": "I speed up and cut to the most relevant parts. I try to read the room and drop anything that isn't immediately valuable to them.",
+          "points": 2
         }
       ]
     },
     {
       "topic": "Presentation Skill",
-      "text": "What is your approach to thought leadership presentations that position you and your company as industry experts rather than just vendors?",
+      "text": "When you're presenting to a group and someone asks a question you don't know the answer to, what do you do — especially when it's in front of other stakeholders?",
       "answers": [
         {
-          "text": "I talk to all stakeholders to find the real issue - whether it's budget, fear, politics, or changing priorities - then address it directly.",
+          "text": "I try to answer as best I can and let them know I'll confirm the details afterwards to make sure I've given them accurate information.",
+          "points": 1
+        },
+        {
+          "text": "I say I don't know and that I'll get them the right answer. Making something up in front of a group is the fastest way to lose credibility permanently.",
           "points": 3
         },
         {
-          "text": "I identify if it's a champion issue, budget problem, or internal politics, and take action accordingly.",
+          "text": "I'm honest about it. I acknowledge the question, tell them I want to give them an accurate answer rather than guessing, and commit to a specific time I'll follow up.",
           "points": 2
-        },
-        {
-          "text": "I follow up regularly and try to understand what's blocking the deal.",
-          "points": 1
         }
       ]
     },
     {
       "topic": "Presentation Skill",
-      "text": "How do you train and develop presentation skills in your team, and what frameworks or methodologies do you use?",
+      "text": "How do you make sure a presentation feels like a conversation rather than a one-way information dump — especially in a virtual setting?",
       "answers": [
         {
-          "text": "I rarely give discounts without getting something in return - like longer commitment, references, or faster payment terms.",
+          "text": "Virtually, I check in constantly. I watch for camera cues, use their name, pause after key points and ask what they think. Silence in a virtual setting kills engagement fast so I build in natural breaks to invite them in.",
           "points": 3
         },
         {
-          "text": "I try to avoid big discounts and only give them when necessary to close the deal.",
+          "text": "I try to involve the audience by asking questions and encouraging them to share their thoughts during the presentation.",
           "points": 1
         },
         {
-          "text": "I give concessions strategically, only when needed, and always protect our key terms and margins.",
+          "text": "I ask questions throughout rather than saving them for the end. I treat every slide as a conversation starter, not a monologue.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Sales Process",
-      "text": "How have you created or improved sales processes in your company?",
+      "text": "After 10+ years, you've probably seen deals fall apart at every stage of the process. Which stage do you find most deals die at, and what do you do specifically to prevent it?",
       "answers": [
         {
-          "text": "I use a qualification framework to assess budget, authority, need, and timing before investing time.",
-          "points": 2
-        },
-        {
-          "text": "I qualify based on budget availability and decision-maker access.",
+          "text": "Deals tend to fall apart when prospects lose momentum. I try to keep the energy going with regular follow-ups and by keeping them engaged throughout.",
           "points": 1
         },
         {
-          "text": "I check if they have budget, clear decision-makers, realistic timeline, and if our solution fits their needs. I walk away if any key element is missing.",
-          "points": 3
-        }
-      ]
-    },
-    {
-      "topic": "Sales Process",
-      "text": "Describe how you balance process standardization with the need for sales creativity and individual selling styles.",
-      "answers": [
-        {
-          "text": "I check if they have the right team and commitment to make it work.",
-          "points": 1
-        },
-        {
-          "text": "I evaluate their pain level, leadership commitment, past change history, and implementation resources to see if they're truly ready.",
+          "text": "After the proposal. The prospect goes quiet and you realise you never actually confirmed there was a real decision being made. Now I confirm budget, timeline, and who signs off before I write a single word of a proposal.",
           "points": 3
         },
         {
-          "text": "I assess their willingness to change, internal support, and capability to implement successfully.",
+          "text": "Most deals I've seen die during procurement or legal. I've learned to get those teams involved earlier so there are no last-minute surprises.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Sales Process",
-      "text": "How do you integrate sales process with marketing, customer success, and other revenue-generating functions for a cohesive customer journey?",
+      "text": "How do you personally decide when a deal is real versus when a prospect is just stringing you along — and what do you do when you realize it's the latter?",
       "answers": [
         {
-          "text": "I try to balance both based on what management expects.",
-          "points": 1
-        },
-        {
-          "text": "I maintain standards for qualification but also keep enough opportunities to meet targets.",
+          "text": "I watch how responsive they are and whether they're willing to move things forward. If they keep pushing things back without a good reason, I start to question it.",
           "points": 2
         },
         {
-          "text": "I focus on quality over quantity - I'd rather have fewer good deals than many bad ones that waste time and won't close.",
+          "text": "Usually my gut tells me something is off. I'll ask a few direct questions to test how serious they are and decide whether to keep investing time.",
+          "points": 1
+        },
+        {
+          "text": "I look for commitment — real commitment. Are they showing up to meetings? Are they sharing internal information? Are they introducing me to other people in the business? If it's all talk and no action, I ask them directly where this is really going.",
           "points": 3
         }
       ]
     },
     {
       "topic": "Sales Process",
-      "text": "What methodologies have you implemented (MEDDIC, Challenger, Sandler, etc.), and how did you drive adoption and measure effectiveness?",
+      "text": "Walk me through how you manage a deal that's been in your pipeline for way too long — what steps do you take to either move it forward or cut it loose?",
       "answers": [
         {
-          "text": "I find out who makes the final decision and try to meet them.",
+          "text": "I try to re-engage them with something new — a relevant case study, a product update, anything that gives me a reason to reach out and get the conversation going again.",
           "points": 1
         },
         {
-          "text": "I identify key stakeholders, their roles, and make sure I have relationships with important people.",
+          "text": "I reassess the deal — is the pain still real, is there budget, has anything changed internally? Then I either find a new angle to re-engage or I have an honest conversation about whether the timing is right.",
           "points": 2
         },
         {
-          "text": "I map out all decision-makers and influencers, understand each person's concerns, and ensure I have a champion and access to the final decision-maker.",
+          "text": "I call it out. I have a direct conversation where I tell them I want to make sure I'm being useful to them and ask honestly if this is still something they're planning to move on. Most of the time that conversation either unlocks it or ends it — both are better than it just sitting there.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Sales Process",
+      "text": "How do you balance working multiple complex deals at the same time without anything slipping through the cracks?",
+      "answers": [
+        {
+          "text": "I use a combination of my calendar, CRM, and personal notes to keep track of where each deal is and what I need to do next.",
+          "points": 1
+        },
+        {
+          "text": "My CRM is my brain for this. Every deal has a next step with a date attached. If a deal doesn't have a next step, it's not a real deal.",
+          "points": 3
+        },
+        {
+          "text": "I prioritize deals by stage and potential value, and I block time in my week specifically for each one. I also keep detailed notes after every interaction so I can pick up exactly where I left off.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Questioning Skill",
+      "text": "What's the one question you've learned to always ask early in a sales conversation that tells you whether this deal is worth your time?",
+      "answers": [
+        {
+          "text": "I usually ask about their budget and what they're trying to solve. Those two things tell me quickly whether it's worth pursuing.",
+          "points": 1
+        },
+        {
+          "text": "I ask about their timeline and what's prompting them to explore solutions now. The answer tells me a lot about how serious they are.",
+          "points": 2
+        },
+        {
+          "text": "I ask some version of 'What's driving you to look at this now?' If they can't answer that clearly, there's no urgency and no real deal.",
           "points": 3
         }
       ]
     },
     {
       "topic": "Questioning Skill",
-      "text": "How do you use advanced questioning techniques to shape a prospect's thinking and create urgency around problems they may not have fully recognized?",
+      "text": "How do you get a prospect to open up and share information they're not immediately willing to share — like budget, internal politics, or who else is involved in the decision?",
       "answers": [
         {
-          "text": "I acknowledge their concern, show ROI calculations comparing build vs buy, including hidden costs and time, and bring in case studies of similar companies.",
+          "text": "I share first. I'll say something like 'Other companies we work with in your space usually have a budget in the range of X — does that feel close to where you're thinking?' It lowers their guard because I've given something before asking for something.",
           "points": 3
         },
         {
-          "text": "I explain why buying makes more sense than building in-house.",
-          "points": 1
-        },
-        {
-          "text": "I present a detailed comparison showing total costs, risks, and time for each option with data.",
-          "points": 2
-        }
-      ]
-    },
-    {
-      "topic": "Questioning Skill",
-      "text": "Describe how you've coached sales teams to improve their discovery and questioning capabilities. What frameworks do you teach?",
-      "answers": [
-        {
-          "text": "I kept presenting facts and eventually convinced them with evidence.",
-          "points": 1
-        },
-        {
-          "text": "I used case studies and data to address their concerns and gradually changed their thinking.",
+          "text": "I ask indirectly. Instead of 'what's your budget?' I ask 'how do you typically approach investments like this?' It gets me the same information without feeling intrusive.",
           "points": 2
         },
         {
-          "text": "I brought in industry experts, shared success stories from similar companies, and worked with their internal champion to present data that changed their view.",
-          "points": 3
-        }
-      ]
-    },
-    {
-      "topic": "Questioning Skill",
-      "text": "How do you design questioning strategies for different stages of complex, multi-year enterprise sales cycles?",
-      "answers": [
-        {
-          "text": "I train them differently based on who they're talking to - junior staff need different approaches than C-level executives.",
-          "points": 2
-        },
-        {
-          "text": "I create objection-handling guides for different levels, do role-plays, and teach them to listen first, understand the real concern, then respond appropriately.",
-          "points": 3
-        },
-        {
-          "text": "I share common objections and how to answer them at different organizational levels.",
+          "text": "I build rapport first and make them feel comfortable before I go to the harder questions. Once there's trust, people share more.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Questioning Skill",
-      "text": "What is your approach to provocative or insight-led questioning that challenges a prospect's status quo thinking?",
+      "text": "Have you ever asked a question in a sales conversation that completely changed the direction of the deal — in a good or bad way? What was it, and what did you learn?",
       "answers": [
         {
-          "text": "I'm transparent about what we can and cannot do.",
+          "text": "I've had questions that opened up new angles I hadn't considered. It taught me that the right question at the right time can completely change where a conversation goes.",
           "points": 1
         },
         {
-          "text": "I'm honest about the gap, discuss workarounds or our product roadmap, and sometimes walk away if it's not a good fit.",
-          "points": 3
+          "text": "Yes. I once asked who else needed to be involved in the decision and found out there was a whole team I didn't know about. It reset the timeline but saved us from a nasty surprise later on.",
+          "points": 2
         },
         {
-          "text": "I acknowledge the limitation honestly and try to find alternative solutions or partnerships.",
-          "points": 2
+          "text": "I asked a CFO 'What happens to your business if this problem isn't solved in the next 12 months?' He went quiet, then said 'honestly, we'd probably lose two of our biggest clients.' That one question made the whole deal move faster than anything I'd said before.",
+          "points": 3
         }
       ]
     },
     {
-      "topic": "Buying Process",
-      "text": "How do you influence and architect buying processes in large enterprises where formal procurement procedures can span 12-18 months?",
+      "topic": "Questioning Skill",
+      "text": "How do you handle it when a prospect gives you very short, surface-level answers and doesn't want to go deep? How do you draw more out of them without making it feel like an interrogation?",
       "answers": [
         {
-          "text": "I share relevant industry insights, introduce them to useful contacts, and check in periodically without any sales agenda to stay valuable.",
-          "points": 3
-        },
-        {
-          "text": "I keep in touch regularly, share useful information, and maintain the relationship beyond just deals.",
+          "text": "I change my approach — less direct questions, more conversational statements that invite a response. Something like 'I've seen a lot of companies in your space struggle with X' usually gets them talking.",
           "points": 2
         },
         {
-          "text": "I stay connected and reach out occasionally to maintain the relationship.",
-          "points": 1
-        }
-      ]
-    },
-    {
-      "topic": "Buying Process",
-      "text": "Describe how you've navigated a situation where the buying process changed mid-cycle due to organizational restructuring or leadership changes.",
-      "answers": [
-        {
-          "text": "I delivered exceptional results, became a trusted advisor, aligned our success with their success, and created joint business planning for the future.",
+          "text": "I slow down and share something myself — a relevant observation or a challenge I've seen at similar companies. It usually prompts them to respond with their own perspective. People open up when you go first.",
           "points": 3
         },
         {
-          "text": "I focused on their success, provided extra value, and built deep relationships that led to longer commitments.",
-          "points": 2
-        },
-        {
-          "text": "I worked closely with them and proved our value over time.",
+          "text": "I try different types of questions and give them space to answer. If they're guarded, I try not to push too hard and let the conversation build naturally.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Buying Process",
-      "text": "What strategies have you employed to become the \"incumbent\" choice even when entering a competitive buying process late?",
+      "text": "Have you ever gotten deep into a deal only to realize you were talking to the wrong person the whole time? How did you discover that, and how did you recover?",
       "answers": [
         {
-          "text": "I address issues quickly, stay transparent, and work hard to resolve problems and rebuild trust.",
+          "text": "I've been there. I found out when the proposal went nowhere because my contact had no influence over the budget. I had to find a different way in — through a referral from someone they respected.",
           "points": 2
         },
         {
-          "text": "I take ownership immediately, communicate openly about the problem, create a fix plan, and involve my leadership to show commitment to making things right.",
+          "text": "Yes — and it's one of the most expensive lessons in sales. I discovered it when my contact couldn't get a meeting with their own leadership to discuss what we'd been working on for months. I had to restart the relationship at a higher level, which I should have done from the beginning. Now I always ask early who else will be involved and I try to meet them before the deal gets too far.",
           "points": 3
         },
         {
-          "text": "I handle it carefully and try to fix the problem while keeping the relationship intact.",
+          "text": "It's happened. When I realised it, I asked my contact to help me get access to the right people. Sometimes they help, sometimes they don't.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Buying Process",
-      "text": "How do you build business cases and ROI models that help your champions navigate internal buying processes and secure budget?",
+      "text": "When a deal suddenly goes quiet after things were moving along well, what do you think is usually happening on the prospect's side — and how do you find out for sure?",
       "answers": [
         {
-          "text": "I build strong relationships, deliver value, and turn satisfied users into champions who promote us internally.",
-          "points": 2
-        },
-        {
-          "text": "I help them succeed, make them look good to their management, provide tools and support they need, and create win-win situations.",
-          "points": 3
-        },
-        {
-          "text": "I identify potential champions and work closely with them to get their support.",
-          "points": 1
-        }
-      ]
-    },
-    {
-      "topic": "Objection Handling",
-      "text": "How have you analyzed patterns in objections across your team or organization to address root causes in positioning, targeting, or qualification?",
-      "answers": [
-        {
-          "text": "A large enterprise deal with difficult pricing, payment terms, and multiple decision-makers that took months to close.",
-          "points": 2
-        },
-        {
-          "text": "A challenging deal where I had to negotiate with many people and find a solution that worked for everyone.",
+          "text": "I follow up to see what's going on. Sometimes it's just that they've been busy and the deal picks back up. Other times something has changed and I need to figure out what.",
           "points": 1
         },
         {
-          "text": "It was a multi-million dollar, multi-year deal with 10+ stakeholders, complex legal terms, and conflicting department needs. I created separate value propositions for each stakeholder and brought everyone together.",
-          "points": 3
-        }
-      ]
-    },
-    {
-      "topic": "Objection Handling",
-      "text": "Describe a major deal you saved by reframing or resolving fundamental objections late in the sales cycle.",
-      "answers": [
-        {
-          "text": "I take help from experts and negotiate patiently on complex terms.",
-          "points": 1
-        },
-        {
-          "text": "I involve legal early, understand all their concerns, create flexibility in terms, and ensure both sides feel they won on their key priorities.",
+          "text": "Something changed internally — priorities shifted, budget got cut, or someone left. I reach out and say it directly: 'Things went quiet and I want to make sure I'm not missing something — what's changed?' It works almost every time.",
           "points": 3
         },
         {
-          "text": "I work closely with our legal and finance teams, understand their requirements, and negotiate terms carefully.",
+          "text": "Usually it's an internal issue — budget freeze, change in priorities, or someone getting cold feet. I reach out with something of value and use it as a reason to check in.",
           "points": 2
         }
       ]
     },
     {
-      "topic": "Objection Handling",
-      "text": "What is your philosophy on when to walk away from a deal versus continuing to work through objections?",
+      "topic": "Buying Process",
+      "text": "How do you figure out the real buying process in a company — not just what they tell you, but who actually has influence, who signs off, and what's really driving the timeline?",
       "answers": [
         {
-          "text": "I bring in senior leadership when needed for big deals, after preparing them well on the situation.",
-          "points": 2
+          "text": "I ask my main contact to walk me through the last time they made a similar decision — who was involved, how long it took, what almost stopped it. That story tells me everything I need to know about how things actually work there.",
+          "points": 3
         },
         {
-          "text": "I involve senior leaders when I need their help or when customers ask for them.",
+          "text": "I ask questions throughout the process to understand who else is involved and what the approval process looks like.",
           "points": 1
         },
         {
-          "text": "I involve them when the deal is strategic, high-value, or stuck on senior-level issues. I brief them thoroughly on customer's business, key people, our position, and what we need from them.",
+          "text": "I ask directly about the decision process early on — who's involved, what the steps are, what could slow it down. Then I validate it as the deal progresses.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Buying Process",
+      "text": "Tell me about a time you lost a deal not because of price or product, but because of something happening internally at the prospect's company. How did you handle it, and what would you do differently?",
+      "answers": [
+        {
+          "text": "It's happened — things outside my control derailed a deal I thought was in good shape. I try to stay connected and keep the door open for when the timing is better.",
+          "points": 1
+        },
+        {
+          "text": "Lost a deal six months in because the champion got promoted and the new person came with their own vendor relationships. I handled it by staying in contact with my original champion in their new role. The lesson — always build more than one relationship inside an account so the deal doesn't live or die on one person.",
           "points": 3
+        },
+        {
+          "text": "I had a deal fall apart because of a company restructure that changed the budget ownership. There wasn't much I could do at that point. I kept the relationship warm and came back six months later.",
+          "points": 2
         }
       ]
     },
     {
       "topic": "Objection Handling",
-      "text": "How do you prepare your team to handle objections in highly competitive or commoditized markets where differentiation is challenging?",
+      "text": "What's the toughest objection you regularly face in your deals, and after all these years, what's the most effective way you've found to handle it?",
       "answers": [
         {
-          "text": "I collect customer feedback systematically, identify patterns, and present these insights to product and marketing teams with specific recommendations that influence our strategy.",
-          "points": 3
-        },
-        {
-          "text": "I pass on customer feedback to internal teams when I hear important things.",
+          "text": "Price objections are common. I handle them by reinforcing the value and ROI so the conversation shifts from cost to investment.",
           "points": 1
         },
         {
-          "text": "I share what customers are saying with relevant teams to help improve products and positioning.",
+          "text": "The toughest is 'we're happy with what we have.' It's tough because there's no obvious pain to solve. I handle it by asking questions about what 'happy' actually looks like and where the gaps are — because there are always gaps.",
+          "points": 3
+        },
+        {
+          "text": "'It's too expensive' is one I face a lot. I've gotten better at reframing it around what it costs them not to solve the problem rather than defending our price.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Objection Handling",
+      "text": "How do you tell the difference between a prospect who has a real concern versus one who's just not interested but doesn't want to say it directly?",
+      "answers": [
+        {
+          "text": "Real objections come with detail. When someone says 'your pricing is higher than expected' and can tell me what they expected, that's real. When they say 'it's just not the right time' without any specifics, that's a polite no. I've learned to just ask: 'Is this a concern you want us to work through or are you telling me this isn't the right fit?'",
+          "points": 3
+        },
+        {
+          "text": "Experience helps you read these situations. I've learned to ask follow-up questions to see if they're genuinely interested in resolving the concern.",
+          "points": 1
+        },
+        {
+          "text": "If the objection is specific and they engage when I respond, it's real. If they stay vague and keep deflecting, it's usually not going anywhere.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Objection Handling",
+      "text": "Have you ever had a prospect raise an objection very late in the deal — almost at the finish line — that nearly killed it? How did you handle it?",
+      "answers": [
+        {
+          "text": "Late objections usually mean something wasn't uncovered early enough. I stay calm, take it seriously, and work through it — but I've also learned to ask broader questions earlier so these surprises are less common.",
+          "points": 3
+        },
+        {
+          "text": "It's happened. I try to address it quickly and bring in whoever from our side can help resolve it. Late objections are stressful but they can usually be worked through.",
+          "points": 1
+        },
+        {
+          "text": "Yes. Security concerns from a technical team that had never been involved before. I was frustrated but I didn't show it. I brought in our technical team, addressed every concern in writing, and scheduled a dedicated session to walk them through it. It delayed the close by three weeks but we got there.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Objection Handling",
+      "text": "When a prospect says your price is too high, how do you respond — and how has that response evolved over your years in sales?",
+      "answers": [
+        {
+          "text": "I don't rush to justify the price. I try to understand what they're comparing us to and then refocus on the value we bring relative to that benchmark.",
+          "points": 2
+        },
+        {
+          "text": "I explain the value in more detail and show them how the ROI justifies the investment. I've gotten much better at making that case convincingly over the years.",
+          "points": 1
+        },
+        {
+          "text": "Early in my career I'd get defensive or start offering discounts. Now I get curious. I ask 'compared to what?' and let that answer guide the whole conversation. The issue is rarely the price itself.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Value Proposition",
+      "text": "How do you explain the value of what you sell in a way that doesn't sound like every other sales pitch the prospect has already heard?",
+      "answers": [
+        {
+          "text": "I skip the corporate positioning and get straight to the specific outcome they're going to get. Real numbers, real results from real customers they can relate to.",
+          "points": 2
+        },
+        {
+          "text": "I focus on what makes us different and use customer stories to make the value feel real rather than just theoretical.",
+          "points": 1
+        },
+        {
+          "text": "I use their language, not mine. I base my value statement on what they told me their problem is. If it sounds like their problem coming back to them as a solution, it doesn't sound like a pitch at all.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Value Proposition",
+      "text": "Have you ever been in a situation where the prospect could see your product was good but still didn't see why it was worth the price? How did you bridge that gap?",
+      "answers": [
+        {
+          "text": "I brought in a customer reference at a similar company so they could hear directly what the impact had been. Sometimes that third-party voice closes the gap faster than anything I say.",
+          "points": 2
+        },
+        {
+          "text": "I walked them through the ROI in more detail and showed them how it would pay for itself over time.",
+          "points": 1
+        },
+        {
+          "text": "I shifted the conversation from the product to the problem. We built out a simple calculation together — what this issue is currently costing them. Once they saw the number, our price looked very different.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Value Proposition",
+      "text": "When you're selling to someone who's very numbers-driven and wants to see a clear ROI before they commit, how do you build that case — especially when you don't have all their internal data?",
+      "answers": [
+        {
+          "text": "I put together a high-level ROI model based on what I know about their business and similar companies, and I present it as a starting point for discussion.",
+          "points": 1
+        },
+        {
+          "text": "I ask them to help me build it. 'I don't have your exact numbers but you do — let's work through this together.' They end up owning the ROI model and it's much more credible than anything I could have produced on my own.",
+          "points": 3
+        },
+        {
+          "text": "I use industry benchmarks and data from similar customers as proxies and then ask them to validate the assumptions. It gives the model credibility even without their exact numbers.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Value Proposition",
-      "text": "How have you led the development of value propositions for new products, markets, or strategic initiatives?",
+      "text": "How do you adjust the value story you tell depending on who you're talking to — for example, the difference between talking to a CFO versus someone in operations?",
       "answers": [
         {
-          "text": "I deeply understand their industry, share valuable insights even when not selling, introduce them to helpful contacts, and focus on their success over my commission.",
+          "text": "Same product, completely different story. With a CFO it's about risk, return, and financial impact. With operations it's about time, effort, and day-to-day pain relief. I know the product well enough to tell it either way.",
           "points": 3
         },
         {
-          "text": "I try to help them beyond just selling and build a consultative relationship.",
+          "text": "I think about what each person cares about and make sure I'm speaking to that. A CFO wants numbers and a manager wants to know how it helps their team.",
           "points": 1
         },
         {
-          "text": "I learn their business well, provide useful advice, and position myself as a partner rather than just a vendor.",
+          "text": "I adjust the emphasis — financial metrics and ROI for the CFO, practical outcomes and efficiency gains for operations. The core message is the same but the angle changes.",
           "points": 2
         }
       ]
     },
     {
-      "topic": "Value Proposition",
-      "text": "Describe how you've evolved value propositions based on changing market conditions, competitive dynamics, or economic factors.",
+      "topic": "ICP & Persona",
+      "text": "After 10+ years of selling, how has your sense of who your ideal customer really is changed — and what experiences shaped that?",
       "answers": [
         {
-          "text": "I share what I learn from customers with my team and other departments.",
-          "points": 1
-        },
-        {
-          "text": "I document customer insights and share them in team meetings and reports.",
+          "text": "I've refined it significantly. Early on I chased anything. Now I know exactly what profile of company and what type of buyer gives us the best chance of success — and I'm disciplined about it.",
           "points": 2
         },
         {
-          "text": "I create regular reports and presentations sharing customer trends, competitive intelligence, and market changes with product, marketing, and leadership teams.",
-          "points": 3
-        }
-      ]
-    },
-    {
-      "topic": "Value Proposition",
-      "text": "How do you create and validate value propositions for different economic buyers (CFO, CIO, COO) within the same organization?",
-      "answers": [
-        {
-          "text": "I ask about their main objectives and try to align our offering with what they want to achieve.",
-          "points": 1
-        },
-        {
-          "text": "I research their business before meetings, ask about their top 3-5 priorities, understand their KPIs, and map our solution to their specific strategic goals.",
+          "text": "I used to think bigger was always better. I've learned that the best customers aren't necessarily the biggest ones — they're the ones who feel the problem acutely, are ready to change, and have someone internally who owns the outcome. A few bad fits taught me that faster than any win.",
           "points": 3
         },
         {
-          "text": "I use discovery frameworks to understand their priorities and connect our solution to their goals.",
-          "points": 2
-        }
-      ]
-    },
-    {
-      "topic": "Value Proposition",
-      "text": "What frameworks do you use to help sales teams articulate business value and strategic impact rather than just product capabilities?",
-      "answers": [
-        {
-          "text": "I analyze competitor wins/losses, identify their strengths and weaknesses, and help marketing create positioning that highlights our unique advantages.",
-          "points": 3
-        },
-        {
-          "text": "I share competitive intelligence and help develop strategies to compete better.",
-          "points": 2
-        },
-        {
-          "text": "I provide input on how to position against competitors based on what I see in deals.",
+          "text": "Over the years I've got a much clearer picture of who's a good fit and who isn't. Experience just gives you better instincts for it.",
           "points": 1
         }
       ]
     },
     {
       "topic": "ICP & Persona",
-      "text": "How have you used data analytics and CRM insights to refine ICP definitions and improve targeting accuracy across your organization?",
+      "text": "How quickly can you tell in the first conversation whether a prospect is a good fit or not — and what are the specific signals you look for?",
       "answers": [
         {
-          "text": "I spotted a competitive threat early and worked with the team to respond with a better approach.",
-          "points": 2
-        },
-        {
-          "text": "I noticed a new competitor winning deals with a different approach, alerted leadership immediately, and helped create a counter-strategy including new messaging and pricing options.",
+          "text": "Pretty quickly now. I'm listening for whether the pain is real and urgent, whether they've tried to solve it before, and whether the person I'm talking to has any stake in fixing it. Those three things tell me almost everything.",
           "points": 3
         },
         {
-          "text": "I informed management about a new competitor and we adjusted our strategy.",
+          "text": "I can usually get a feel for it in the first call based on how they respond to questions and how engaged they are in the conversation.",
           "points": 1
+        },
+        {
+          "text": "Usually within the first meeting. I look at how specific they are about their problem, how senior the person is, and whether they're actually exploring solutions or just gathering information.",
+          "points": 2
         }
       ]
     },
     {
       "topic": "ICP & Persona",
-      "text": "Describe how you've segmented markets and developed go-to-market strategies for different ICPs or personas.",
+      "text": "Have you ever chased a deal that looked great on paper but turned out to be a bad fit? What happened, and what did you learn from it?",
       "answers": [
         {
-          "text": "I analyze what makes them different and help position our advantages against their approach.",
+          "text": "It's happened. You learn from those experiences to ask more questions upfront before getting too invested in a deal.",
+          "points": 1
+        },
+        {
+          "text": "Yes. The numbers looked right but their internal culture wasn't a good match for how we work. It dragged on, eventually fell apart, and cost a lot of time. Now I pay attention to culture fit as well as commercial fit.",
           "points": 2
         },
         {
-          "text": "I study their model, identify their limitations, highlight our advantages, and sometimes adapt our approach to match market changes while staying true to our strengths.",
+          "text": "Big logo, big budget, ticked every box on the surface. Spent four months on it. When we finally got deep into their requirements, they needed customisation we couldn't deliver. I should have asked harder questions in week one. Now I qualify for fit aggressively, not just for revenue potential.",
           "points": 3
-        },
-        {
-          "text": "I understand their offering and adjust how we present our solution.",
-          "points": 1
         }
       ]
     },
     {
       "topic": "ICP & Persona",
-      "text": "How do you balance focus on ideal customers with the need to explore adjacent markets or expand your addressable market?",
+      "text": "How do you personally decide to walk away from a prospect who doesn't fit your ideal profile but is very interested in buying from you?",
       "answers": [
         {
-          "text": "I analyze why we win or lose deals and use that information to improve our approach.",
-          "points": 2
-        },
-        {
-          "text": "I conduct detailed interviews after wins and losses, identify patterns, share findings with teams, and implement specific changes to improve our win rate.",
+          "text": "I think about what happens after the sale. If I can't see them being a successful customer, I'm setting both of us up for a painful relationship. I'd rather have that honest conversation now than deal with a bad customer for the next two years.",
           "points": 3
         },
         {
-          "text": "I review wins and losses to understand what works and what doesn't.",
-          "points": 1
-        }
-      ]
-    },
-    {
-      "topic": "ICP & Persona",
-      "text": "What is your approach to identifying early adopters and lighthouse customers when entering new markets or launching new solutions?",
-      "answers": [
-        {
-          "text": "I improved existing processes based on what works and what doesn't.",
-          "points": 1
-        },
-        {
-          "text": "I designed clear sales processes with defined stages and trained the team to follow them.",
+          "text": "It's a hard call. I weigh up the revenue opportunity against the risk of a bad customer experience. If the fit is genuinely poor, I'll have an honest conversation rather than force it.",
           "points": 2
         },
         {
-          "text": "I mapped the entire sales journey, identified bottlenecks, created standard processes with flexibility, and trained everyone on the new system while measuring results.",
-          "points": 3
-        }
-      ]
-    },
-    {
-      "topic": "Follow-up",
-      "text": "How have you built or optimized follow-up systems and cadences that work at scale across a sales organization?",
-      "answers": [
-        {
-          "text": "I set up regular meetings with product, marketing, and customer success teams, share customer insights, and work on joint initiatives that benefit customers.",
-          "points": 3
-        },
-        {
-          "text": "I work with other teams when needed to support sales efforts.",
-          "points": 1
-        },
-        {
-          "text": "I maintain good relationships with other departments and collaborate on important projects.",
-          "points": 2
-        }
-      ]
-    },
-    {
-      "topic": "Follow-up",
-      "text": "Describe your approach to account-based strategies where follow-up is coordinated across multiple team members and touchpoints.",
-      "answers": [
-        {
-          "text": "I carefully review all opportunities and provide realistic forecasts based on deal stages.",
-          "points": 2
-        },
-        {
-          "text": "I use a disciplined process to assess each deal's probability, review pipeline weekly with the team, and only commit to what I'm confident about delivering.",
-          "points": 3
-        },
-        {
-          "text": "I estimate based on my pipeline and past experience.",
+          "text": "I try to flag the concerns and see if there's a way to make it work. If there isn't, I'll let them know honestly.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Follow-up",
-      "text": "How do you maintain relationships and follow-up with strategic accounts over multi-year sales cycles without being perceived as pushy?",
+      "text": "What's your personal follow-up strategy after a first meeting — what do you do, when do you do it, and why does that approach work for you?",
       "answers": [
         {
-          "text": "I analyze market potential, prioritize high-value accounts, allocate time based on opportunity size, and create a balanced mix of new and existing business.",
+          "text": "I follow up within a day or two with a thank you and a summary of what we discussed along with the next steps we agreed on.",
+          "points": 1
+        },
+        {
+          "text": "Same day, short email. I recap what they said — not what I said — and confirm the next step we agreed on. It shows I was listening and keeps momentum going before they get busy with the next thing.",
           "points": 3
         },
         {
-          "text": "I plan my territory by identifying key accounts and allocating time appropriately.",
+          "text": "I send a follow-up within 24 hours that summarises the key points, confirms next steps, and includes something relevant — a case study, an article, something that adds value beyond just 'thanks for your time.'",
           "points": 2
-        },
-        {
-          "text": "I organize my territory based on which accounts have the most potential.",
-          "points": 1
         }
       ]
     },
     {
       "topic": "Follow-up",
-      "text": "What metrics and systems do you use to ensure follow-up discipline across your team while maintaining quality and personalization?",
+      "text": "How many times do you follow up with a prospect who hasn't responded before you decide to move on — and how do you make each follow-up feel different so it doesn't seem like you're just checking in?",
       "answers": [
         {
-          "text": "I track multiple deals carefully, prioritize actions, and manage my time effectively.",
-          "points": 2
-        },
-        {
-          "text": "I stay organized and follow up regularly on all opportunities.",
+          "text": "I follow up several times, trying to vary my approach between email, phone, and LinkedIn so I'm not just sending the same message over and over.",
           "points": 1
         },
         {
-          "text": "I create detailed account plans, map all stakeholders, set milestones, review progress regularly, and adjust strategies based on what I learn.",
+          "text": "I follow up until I get a response — yes, no, or not now. But each follow-up needs to give them a reason to reply. A new insight, a relevant story, a question they haven't been asked before. 'Just checking in' is the laziest thing in sales.",
+          "points": 3
+        },
+        {
+          "text": "I usually go to six or seven touches before stepping back. Each one tries to add something new — a different angle, a different medium, or a different piece of value so it doesn't feel repetitive.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Follow-up",
+      "text": "What's the most creative or effective follow-up you've done that got a response from a prospect who had gone completely quiet?",
+      "answers": [
+        {
+          "text": "I sent a handwritten note once with a relevant article attached. In a world of emails it stood out completely and restarted a conversation I thought was dead.",
+          "points": 2
+        },
+        {
+          "text": "I sent a very brief, honest message saying I didn't want to keep bothering them but wanted to know if the timing was just off or if they'd moved in a different direction. That honesty usually gets a reply.",
+          "points": 1
+        },
+        {
+          "text": "A short video. Thirty seconds, no script, just me talking about something relevant I'd seen in their industry that week. It felt personal in a way email never does. Got a response within an hour.",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "topic": "Follow-up",
+      "text": "How do you stay on a prospect's radar over a long sales cycle — sometimes six months or more — without coming across as pushy or desperate?",
+      "answers": [
+        {
+          "text": "Value-add only. I share things that are genuinely useful to them — industry news, a relevant event, an introduction to someone they should know. If every touchpoint gives them something, it doesn't feel like pestering.",
+          "points": 3
+        },
+        {
+          "text": "I keep in touch regularly but try not to be too salesy about it. I share relevant content and check in periodically without always pushing for an update on the deal.",
+          "points": 1
+        },
+        {
+          "text": "I map out the touchpoints over the cycle and make sure each one has a genuine reason behind it. I avoid any message that's just about where the deal stands — it always has to be about them.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Sales Call Planning",
+      "text": "Walk me through exactly how you prepare for an important sales call — what do you research, what do you plan, and how long does it take you?",
+      "answers": [
+        {
+          "text": "I research the company and the people I'm meeting, prepare my agenda and key talking points, and make sure I know what outcome I'm aiming for.",
+          "points": 1
+        },
+        {
+          "text": "I look at the company website, recent press, their LinkedIn and the people I'll be meeting. I prepare my key questions, anticipate likely objections, and set a clear goal for the call. Usually takes me 30-45 minutes for a high-priority meeting.",
+          "points": 2
+        },
+        {
+          "text": "I research the company and the individual. For the company — recent news, their business model, industry challenges. For the person — their LinkedIn, how long they've been in the role, anything they've written or said publicly. Then I write down the three things I need to find out on the call and the one outcome I want by the end. That's it. The rest is listening.",
           "points": 3
         }
       ]
     },
     {
       "topic": "Sales Call Planning",
-      "text": "How do you prepare for and conduct executive briefings or strategic advisory sessions with C-suite buyers?",
+      "text": "What's the minimum you need to know about a prospect before you feel ready to get on a call with them — and what happens when you can't find that information?",
       "answers": [
         {
-          "text": "I guide them and help them learn from my experience.",
-          "points": 1
-        },
-        {
-          "text": "I mentor them through regular coaching sessions and share my knowledge and experience.",
-          "points": 2
-        },
-        {
-          "text": "I provide hands-on coaching, let them shadow my calls, give specific feedback, set clear goals, and celebrate their progress to build confidence.",
-          "points": 3
-        }
-      ]
-    },
-    {
-      "topic": "Sales Call Planning",
-      "text": "Describe how you've coached teams to elevate their call planning from tactical to strategic, focusing on business outcomes.",
-      "answers": [
-        {
-          "text": "I first understand the root cause - is it skills, motivation, or fit? Then I create a clear improvement plan with support, but also know when it's time to make tough decisions.",
+          "text": "What they do, who they serve, and roughly what pain they're likely carrying based on their role. If I can't find it, I build my opening questions around discovering it. A good discovery question beats a wrong assumption every time.",
           "points": 3
         },
         {
-          "text": "I address issues directly and try to help them improve.",
+          "text": "I like to know the basics about their company and role before the call. If I can't find it, I do my best with what I have and ask more questions on the call.",
           "points": 1
         },
         {
-          "text": "I provide feedback, create improvement plans, and give them time to improve.",
+          "text": "I need to understand their business model, their role, and their likely challenges at minimum. If I can't find it, I'm upfront on the call — I tell them I haven't been able to find much and ask if they can give me some context.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Sales Call Planning",
-      "text": "What is your approach to orchestrating complex sales calls involving multiple stakeholders from both organizations?",
+      "text": "How do you set the agenda for a sales call in a way that keeps you in control of the conversation but still makes the prospect feel like it's their meeting?",
       "answers": [
         {
-          "text": "I promote teamwork, celebrate wins, and create a positive environment.",
+          "text": "I share a light agenda at the start and frame it around what we want them to get out of the meeting, not what I want to cover. Then I confirm they're comfortable with it before we start.",
           "points": 2
         },
         {
-          "text": "I encourage the team and set a good example.",
+          "text": "I set an agenda and share it at the start of the call. I make sure to ask if there's anything they want to add or change before we get going.",
           "points": 1
         },
         {
-          "text": "I lead by example, recognize good work publicly, create healthy competition, foster collaboration, and ensure the team feels valued and motivated.",
+          "text": "I open by suggesting an agenda and then asking them if that works or if there's something they want to prioritise. They almost always say it's fine, but asking gives them ownership of it. And I always build in time for their questions at the front — not just at the end.",
           "points": 3
         }
       ]
     },
     {
       "topic": "Sales Call Planning",
-      "text": "How do you use call planning as a qualification and deal strategy tool rather than just a preparation activity?",
+      "text": "Tell me about a call you went into well-prepared and it still went sideways. What happened, how did you handle it, and what did you do differently next time?",
       "answers": [
         {
-          "text": "I look for coachability, resilience, curiosity, and cultural fit over just experience. I use role-play scenarios and multiple interviews to assess real capabilities.",
-          "points": 3
-        },
-        {
-          "text": "I assess their skills, attitude, and fit with our company during the interview process.",
+          "text": "The prospect had done their own research and came in with very specific technical questions I wasn't prepared to answer in detail. I handled it by being honest about what I knew and what I'd need to confirm, and I brought in a technical resource for the next call.",
           "points": 2
         },
         {
-          "text": "I hire people with relevant experience and good communication skills.",
+          "text": "Prepared for a CFO conversation. Showed up and found out she'd brought their legal team and IT director. Completely different conversation. I put my prep aside, asked everyone what they were hoping to get out of the meeting, and let that guide it. Wasn't perfect but it was better than pretending they weren't in the room.",
+          "points": 3
+        },
+        {
+          "text": "Unexpected things happen on calls. I've learned to stay flexible and not get thrown off when the conversation doesn't go the way I planned.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Negotiation",
-      "text": "How have you developed negotiation frameworks and strategies for your organization to protect margins while closing business?",
+      "text": "When a prospect pushes hard for a discount, how do you decide whether to hold your price or give something — and what does your thought process look like in that moment?",
       "answers": [
         {
-          "text": "I try to empower my team and avoid being a bottleneck.",
+          "text": "I assess how serious the pressure is and whether they're genuinely budget-constrained or just testing. Then I decide what I'm comfortable offering within my authority.",
           "points": 1
         },
         {
-          "text": "I train others, delegate tasks, and focus on strategic work.",
+          "text": "I don't move on price unless I get something back — a longer commitment, a quicker close, a reference. I never give something for nothing in a negotiation.",
           "points": 2
         },
         {
-          "text": "I document best practices, create training materials, delegate to capable team members, and focus my time on highest-impact activities and mentoring.",
+          "text": "I ask myself: is this a price issue or a value issue? If I haven't made the value clear enough, a discount won't fix the real problem. I'd rather go back to the value conversation than cut the price and lose their respect.",
           "points": 3
         }
       ]
     },
     {
       "topic": "Negotiation",
-      "text": "Tell us about your most complex negotiation. What was at risk, and how did you handle it?",
+      "text": "Tell me about the toughest negotiation you've been in as an individual seller. What made it hard, and how did you get to a deal — or did you walk away?",
       "answers": [
         {
-          "text": "I read industry reports, attend conferences, network with peers, talk to customers about their challenges, and use this knowledge to adapt our approach proactively.",
-          "points": 3
-        },
-        {
-          "text": "I keep myself informed about what's happening in the market.",
+          "text": "I've been in some tough negotiations over the years. The hardest are when both sides are far apart on price. You have to be patient and find what the other side really needs to feel good about the deal.",
           "points": 1
         },
         {
-          "text": "I follow industry news, learn from customers, and stay updated on market changes.",
+          "text": "Procurement came in at the last minute with a list of demands that would have made the deal unprofitable. What made it hard was my own pressure to close. I took a day to reset, went back with a clear line on what we could and couldn't do, and explained why. They pushed back once more and I held firm. We got to a deal that worked for both sides — not perfect for either of us, but fair.",
+          "points": 3
+        },
+        {
+          "text": "A deal where the prospect went back to market midway through negotiation to get competitive quotes. I had to hold my value position while managing the risk of losing it entirely. I stayed confident, brought in some additional proof points, and we closed without a major concession.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Negotiation",
-      "text": "How do you handle multi-year negotiations with complex terms like contracts and service agreements?",
+      "text": "How do you negotiate when you know the prospect has other options and genuinely doesn't need to choose you — what's your strategy when you're not the only one in the room?",
       "answers": [
         {
-          "text": "I think ahead and plan for the future while working on current deals.",
-          "points": 1
-        },
-        {
-          "text": "I set clear goals, plan my approach, and align my work with company strategy.",
+          "text": "I focus on what makes us the lower-risk choice. Features and price are easy to compare — implementation support, account management, and track record with similar companies are harder to quantify and that's where I try to win.",
           "points": 2
         },
         {
-          "text": "I analyze market potential, identify growth opportunities, set quarterly objectives aligned with company goals, and create action plans with metrics to track progress.",
+          "text": "I stop competing on price and start competing on relationship and risk. I ask them what would make this an easy decision and then focus on whatever that is. Usually it's not price — it's confidence, trust, or a specific capability they're worried about.",
           "points": 3
+        },
+        {
+          "text": "I emphasise our strengths and what differentiates us. If there are other options on the table, I make sure they have a clear reason to choose us.",
+          "points": 1
         }
       ]
     },
     {
       "topic": "Negotiation",
-      "text": "When do you involve senior management in negotiations, and how do you prepare them?",
+      "text": "Have you ever made a concession in a negotiation that you later regretted? What was it, and what would you do differently now?",
       "answers": [
         {
-          "text": "I study the market, adapt our approach, and work to establish presence.",
+          "text": "I once agreed to a payment structure that created ongoing admin problems for our team. I was so focused on closing the commercial terms that I didn't think through the operational impact. Now I think about what happens after the signature, not just during the negotiation.",
           "points": 2
         },
         {
-          "text": "I apply my experience to understand and enter new markets.",
-          "points": 1
-        },
-        {
-          "text": "I research the market thoroughly, identify early adopters, test messaging, adjust based on feedback, and build case studies to create momentum.",
-          "points": 3
-        }
-      ]
-    },
-    {
-      "topic": "Customer Understanding",
-      "text": "How do you use customer feedback to influence product strategy and marketing approach?",
-      "answers": [
-        {
-          "text": "I collaborate with product and marketing from the beginning, provide customer perspective, help with positioning, and create sales enablement materials before launch.",
+          "text": "Gave a significant discount under end-of-quarter pressure. The deal was going to close anyway — I just didn't know it yet. I panicked and gave away margin I didn't need to. Now I remind myself that urgency is usually mine, not theirs.",
           "points": 3
         },
         {
-          "text": "I work with product teams, understand the new offering, and prepare to sell it.",
-          "points": 2
-        },
-        {
-          "text": "I learn about new products and start selling them when they launch.",
+          "text": "Yes. I gave a discount that I didn't need to give and it affected my overall performance for the quarter. I've learned to hold firmer and trust the value more.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Customer Understanding",
-      "text": "How have you become a trusted advisor to customers instead of just being a salesperson?",
+      "text": "How do you go about truly understanding a prospect's business — beyond just what they tell you in a sales meeting — so you can speak to their real challenges?",
       "answers": [
         {
-          "text": "I provide market feedback on competitive pricing, customer willingness to pay, and value perception to help leadership make informed pricing decisions.",
+          "text": "I research their company thoroughly and ask good discovery questions so I understand their business from multiple angles, not just what they initially tell me.",
+          "points": 1
+        },
+        {
+          "text": "I read their annual report, listen to earnings calls if they're public, look at their customer reviews, and talk to people in their industry before I ever get in front of them. By the time we meet, I should know more about their competitive pressures than most of their own team.",
           "points": 3
         },
         {
-          "text": "I share customer feedback on pricing and suggest adjustments when needed.",
+          "text": "I do my homework before every meeting. Company news, industry reports, their social media, LinkedIn activity of their leadership team. I also ask better questions once I'm in the room — things that go beyond the surface level.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Customer Understanding",
+      "text": "Have you ever surprised a prospect by knowing something about their business or industry that they didn't expect you to know? How did that change the dynamic of the conversation?",
+      "answers": [
+        {
+          "text": "A few times. I mentioned a competitor move they weren't aware of and it got their attention immediately. It showed I was across their market and not just reading from a generic script.",
           "points": 2
         },
         {
-          "text": "I give input on pricing based on customer reactions.",
+          "text": "Yes — I referenced a specific regulatory change coming in their industry that they hadn't thought about in the context of our conversation. The whole meeting shifted. They stopped seeing me as a vendor and started treating me like someone who actually understood their world.",
+          "points": 3
+        },
+        {
+          "text": "It's happened and it always creates a good impression. When you know their business well it builds credibility quickly.",
           "points": 1
         }
       ]
     },
     {
       "topic": "Customer Understanding",
-      "text": "How do you gather and share customer insights across your company?",
+      "text": "When a prospect tells you what they need, how do you figure out if that's actually what they need — or if there's something deeper going on that they haven't told you yet?",
       "answers": [
         {
-          "text": "I track key metrics like conversion rates, deal velocity, and win rates to identify patterns, make decisions, and prioritize where to focus my efforts.",
+          "text": "I ask why they need it. And then I ask why again. Usually the third or fourth layer of the answer is where the real problem lives. What people ask for and what they actually need are often very different things.",
           "points": 3
         },
         {
-          "text": "I review sales data regularly to understand performance and identify areas for improvement.",
-          "points": 2
+          "text": "I ask follow-up questions to make sure I understand the full picture and not just the surface-level requirement.",
+          "points": 1
         },
         {
-          "text": "I use available data to track my progress and results.",
-          "points": 1
+          "text": "I dig into the context behind the request. 'What's driven this to be a priority now?' and 'What have you already tried?' usually reveal a lot more than the initial ask.",
+          "points": 2
         }
       ]
     },
     {
       "topic": "Customer Understanding",
-      "text": "How do you understand what's most important to customers and connect your solution to their business goals?",
+      "text": "How do you keep up with what's happening in your customers' industries so your conversations always feel relevant and current — not generic?",
       "answers": [
         {
-          "text": "I keep CRM updated and use it for basic tracking.",
+          "text": "I follow industry news, set up alerts for key topics, and read relevant content regularly so I'm not walking into conversations without knowing what's going on in their world.",
           "points": 1
         },
         {
-          "text": "I ensure CRM is updated accurately, use it for pipeline management and forecasting, and leverage reports to make better decisions and share insights.",
+          "text": "I treat industry knowledge as part of my job, not a bonus. I follow the same publications my customers read, go to the same events, and track the same trends. When I talk to them, it should feel like talking to a peer, not a salesperson.",
           "points": 3
         },
         {
-          "text": "I maintain CRM discipline and use it to track all opportunities and activities.",
+          "text": "I have a morning habit — fifteen minutes on industry news, analyst updates, and LinkedIn for my top accounts. It's not glamorous but it means I always have something relevant to bring to every conversation.",
           "points": 2
         }
       ]
     },
     {
       "topic": "Competitor Understanding",
-      "text": "How have you helped shape your company's competitive strategy based on what you see in the market?",
+      "text": "How do you find out which competitors a prospect is talking to — and once you know, how does that change your approach?",
       "answers": [
         {
-          "text": "I explain the value in financial terms that justify the investment.",
+          "text": "I try to find out through questions and by reading the signals in the conversation. Knowing who else is involved helps me tailor my approach.",
           "points": 1
         },
         {
-          "text": "I create ROI calculations showing the value and benefits of our solution.",
+          "text": "I just ask — early and directly. 'Are you talking to anyone else?' Most people will tell you. Once I know, I adjust where I spend time in the conversation to make sure our strengths against that specific competitor are clear without me ever needing to mention them by name.",
+          "points": 3
+        },
+        {
+          "text": "I ask directly and I also pick up clues from the questions they ask — certain questions tell you exactly who else is in the picture. Once I know, I sharpen my differentiation accordingly.",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "topic": "Competitor Understanding",
+      "text": "Tell me about a deal where you went up against a stronger or more well-known competitor. What was your strategy, and how did it play out?",
+      "answers": [
+        {
+          "text": "I focused on our strengths and made sure the prospect understood why we were the better fit for their specific situation, even if the competitor had a bigger name.",
+          "points": 1
+        },
+        {
+          "text": "I've faced bigger competitors often. My strategy is always to find the gap — what they're bad at or where they're a poor fit for this specific prospect — and make that the story. I don't try to beat them head-on.",
           "points": 2
         },
         {
-          "text": "I gather their financial data, calculate specific ROI including cost savings and revenue impact, and present a detailed business case with clear payback period.",
+          "text": "I was up against a market leader with a bigger brand and a bigger budget. I stopped competing on their terms and found the thing they couldn't do well — their implementation was notoriously slow. I made speed and hands-on support the whole story. We won because I made the decision about the thing they cared about most, not the thing that looked good on a comparison sheet.",
           "points": 3
         }
       ]
     },
     {
       "topic": "Competitor Understanding",
-      "text": "Tell us about a time when you spotted a competitor threat early and helped your company respond.",
+      "text": "When a prospect brings up something a competitor does better than you, how do you handle that conversation honestly without losing ground?",
       "answers": [
         {
-          "text": "I track important metrics like pipeline coverage, conversion rates, and revenue achievement.",
+          "text": "I don't dismiss it. I acknowledge the strength, then reframe the conversation around the broader picture — what they're optimising for overall, not just one feature or capability.",
           "points": 2
         },
         {
-          "text": "I monitor my numbers and key performance indicators.",
-          "points": 1
+          "text": "I agree with them if it's true. Nothing builds more trust in a sales conversation than acknowledging a competitor does something well. Then I redirect to what matters most for their situation and where we win.",
+          "points": 3
         },
         {
-          "text": "I focus on pipeline health, win rate, average deal size, sales cycle length, and quota attainment as key indicators of sales effectiveness.",
-          "points": 3
+          "text": "I try not to get defensive. I acknowledge their point and then make sure they have the full picture of what we bring to the table.",
+          "points": 1
         }
       ]
     },
     {
       "topic": "Competitor Understanding",
-      "text": "How do you respond to new competitors who challenge your position in the market?",
+      "text": "How do you stay up to date on what your competitors are doing — their pricing, their pitches, their product changes — without crossing any ethical lines?",
       "answers": [
         {
-          "text": "I review performance data, identify weak areas, and take action to improve them.",
+          "text": "I use public sources consistently — their marketing, review sites, industry reports, and what I hear directly from prospects who are also talking to them. I also pay attention to the questions prospects ask me, which often reflect what competitors have been saying.",
           "points": 2
         },
         {
-          "text": "I look at results and try to do better in areas that need improvement.",
+          "text": "I follow their public activity — website updates, press releases, social media — and pay attention to what prospects mention about them during conversations.",
           "points": 1
         },
         {
-          "text": "I analyze data to find bottlenecks, test different approaches, implement what works, and continuously coach the team on best practices.",
+          "text": "Everything is public if you know where to look. Their website, their job postings, customer reviews on G2 or Capterra, what their sales reps say on LinkedIn, what prospects tell me in discovery. You don't need to cross any lines — the information is everywhere.",
           "points": 3
-        }
-      ]
-    },
-    {
-      "topic": "Competitor Understanding",
-      "text": "How do you analyze why you win or lose deals, and how do you use that to improve?",
-      "answers": [
-        {
-          "text": "I attend training, read about sales, and learn from my experiences.",
-          "points": 2
-        },
-        {
-          "text": "I read sales books and blogs, take courses, learn from lost deals, seek feedback from colleagues, and experiment with new techniques regularly.",
-          "points": 3
-        },
-        {
-          "text": "I try to learn from my work and improve over time.",
-          "points": 1
         }
       ]
     }
