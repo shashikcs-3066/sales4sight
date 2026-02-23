@@ -197,6 +197,34 @@
             margin-bottom: 20px;
         }
 
+        /* DEBUG PANEL */
+        .debug-panel {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            display: none;
+        }
+        .debug-panel.show {
+            display: block;
+        }
+        .debug-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .debug-title {
+            font-weight: bold;
+            color: #60a5fa;
+        }
+        .debug-close {
+            cursor: pointer;
+            color: #ef4444;
+        }
+
         /* TABLE */
         .table-container {
             overflow-x: auto;
@@ -287,7 +315,7 @@
         }
         .modal-content {
             background: white;
-            width: 800px;
+            width: 900px;
             max-width: 95%;
             max-height: 85vh;
             overflow-y: auto;
@@ -334,14 +362,15 @@
         }
         .topic-scores-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
             margin: 20px 0;
         }
         .topic-score-card {
-            padding: 12px;
-            border-radius: 6px;
+            padding: 15px;
+            border-radius: 8px;
             font-size: 13px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         .topic-excellent { 
             background: #dcfce7; 
@@ -359,7 +388,7 @@
             background: #f8fafc;
             padding: 15px;
             margin: 10px 0;
-            border-radius: 6px;
+            border-radius: 8px;
             border-left: 4px solid var(--secondary);
         }
         .modal-footer {
@@ -441,6 +470,15 @@
 <!-- NOTIFICATION -->
 <div id="notification" class="notification"></div>
 
+<!-- DEBUG PANEL -->
+<div id="debugPanel" class="debug-panel">
+    <div class="debug-header">
+        <span class="debug-title"><i class="fas fa-bug"></i> Debug Information</span>
+        <span class="debug-close" onclick="document.getElementById('debugPanel').classList.remove('show')">✕</span>
+    </div>
+    <div id="debugContent"></div>
+</div>
+
 <!-- ============================
        LOGIN SCREEN
 ============================= -->
@@ -463,9 +501,14 @@
 
         <div class="header">
             <h1><i class="fas fa-chart-line"></i> Sales4Sight Assessment Dashboard</h1>
-            <button onclick="logout()" class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
+            <div>
+                <button onclick="showDebugInfo()" class="filter-btn" style="background: var(--gray); margin-right:10px;">
+                    <i class="fas fa-bug"></i> Debug
+                </button>
+                <button onclick="logout()" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
         </div>
 
         <!-- FILTER BAR -->
@@ -554,12 +597,25 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 // Current candidate data for modal download
 let currentModalCandidate = null;
 
-// Check for existing session - FIXED: Now properly checks before auto-login
+// Check for existing session
 window.onload = function() {
-    // Don't auto-login - require password each time
-    // Just show login screen
     document.getElementById("loginScreen").style.display = "flex";
     document.getElementById("adminPanel").style.display = "none";
+}
+
+function showDebugInfo() {
+    const debugContent = document.getElementById('debugContent');
+    let html = '<strong>Supabase Connection:</strong> ' + SUPABASE_URL + '<br>';
+    html += '<strong>Master Data Count:</strong> ' + (masterData ? masterData.length : 0) + '<br>';
+    html += '<strong>Filtered Data Count:</strong> ' + (filteredData ? filteredData.length : 0) + '<br>';
+    
+    if (masterData && masterData.length > 0) {
+        html += '<strong>First Record Sample:</strong><br>';
+        html += '<pre>' + JSON.stringify(masterData[0], null, 2) + '</pre>';
+    }
+    
+    debugContent.innerHTML = html;
+    document.getElementById('debugPanel').classList.add('show');
 }
 
 function validateLogin() {
@@ -597,6 +653,7 @@ let topicChartInstance = null;
 
 async function loadSupabaseData() {
     document.getElementById("loadingSpinner").classList.add('active');
+    showNotification('Connecting to Supabase...', 'success');
     
     try {
         const { data, error } = await sb
@@ -605,17 +662,40 @@ async function loadSupabaseData() {
             .order("timestamp", { ascending: false });
 
         if (error) {
+            console.error('Supabase Error:', error);
             showNotification("Error loading data: " + error.message, 'error');
             return;
         }
 
-        masterData = data || [];
+        console.log('Data received:', data);
+        
+        // Parse JSON strings in the data
+        masterData = (data || []).map(item => ({
+            ...item,
+            // Parse topic_scores if it's a string
+            topic_scores: typeof item.topic_scores === 'string' 
+                ? JSON.parse(item.topic_scores) 
+                : item.topic_scores,
+            // Parse answers if it's a string
+            answers: typeof item.answers === 'string' 
+                ? JSON.parse(item.answers) 
+                : item.answers
+        }));
+        
         filteredData = [...masterData];
+        
+        if (masterData.length === 0) {
+            showNotification("No data found in 'assessments' table", 'warning');
+        } else {
+            showNotification(`Loaded ${masterData.length} assessments`, 'success');
+        }
+
         updateStats();
         renderTable();
-        showNotification(`Loaded ${masterData.length} assessments`, 'success');
+        
     } catch (error) {
-        showNotification("Failed to load data", 'error');
+        console.error('Caught error:', error);
+        showNotification("Failed to load data: " + error.message, 'error');
     } finally {
         document.getElementById("loadingSpinner").classList.remove('active');
     }
@@ -806,42 +886,66 @@ function openDetail(i){
     <div class="info-section">
         <div class="info-item"><strong>Email:</strong> ${r.email || 'N/A'}</div>
         <div class="info-item"><strong>Mobile:</strong> ${r.mobile || 'N/A'}</div>
-        <div class="info-item"><strong>Experience:</strong> ${r.experience || 'N/A'}</div>
+        <div class="info-item"><strong>Experience:</strong> ${r.experience || 'N/A'} years</div>
         <div class="info-item"><strong>Access Code:</strong> ${r.access_code || 'N/A'}</div>
         <div class="info-item"><strong>Date:</strong> ${r.timestamp ? new Date(r.timestamp).toLocaleString() : 'N/A'}</div>
+        <div class="info-item"><strong>Total Score:</strong> ${r.total_score || 0}</div>
     </div>
     
     <h3 style="color:#1e3a8a; margin:20px 0 15px;">📊 Topic Scores</h3>
     <div class="topic-scores-grid">`;
 
     if (r.topic_scores) {
-        Object.entries(r.topic_scores).forEach(([topic, data]) => {
-            let percent = data.percentage ?? data.score ?? 0;
-            let total = data.totalPoints ?? data.total ?? data.points ?? 0;
-            let max = data.maxPoints ?? data.max ?? 0;
-            let status = data.statusText ?? data.status ?? "";
+        // Sort topics by percentage (highest first)
+        const sortedTopics = Object.entries(r.topic_scores)
+            .sort((a, b) => (b[1].percentage || 0) - (a[1].percentage || 0));
             
-            let statusClass = percent >= 80 ? 'topic-excellent' : percent >= 60 ? 'topic-average' : 'topic-poor';
+        sortedTopics.forEach(([topic, data]) => {
+            let percent = data.percentage || 0;
+            let total = data.totalPoints || 0;
+            let max = data.maxPoints || 0;
+            let status = data.statusText || data.status || "";
+            
+            let statusClass = percent >= 80 ? 'topic-excellent' : 
+                             percent >= 60 ? 'topic-average' : 'topic-poor';
 
             html += `
             <div class="topic-score-card ${statusClass}">
-                <strong>${topic}</strong><br>
-                <span style="font-size:18px; font-weight:bold;">${percent}%</span>
-                <span style="color:#64748b;"> (${total}/${max})</span><br>
-                <small>${status}</small>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <strong>${topic}</strong>
+                    <span style="font-size: 18px; font-weight: bold;">${percent}%</span>
+                </div>
+                <div style="margin-top: 5px; color: #475569;">
+                    Score: ${total}/${max} | ${status}
+                </div>
             </div>`;
         });
+    } else {
+        html += `<p>No topic scores available</p>`;
     }
 
     html += `</div><h3 style="color:#1e3a8a; margin:30px 0 15px;">📝 Answer Sheet</h3>`;
     
     if(r.answers && r.answers.length > 0){
-        r.answers.forEach((a, idx)=>{
-            html += `
-            <div class="answer-item">
-                <strong>Question ${idx+1}:</strong> ${a.question || 'N/A'}<br>
-                <span style="color:#2563eb; font-weight:bold;">Points: ${a.points || 0}</span>
-            </div>`;
+        // Group answers by topic
+        const answersByTopic = {};
+        r.answers.forEach((a) => {
+            const topic = a.topic || 'General';
+            if (!answersByTopic[topic]) answersByTopic[topic] = [];
+            answersByTopic[topic].push(a);
+        });
+        
+        Object.entries(answersByTopic).forEach(([topic, answers]) => {
+            html += `<h4 style="color:#2563eb; margin:15px 0 5px;">${topic}</h4>`;
+            answers.forEach((a, idx)=>{
+                html += `
+                <div class="answer-item">
+                    <div><strong>Q:</strong> ${a.question || 'N/A'}</div>
+                    <div style="color:#2563eb; font-weight:bold; margin-top:5px;">
+                        Points: ${a.points || 0}
+                    </div>
+                </div>`;
+            });
         });
     } else {
         html += `<p>No answers available</p>`;
@@ -905,10 +1009,11 @@ async function downloadModalReportPDF() {
     doc.text(`Email: ${r.email || 'N/A'}`, 40, y);
     doc.text(`Mobile: ${r.mobile || 'N/A'}`, 300, y);
     y += 25;
-    doc.text(`Experience: ${r.experience || 'N/A'}`, 40, y);
+    doc.text(`Experience: ${r.experience || 'N/A'} years`, 40, y);
     doc.text(`Access Code: ${r.access_code || 'N/A'}`, 300, y);
     y += 25;
     doc.text(`Assessment Date: ${r.timestamp ? new Date(r.timestamp).toLocaleString() : 'N/A'}`, 40, y);
+    doc.text(`Total Score: ${r.total_score || 0}`, 300, y);
 
     y += 40;
 
@@ -920,13 +1025,15 @@ async function downloadModalReportPDF() {
 
     let topicRows = [];
     if (r.topic_scores) {
-        topicRows = Object.entries(r.topic_scores).map(([topic, data]) => {
-            const percent = data.percentage ?? data.score ?? 0;
-            const total = data.totalPoints ?? data.total ?? data.points ?? 0;
-            const max = data.maxPoints ?? data.max ?? 0;
-            const status = data.statusText ?? data.status ?? "";
-            return [topic, `${percent}%`, `${total}/${max}`, status];
-        });
+        topicRows = Object.entries(r.topic_scores)
+            .sort((a, b) => (b[1].percentage || 0) - (a[1].percentage || 0))
+            .map(([topic, data]) => {
+                const percent = data.percentage || 0;
+                const total = data.totalPoints || 0;
+                const max = data.maxPoints || 0;
+                const status = data.statusText || data.status || "";
+                return [topic, `${percent}%`, `${total}/${max}`, status];
+            });
     }
 
     doc.autoTable({
@@ -955,6 +1062,7 @@ async function downloadModalReportPDF() {
     if (r.answers && r.answers.length > 0) {
         answerRows = r.answers.map((a, i) => [
             `Q${i + 1}`,
+            a.topic || 'General',
             a.question || 'N/A',
             a.points || 0
         ]);
@@ -962,11 +1070,17 @@ async function downloadModalReportPDF() {
 
     doc.autoTable({
         startY: y + 10,
-        head: [["#", "Question", "Points"]],
+        head: [["#", "Topic", "Question", "Points"]],
         body: answerRows,
         theme: "striped",
-        styles: { fontSize: 9, cellWidth: "wrap" },
+        styles: { fontSize: 8, cellWidth: "wrap" },
         headStyles: { fillColor: [37, 99, 235], textColor: "#fff" },
+        columnStyles: {
+            0: { cellWidth: 30 },
+            1: { cellWidth: 80 },
+            2: { cellWidth: 300 },
+            3: { cellWidth: 40 }
+        },
         didDrawPage: function(data) {
             doc.setFontSize(8);
             doc.setTextColor("#6b7280");
@@ -984,7 +1098,7 @@ async function downloadModalReportPDF() {
     showNotification('PDF report downloaded!', 'success');
 }
 
-/* ---------- NEW: DOWNLOAD MODAL REPORT AS TEXT FILE ---------- */
+/* ---------- DOWNLOAD MODAL REPORT AS TEXT FILE ---------- */
 function downloadModalReportTXT() {
     if (!currentModalCandidate) {
         showNotification('No candidate data available', 'error');
@@ -1003,19 +1117,24 @@ function downloadModalReportTXT() {
     textContent += `Name: ${r.name || 'N/A'}\n`;
     textContent += `Email: ${r.email || 'N/A'}\n`;
     textContent += `Mobile: ${r.mobile || 'N/A'}\n`;
-    textContent += `Experience: ${r.experience || 'N/A'}\n`;
+    textContent += `Experience: ${r.experience || 'N/A'} years\n`;
     textContent += `Access Code: ${r.access_code || 'N/A'}\n`;
     textContent += `Assessment Date: ${r.timestamp ? new Date(r.timestamp).toLocaleString() : 'N/A'}\n`;
+    textContent += `Total Score: ${r.total_score || 0}\n`;
     textContent += `Overall Score: ${r.percentage || 0}%\n\n`;
     
     textContent += "TOPIC SCORES\n";
     textContent += "------------\n";
     if (r.topic_scores) {
-        Object.entries(r.topic_scores).forEach(([topic, data]) => {
-            let percent = data.percentage ?? data.score ?? 0;
-            let total = data.totalPoints ?? data.total ?? data.points ?? 0;
-            let max = data.maxPoints ?? data.max ?? 0;
-            let status = data.statusText ?? data.status ?? "";
+        // Sort by percentage (highest first)
+        const sortedTopics = Object.entries(r.topic_scores)
+            .sort((a, b) => (b[1].percentage || 0) - (a[1].percentage || 0));
+            
+        sortedTopics.forEach(([topic, data]) => {
+            let percent = data.percentage || 0;
+            let total = data.totalPoints || 0;
+            let max = data.maxPoints || 0;
+            let status = data.statusText || data.status || "";
             
             textContent += `${topic}: ${percent}% (${total}/${max}) - ${status}\n`;
         });
@@ -1026,9 +1145,20 @@ function downloadModalReportTXT() {
     textContent += "\nANSWER SHEET\n";
     textContent += "------------\n";
     if (r.answers && r.answers.length > 0) {
-        r.answers.forEach((a, idx) => {
-            textContent += `Q${idx+1}: ${a.question || 'N/A'}\n`;
-            textContent += `Points: ${a.points || 0}\n\n`;
+        // Group by topic
+        const answersByTopic = {};
+        r.answers.forEach((a) => {
+            const topic = a.topic || 'General';
+            if (!answersByTopic[topic]) answersByTopic[topic] = [];
+            answersByTopic[topic].push(a);
+        });
+        
+        Object.entries(answersByTopic).forEach(([topic, answers]) => {
+            textContent += `\n${topic}:\n`;
+            answers.forEach((a, idx) => {
+                textContent += `  Q${idx+1}: ${a.question || 'N/A'}\n`;
+                textContent += `     Points: ${a.points || 0}\n`;
+            });
         });
     } else {
         textContent += "No answers available\n";
@@ -1087,7 +1217,7 @@ async function downloadPDF(index) {
     
     y += 25;
     doc.text(`Mobile: ${r.mobile || 'N/A'}`, 40, y);
-    doc.text(`Experience: ${r.experience || 'N/A'}`, 250, y);
+    doc.text(`Experience: ${r.experience || 'N/A'} years`, 250, y);
     doc.text(`Date: ${r.timestamp ? new Date(r.timestamp).toLocaleDateString() : 'N/A'}`, 450, y);
 
     y += 60;
@@ -1111,13 +1241,15 @@ async function downloadPDF(index) {
 
     let topicRows = [];
     if (r.topic_scores) {
-        topicRows = Object.entries(r.topic_scores).map(([topic, data]) => {
-            const percent = data.percentage ?? data.score ?? 0;
-            const total = data.totalPoints ?? data.total ?? data.points ?? 0;
-            const max = data.maxPoints ?? data.max ?? 0;
-            const status = data.statusText ?? data.status ?? "";
-            return [topic, `${percent}% (${total}/${max})`, status];
-        });
+        topicRows = Object.entries(r.topic_scores)
+            .sort((a, b) => (b[1].percentage || 0) - (a[1].percentage || 0))
+            .map(([topic, data]) => {
+                const percent = data.percentage || 0;
+                const total = data.totalPoints || 0;
+                const max = data.maxPoints || 0;
+                const status = data.statusText || data.status || "";
+                return [topic, `${percent}% (${total}/${max})`, status];
+            });
     }
 
     doc.autoTable({
