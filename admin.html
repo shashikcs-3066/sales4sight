@@ -17,8 +17,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
     <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --success: #16a34a;
+            --warning: #f59e0b;
+            --danger: #dc2626;
+            --gray: #64748b;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             background: #f1f5f9;
             margin: 0;
             padding: 0;
@@ -28,7 +37,7 @@
         .login-container {
             width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg,#3b82f6,#1d4ed8);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -41,10 +50,36 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             text-align: center;
         }
+        .login-box h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .login-box button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .login-box button:hover {
+            background: var(--primary);
+        }
 
         /* MAIN CONTAINER */
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 25px auto;
             background: #ffffff;
             border-radius: 12px;
@@ -52,49 +87,189 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
         }
 
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .header h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin: 0;
+        }
+        .logout-btn {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .logout-btn:hover {
+            opacity: 0.9;
+        }
+
         /* FILTER BAR */
         .filter-bar {
             background: #f8fafc;
-            padding: 18px;
+            padding: 20px;
             border-radius: 10px;
             border: 1px solid #e2e8f0;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             flex-wrap: wrap;
-            gap: 14px;
+            gap: 12px;
             align-items: center;
         }
-        .filter-bar input {
+        .filter-bar input, .filter-bar select {
             padding: 8px 12px;
             border: 1px solid #cbd5e1;
-            border-radius: 8px;
+            border-radius: 6px;
+            font-size: 13px;
+            min-width: 150px;
+        }
+        .filter-bar input:focus {
+            outline: none;
+            border-color: var(--secondary);
         }
         .filter-btn {
-            background: #2563eb;
-            padding: 8px 16px;
-            border-radius: 6px;
+            background: var(--secondary);
             color: white;
             border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .filter-btn:hover {
+            background: var(--primary);
         }
         .reset-btn {
-            background: #64748b;
+            background: var(--gray);
         }
 
-        /* STATS */
+        /* STATS CARDS */
         .stats-box {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .stat-label {
+            color: var(--gray);
+            margin-top: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* CHART BLOCK */
         .chart-container {
             margin: 30px 0;
-            background: #f8fafc;
+            background: #ffffff;
             padding: 20px;
             border-radius: 10px;
             border: 1px solid #e2e8f0;
+        }
+        .chart-container h2 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* TABLE */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 25px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        #resultsTable {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        #resultsTable th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+        #resultsTable td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        #resultsTable tbody tr:hover {
+            background: #f8fafc;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .view-btn, .pdf-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+        }
+        .view-btn {
+            background: var(--secondary);
+        }
+        .pdf-btn {
+            background: var(--danger);
+        }
+        .view-btn:hover, .pdf-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* LOADING SPINNER */
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 50px;
+        }
+        .loading-spinner.active {
+            display: block;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* MODAL */
@@ -108,22 +283,163 @@
             align-items: center;
             justify-content: center;
             background: rgba(0,0,0,0.5);
+            z-index: 1000;
         }
         .modal-content {
             background: white;
-            width: 600px;
-            max-height: 80vh;
+            width: 800px;
+            max-width: 95%;
+            max-height: 85vh;
             overflow-y: auto;
-            border-radius: 10px;
-            padding: 25px;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        .modal-close:hover {
+            color: var(--danger);
+        }
+        #modalTitle {
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 24px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+        .info-section {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .info-item {
+            font-size: 14px;
+        }
+        .info-item strong {
+            color: var(--primary);
+            display: inline-block;
+            width: 100px;
+        }
+        .topic-scores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .topic-score-card {
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .topic-excellent { 
+            background: #dcfce7; 
+            border-left: 4px solid var(--success);
+        }
+        .topic-average { 
+            background: #fef9c3; 
+            border-left: 4px solid var(--warning);
+        }
+        .topic-poor { 
+            background: #fee2e2; 
+            border-left: 4px solid var(--danger);
+        }
+        .answer-item {
+            background: #f8fafc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary);
+        }
+        .modal-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+        }
+        .download-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .download-btn:hover {
+            background: #15803d;
+        }
+        .text-btn {
+            background: var(--gray);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .text-btn:hover {
+            background: #475569;
+        }
+
+        /* NOTIFICATION */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: none;
+            z-index: 2000;
+            border-left: 4px solid var(--secondary);
+            font-size: 14px;
+        }
+        .notification.error {
+            border-left-color: var(--danger);
+        }
+        .notification.success {
+            border-left-color: var(--success);
+        }
+        .notification.show {
+            display: block;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: var(--gray);
         }
     </style>
 </head>
 
 <body>
 
-<!-- SUPABASE SDK (MUST LOAD BEFORE ANY SCRIPT) -->
+<!-- SUPABASE SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<!-- NOTIFICATION -->
+<div id="notification" class="notification"></div>
 
 <!-- ============================
        LOGIN SCREEN
@@ -131,9 +447,9 @@
 <div id="loginScreen" class="login-container">
     <div class="login-box">
         <h2>Admin Login</h2>
-        <input type="password" id="adminPass" placeholder="Enter Admin Password">
+        <input type="password" id="adminPass" placeholder="Enter Admin Password" onkeypress="if(event.key==='Enter')validateLogin()">
         <button onclick="validateLogin()">Login</button>
-        <p id="loginError" style="color:red; display:none; margin-top:10px;">
+        <p id="loginError" style="color:var(--danger); display:none; margin-top:10px;">
             Incorrect password
         </p>
     </div>
@@ -145,24 +461,24 @@
 <div id="adminPanel" style="display:none;">
     <div class="container">
 
-        <div style="display:flex; justify-content:space-between;">
-            <h1 style="color:#1e3a8a;">Sales4Sight – Assessment Dashboard</h1>
-            <button onclick="logout()" class="filter-btn" style="background:#dc2626;">
+        <div class="header">
+            <h1><i class="fas fa-chart-line"></i> Sales4Sight Assessment Dashboard</h1>
+            <button onclick="logout()" class="logout-btn">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </button>
         </div>
 
         <!-- FILTER BAR -->
         <div class="filter-bar">
-            <input type="text" id="filterEmail" placeholder="Search Email">
-            <input type="text" id="filterCode" placeholder="Access Code">
-            <input type="number" id="filterScoreMin" placeholder="Min %">
-            <input type="number" id="filterScoreMax" placeholder="Max %">
-            <input type="date" id="filterDateFrom">
-            <input type="date" id="filterDateTo">
-
-            <button class="filter-btn" onclick="applyFilters()">Apply</button>
-            <button class="filter-btn reset-btn" onclick="resetFilters()">Reset</button>
+            <input type="text" id="filterEmail" placeholder="Search Email" onkeyup="applyFilters()">
+            <input type="text" id="filterCode" placeholder="Access Code" onkeyup="applyFilters()">
+            <input type="number" id="filterScoreMin" placeholder="Min %" onkeyup="applyFilters()" min="0" max="100">
+            <input type="number" id="filterScoreMax" placeholder="Max %" onkeyup="applyFilters()" min="0" max="100">
+            <input type="date" id="filterDateFrom" onchange="applyFilters()">
+            <input type="date" id="filterDateTo" onchange="applyFilters()">
+            <button class="filter-btn reset-btn" onclick="resetFilters()">
+                <i class="fas fa-undo"></i> Reset
+            </button>
         </div>
 
         <!-- Stats -->
@@ -183,44 +499,73 @@
 
         <!-- Charts -->
         <div class="chart-container">
-            <h2 style="color:#1e3a8a;">Score Distribution</h2>
+            <h2><i class="fas fa-chart-bar"></i> Score Distribution</h2>
             <canvas id="scoreChart"></canvas>
         </div>
 
         <div class="chart-container">
-            <h2 style="color:#1e3a8a;">Topic Performance</h2>
+            <h2><i class="fas fa-chart-pie"></i> Topic Performance</h2>
             <canvas id="topicChart"></canvas>
         </div>
 
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading assessments...</p>
+        </div>
+
         <!-- TABLE -->
-        <table id="resultsTable"></table>
+        <div class="table-container">
+            <table id="resultsTable"></table>
+        </div>
     </div>
 </div>
 
 <!-- ============================
-       MODAL
+       DETAIL MODAL WITH DOWNLOAD BUTTONS
 ============================= -->
 <div id="detailModal">
     <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
         <h3 id="modalTitle"></h3>
+        
         <div id="modalBody"></div>
-        <button class="filter-btn" onclick="closeModal()">Close</button>
+        
+        <div class="modal-footer">
+            <button class="filter-btn" onclick="closeModal()">
+                <i class="fas fa-times"></i> Close
+            </button>
+            <button class="download-btn" onclick="downloadModalReportPDF()">
+                <i class="fas fa-file-pdf"></i> Download PDF
+            </button>
+            <button class="text-btn" onclick="downloadModalReportTXT()">
+                <i class="fas fa-file-alt"></i> Download as Text
+            </button>
+        </div>
     </div>
 </div>
 
-<!-- ==========================================================
-     SUPABASE + FILTERS + TABLE LOGIC
-========================================================== -->
 <script>
 const SUPABASE_URL = "https://eejmswozatcmzjxjxvzh.supabase.co";
-const SUPABASE_ANON_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlam1zd296YXRjbXpqeGp4dnpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzMjYzNjcsImV4cCI6MjA4NDkwMjM2N30.8p9ChhYY1PiQN_0nKLS-XTMlSPu0149aAxOWXdA8f-w";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlam1zd296YXRjbXpqeGp4dnpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzMjYzNjcsImV4cCI6MjA4NDkwMjM2N30.8p9ChhYY1PiQN_0nKLS-XTMlSPu0149aAxOWXdA8f-w";
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Current candidate data for modal download
+let currentModalCandidate = null;
+
+// Check for existing session - FIXED: Now properly checks before auto-login
+window.onload = function() {
+    // Don't auto-login - require password each time
+    // Just show login screen
+    document.getElementById("loginScreen").style.display = "flex";
+    document.getElementById("adminPanel").style.display = "none";
+}
 
 function validateLogin() {
     const pass = document.getElementById("adminPass").value;
     if (pass === "SCS3066*") {
+        sessionStorage.setItem('adminLoggedIn', 'true');
         document.getElementById("loginScreen").style.display = "none";
         document.getElementById("adminPanel").style.display = "block";
         loadSupabaseData();
@@ -230,27 +575,50 @@ function validateLogin() {
 }
 
 function logout() {
-    location.reload();
+    sessionStorage.removeItem('adminLoggedIn');
+    document.getElementById("loginScreen").style.display = "flex";
+    document.getElementById("adminPanel").style.display = "none";
+    document.getElementById("adminPass").value = "";
+}
+
+function showNotification(message, type = 'success') {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.className = `notification ${type} show`;
+    setTimeout(() => {
+        notification.className = 'notification';
+    }, 3000);
 }
 
 let masterData = [];
 let filteredData = [];
+let scoreChartInstance = null;
+let topicChartInstance = null;
 
 async function loadSupabaseData() {
-    const { data, error } = await sb
-        .from("assessments")
-        .select("*")
-        .order("timestamp", { ascending: false });
+    document.getElementById("loadingSpinner").classList.add('active');
+    
+    try {
+        const { data, error } = await sb
+            .from("assessments")
+            .select("*")
+            .order("timestamp", { ascending: false });
 
-    if (error) {
-        alert("Supabase Error: " + error.message);
-        return;
+        if (error) {
+            showNotification("Error loading data: " + error.message, 'error');
+            return;
+        }
+
+        masterData = data || [];
+        filteredData = [...masterData];
+        updateStats();
+        renderTable();
+        showNotification(`Loaded ${masterData.length} assessments`, 'success');
+    } catch (error) {
+        showNotification("Failed to load data", 'error');
+    } finally {
+        document.getElementById("loadingSpinner").classList.remove('active');
     }
-
-    masterData = data;
-    filteredData = [...masterData];
-    updateStats();
-    renderTable();
 }
 
 /* ---------- FILTERS ---------- */
@@ -263,18 +631,18 @@ function applyFilters() {
     let df = document.getElementById("filterDateFrom").value;
     let dt = document.getElementById("filterDateTo").value;
 
-    let dateFrom = df ? new Date(df) : false;
-    let dateTo = dt ? new Date(dt) : false;
+    let dateFrom = df ? new Date(df + 'T00:00:00') : null;
+    let dateTo = dt ? new Date(dt + 'T23:59:59') : null;
 
     filteredData = masterData.filter(r => {
         let pct = r.percentage || 0;
         let ts = r.timestamp ? new Date(r.timestamp) : null;
 
-        if (email && !r.email.toLowerCase().includes(email)) return false;
+        if (email && !r.email?.toLowerCase().includes(email)) return false;
         if (code && !(r.access_code || "").toLowerCase().includes(code)) return false;
         if (pct < min || pct > max) return false;
-        if (dateFrom && ts < dateFrom) return false;
-        if (dateTo && ts > dateTo) return false;
+        if (dateFrom && ts && ts < dateFrom) return false;
+        if (dateTo && ts && ts > dateTo) return false;
 
         return true;
     });
@@ -295,241 +663,462 @@ function resetFilters() {
 
 /* ---------- TABLE ---------- */
 function renderTable() {
+    if (filteredData.length === 0) {
+        document.getElementById("resultsTable").innerHTML = `
+            <tr><td colspan="7" class="empty-state">No assessments found</td></tr>
+        `;
+        return;
+    }
+
     let html = `
-    <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Score</th>
-        <th>Code</th>
-        <th>Date</th>
-        <th>Actions</th>
-    </tr>`;
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Score</th>
+            <th>Code</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>`;
 
     filteredData.forEach((r,i)=>{
+        const scoreColor = r.percentage >= 80 ? '#16a34a' : r.percentage >= 60 ? '#f59e0b' : '#dc2626';
         html+=`
         <tr>
             <td>${i+1}</td>
-            <td>${r.name}</td>
-            <td>${r.email}</td>
-            <td>${r.percentage}%</td>
-            <td>${r.access_code}</td>
-            <td>${new Date(r.timestamp).toLocaleString()}</td>
+            <td><strong>${r.name || 'N/A'}</strong></td>
+            <td>${r.email || 'N/A'}</td>
+            <td style="color:${scoreColor}; font-weight:bold;">${r.percentage || 0}%</td>
+            <td>${r.access_code || 'N/A'}</td>
+            <td>${r.timestamp ? new Date(r.timestamp).toLocaleDateString() : 'N/A'}</td>
             <td>
-                <button class="filter-btn" onclick="openDetail(${i})">View</button>
-                <button class="filter-btn" style="background:#0ea5e9;" onclick="downloadPDF(${i})">
-                    PDF
-                </button>
+                <div class="action-buttons">
+                    <button class="view-btn" onclick="openDetail(${i})">
+                        <i class="fas fa-eye"></i> View
+                    </button>
+                    <button class="pdf-btn" onclick="downloadPDF(${i})">
+                        <i class="fas fa-file-pdf"></i> PDF
+                    </button>
+                </div>
             </td>
         </tr>`;
     });
 
+    html += `</tbody>`;
     document.getElementById("resultsTable").innerHTML = html;
 }
 
 /* ---------- STATS + CHARTS ---------- */
-let scoreChartInstance=null,topicChartInstance=null;
-
 function updateStats(){
-    const total=filteredData.length;
-    let avg=0,exc=0;
+    const total = filteredData.length;
+    let avg = 0, exc = 0;
 
     filteredData.forEach(r=>{
-        avg += r.percentage||0;
-        if((r.percentage||0)>=80) exc++;
+        avg += r.percentage || 0;
+        if((r.percentage || 0) >= 80) exc++;
     });
 
-    avg=total?Math.round(avg/total):0;
+    avg = total ? Math.round(avg/total) : 0;
 
-    document.getElementById("statTotal").innerText=total;
-    document.getElementById("statAvg").innerText=avg+"%";
-    document.getElementById("statExcellent").innerText=exc;
+    document.getElementById("statTotal").innerText = total;
+    document.getElementById("statAvg").innerText = avg + "%";
+    document.getElementById("statExcellent").innerText = exc;
 
     renderScoreChart();
     renderTopicChart();
 }
 
 function renderScoreChart(){
-    const ranges={"0–25%":0,"26–50%":0,"51–75%":0,"76–100%":0};
+    const ranges = {"0–25%":0,"26–50%":0,"51–75%":0,"76–100%":0};
     filteredData.forEach(r=>{
-        let p=r.percentage||0;
-        if(p<=25)ranges["0–25%"]++;
-        else if(p<=50)ranges["26–50%"]++;
-        else if(p<=75)ranges["51–75%"]++;
+        let p = r.percentage || 0;
+        if(p <= 25) ranges["0–25%"]++;
+        else if(p <= 50) ranges["26–50%"]++;
+        else if(p <= 75) ranges["51–75%"]++;
         else ranges["76–100%"]++;
     });
 
-    if(scoreChartInstance)scoreChartInstance.destroy();
-    scoreChartInstance=new Chart(
+    if(scoreChartInstance) scoreChartInstance.destroy();
+    scoreChartInstance = new Chart(
         document.getElementById("scoreChart").getContext("2d"),{
             type:"bar",
-            data:{labels:Object.keys(ranges),
-            datasets:[{data:Object.values(ranges),
-                backgroundColor:["#f87171","#fb923c","#60a5fa","#34d399"]}]},
-            options:{responsive:true,plugins:{legend:{display:false}},
-            scales:{y:{beginAtZero:true}}}
+            data:{
+                labels:Object.keys(ranges),
+                datasets:[{
+                    data:Object.values(ranges),
+                    backgroundColor:["#f87171","#fb923c","#60a5fa","#34d399"]
+                }]
+            },
+            options:{
+                responsive:true,
+                plugins:{legend:{display:false}},
+                scales:{y:{beginAtZero:true, ticks:{stepSize:1}}}
+            }
         });
 }
 
 function renderTopicChart(){
-    const totals={},counts={};
+    const totals = {}, counts = {};
+    
     filteredData.forEach(r=>{
-        if(!r.topic_scores)return;
-        Object.entries(r.topic_scores).forEach(([t,s])=>{
-            totals[t]=(totals[t]||0)+s;
-            counts[t]=(counts[t]||0)+1;
+        if(!r.topic_scores) return;
+        Object.entries(r.topic_scores).forEach(([t, data])=>{
+            const score = data.percentage ?? data.score ?? 0;
+            totals[t] = (totals[t] || 0) + score;
+            counts[t] = (counts[t] || 0) + 1;
         });
     });
 
-    const topics=Object.keys(totals);
-    const avg=topics.map(t=>Math.round(totals[t]/counts[t]));
+    const topics = Object.keys(totals);
+    if(topics.length === 0) return;
+    
+    const avg = topics.map(t => Math.round(totals[t]/counts[t]));
 
-    if(topicChartInstance)topicChartInstance.destroy();
-    topicChartInstance=new Chart(
+    if(topicChartInstance) topicChartInstance.destroy();
+    topicChartInstance = new Chart(
         document.getElementById("topicChart").getContext("2d"),{
             type:"bar",
-            data:{labels:topics,datasets:[{data:avg,backgroundColor:"#2563eb"}]},
-            options:{responsive:true,plugins:{legend:{display:false}},
-            scales:{y:{beginAtZero:true}}}
+            data:{
+                labels:topics,
+                datasets:[{
+                    data:avg,
+                    backgroundColor:"#2563eb"
+                }]
+            },
+            options:{
+                responsive:true,
+                plugins:{legend:{display:false}},
+                scales:{y:{beginAtZero:true, max:100}}
+            }
         });
 }
 
-/* ---------- MODAL ---------- */
+/* ---------- MODAL WITH DETAILED VIEW ---------- */
 function openDetail(i){
-    const r=filteredData[i];
-    let html=`
-    <p><b>Email:</b> ${r.email}</p>
-    <p><b>Mobile:</b> ${r.mobile}</p>
-    <p><b>Experience:</b> ${r.experience}</p>
-    <p><b>Access Code:</b> ${r.access_code}</p>
-    <p><b>Date:</b> ${new Date(r.timestamp).toLocaleString()}</p>
-    <hr><h3>Topic Scores</h3>`;
+    const r = filteredData[i];
+    currentModalCandidate = r; // Store for download
+    
+    // Build info section
+    let html = `
+    <div class="info-section">
+        <div class="info-item"><strong>Email:</strong> ${r.email || 'N/A'}</div>
+        <div class="info-item"><strong>Mobile:</strong> ${r.mobile || 'N/A'}</div>
+        <div class="info-item"><strong>Experience:</strong> ${r.experience || 'N/A'}</div>
+        <div class="info-item"><strong>Access Code:</strong> ${r.access_code || 'N/A'}</div>
+        <div class="info-item"><strong>Date:</strong> ${r.timestamp ? new Date(r.timestamp).toLocaleString() : 'N/A'}</div>
+    </div>
+    
+    <h3 style="color:#1e3a8a; margin:20px 0 15px;">📊 Topic Scores</h3>
+    <div class="topic-scores-grid">`;
 
-   if (r.topic_scores) {
-    Object.entries(r.topic_scores).forEach(([topic, data]) => {
-        let percent = data.percentage ?? data.score ?? 0;
-        let total = data.totalPoints ?? data.total ?? data.points ?? 0;
-        let max = data.maxPoints ?? data.max ?? 0;
-        let status = data.statusText ?? data.status ?? "";
+    if (r.topic_scores) {
+        Object.entries(r.topic_scores).forEach(([topic, data]) => {
+            let percent = data.percentage ?? data.score ?? 0;
+            let total = data.totalPoints ?? data.total ?? data.points ?? 0;
+            let max = data.maxPoints ?? data.max ?? 0;
+            let status = data.statusText ?? data.status ?? "";
+            
+            let statusClass = percent >= 80 ? 'topic-excellent' : percent >= 60 ? 'topic-average' : 'topic-poor';
 
-        html += `
-            <p>
-                <b>${topic}:</b> 
-                ${percent}% (${total}/${max}) – 
-                <span style="color:${
-                    percent >= 80 ? '#16a34a' : percent >= 60 ? '#f59e0b' : '#dc2626'
-                }">
-                    ${status}
-                </span>
-            </p>
-        `;
-    });
-}
-
-    html+=`<hr><h3>Answers</h3>`;
-    if(r.answers){
-        r.answers.forEach((a,idx)=>{
-            html+=`
-            <p><b>Q${idx+1}:</b> ${a.question}<br>
-            <i>Points:</i> ${a.points}</p>`;
+            html += `
+            <div class="topic-score-card ${statusClass}">
+                <strong>${topic}</strong><br>
+                <span style="font-size:18px; font-weight:bold;">${percent}%</span>
+                <span style="color:#64748b;"> (${total}/${max})</span><br>
+                <small>${status}</small>
+            </div>`;
         });
     }
 
-    document.getElementById("modalBody").innerHTML=html;
-    document.getElementById("modalTitle").innerText=
-        `${r.name} — ${r.percentage}%`;
+    html += `</div><h3 style="color:#1e3a8a; margin:30px 0 15px;">📝 Answer Sheet</h3>`;
+    
+    if(r.answers && r.answers.length > 0){
+        r.answers.forEach((a, idx)=>{
+            html += `
+            <div class="answer-item">
+                <strong>Question ${idx+1}:</strong> ${a.question || 'N/A'}<br>
+                <span style="color:#2563eb; font-weight:bold;">Points: ${a.points || 0}</span>
+            </div>`;
+        });
+    } else {
+        html += `<p>No answers available</p>`;
+    }
 
-    document.getElementById("detailModal").style.display="flex";
+    document.getElementById("modalBody").innerHTML = html;
+    document.getElementById("modalTitle").innerHTML = `<i class="fas fa-user"></i> ${r.name || 'Unknown'} — ${r.percentage || 0}% Overall`;
+    document.getElementById("detailModal").style.display = "flex";
 }
 
 function closeModal(){
-    document.getElementById("detailModal").style.display="none";
+    document.getElementById("detailModal").style.display = "none";
+    currentModalCandidate = null;
 }
 
-/* ---------- PDF GENERATOR ---------- */
-const LOGO_BASE64 = `
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAB8j0aVAAAA
-... (your full Base64 logo will appear here automatically) ...
-`;
+/* ---------- DOWNLOAD MODAL REPORT AS PDF ---------- */
+async function downloadModalReportPDF() {
+    if (!currentModalCandidate) {
+        showNotification('No candidate data available', 'error');
+        return;
+    }
+
+    showNotification('Generating PDF report...', 'success');
+    
+    const r = currentModalCandidate;
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
+    const width = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+
+    // Header
+    doc.setFillColor(30, 58, 138);
+    doc.rect(0, 0, width, 80, "F");
+    doc.setFontSize(28);
+    doc.setTextColor("#ffffff");
+    doc.text("Sales4Sight", 40, 50);
+    doc.setFontSize(20);
+    doc.text("Detailed Assessment Report", width - 40, 50, { align: "right" });
+
+    let y = 120;
+
+    // Candidate Name & Score
+    doc.setFontSize(24);
+    doc.setTextColor("#1e3a8a");
+    doc.text(r.name || 'Unknown Candidate', 40, y);
+    
+    // Score circle
+    const centerX = width / 2;
+    doc.setLineWidth(8);
+    doc.setDrawColor(37, 99, 235);
+    doc.circle(centerX, y + 30, 45);
+    doc.setFontSize(24);
+    doc.setTextColor("#2563eb");
+    doc.text(r.percentage + "%", centerX, y + 45, { align: "center" });
+
+    y += 90;
+
+    // Candidate Details
+    doc.setFontSize(14);
+    doc.setTextColor("#000000");
+    doc.text(`Email: ${r.email || 'N/A'}`, 40, y);
+    doc.text(`Mobile: ${r.mobile || 'N/A'}`, 300, y);
+    y += 25;
+    doc.text(`Experience: ${r.experience || 'N/A'}`, 40, y);
+    doc.text(`Access Code: ${r.access_code || 'N/A'}`, 300, y);
+    y += 25;
+    doc.text(`Assessment Date: ${r.timestamp ? new Date(r.timestamp).toLocaleString() : 'N/A'}`, 40, y);
+
+    y += 40;
+
+    // Topic Scores
+    doc.setFontSize(18);
+    doc.setTextColor("#1e3a8a");
+    doc.text("Topic Performance", 40, y);
+    y += 20;
+
+    let topicRows = [];
+    if (r.topic_scores) {
+        topicRows = Object.entries(r.topic_scores).map(([topic, data]) => {
+            const percent = data.percentage ?? data.score ?? 0;
+            const total = data.totalPoints ?? data.total ?? data.points ?? 0;
+            const max = data.maxPoints ?? data.max ?? 0;
+            const status = data.statusText ?? data.status ?? "";
+            return [topic, `${percent}%`, `${total}/${max}`, status];
+        });
+    }
+
+    doc.autoTable({
+        startY: y,
+        head: [["Topic", "Score", "Points", "Status"]],
+        body: topicRows,
+        theme: "striped",
+        headStyles: { fillColor: [37, 99, 235], textColor: "#fff" },
+        styles: { fontSize: 10 }
+    });
+
+    y = doc.lastAutoTable.finalY + 30;
+
+    // Answer Sheet
+    if (y > pageHeight - 150) {
+        doc.addPage();
+        y = 40;
+    }
+
+    doc.setFontSize(18);
+    doc.setTextColor("#1e3a8a");
+    doc.text("Answer Details", 40, y);
+    y += 10;
+
+    let answerRows = [];
+    if (r.answers && r.answers.length > 0) {
+        answerRows = r.answers.map((a, i) => [
+            `Q${i + 1}`,
+            a.question || 'N/A',
+            a.points || 0
+        ]);
+    }
+
+    doc.autoTable({
+        startY: y + 10,
+        head: [["#", "Question", "Points"]],
+        body: answerRows,
+        theme: "striped",
+        styles: { fontSize: 9, cellWidth: "wrap" },
+        headStyles: { fillColor: [37, 99, 235], textColor: "#fff" },
+        didDrawPage: function(data) {
+            doc.setFontSize(8);
+            doc.setTextColor("#6b7280");
+            doc.text(
+                "© 2026 Sales4Sight Inc. | Confidential Report",
+                width / 2,
+                pageHeight - 20,
+                { align: "center" }
+            );
+        }
+    });
+
+    const safe = (r.name || 'candidate').replace(/[^a-z0-9]/gi, "_");
+    doc.save(`${safe}_detailed_report.pdf`);
+    showNotification('PDF report downloaded!', 'success');
+}
+
+/* ---------- NEW: DOWNLOAD MODAL REPORT AS TEXT FILE ---------- */
+function downloadModalReportTXT() {
+    if (!currentModalCandidate) {
+        showNotification('No candidate data available', 'error');
+        return;
+    }
+
+    const r = currentModalCandidate;
+    
+    // Build text content
+    let textContent = "========================================\n";
+    textContent += "     SALES4SIGHT ASSESSMENT REPORT\n";
+    textContent += "========================================\n\n";
+    
+    textContent += "CANDIDATE INFORMATION\n";
+    textContent += "---------------------\n";
+    textContent += `Name: ${r.name || 'N/A'}\n`;
+    textContent += `Email: ${r.email || 'N/A'}\n`;
+    textContent += `Mobile: ${r.mobile || 'N/A'}\n`;
+    textContent += `Experience: ${r.experience || 'N/A'}\n`;
+    textContent += `Access Code: ${r.access_code || 'N/A'}\n`;
+    textContent += `Assessment Date: ${r.timestamp ? new Date(r.timestamp).toLocaleString() : 'N/A'}\n`;
+    textContent += `Overall Score: ${r.percentage || 0}%\n\n`;
+    
+    textContent += "TOPIC SCORES\n";
+    textContent += "------------\n";
+    if (r.topic_scores) {
+        Object.entries(r.topic_scores).forEach(([topic, data]) => {
+            let percent = data.percentage ?? data.score ?? 0;
+            let total = data.totalPoints ?? data.total ?? data.points ?? 0;
+            let max = data.maxPoints ?? data.max ?? 0;
+            let status = data.statusText ?? data.status ?? "";
+            
+            textContent += `${topic}: ${percent}% (${total}/${max}) - ${status}\n`;
+        });
+    } else {
+        textContent += "No topic scores available\n";
+    }
+    
+    textContent += "\nANSWER SHEET\n";
+    textContent += "------------\n";
+    if (r.answers && r.answers.length > 0) {
+        r.answers.forEach((a, idx) => {
+            textContent += `Q${idx+1}: ${a.question || 'N/A'}\n`;
+            textContent += `Points: ${a.points || 0}\n\n`;
+        });
+    } else {
+        textContent += "No answers available\n";
+    }
+    
+    textContent += "\n========================================\n";
+    textContent += "Report generated on " + new Date().toLocaleString() + "\n";
+    textContent += "© 2026 Sales4Sight Inc.\n";
+    
+    // Create and download text file
+    const blob = new Blob([textContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${(r.name || 'candidate').replace(/[^a-z0-9]/gi, "_")}_report.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+    
+    showNotification('Text report downloaded!', 'success');
+}
+
+/* ---------- EXISTING PDF GENERATOR ---------- */
 async function downloadPDF(index) {
+    showNotification('Generating summary PDF...', 'success');
+    
     const r = filteredData[index];
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: "pt", format: "a4" });
     const width = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
 
-    /* HEADER BAR */
+    // Header
     doc.setFillColor(30, 58, 138);
     doc.rect(0, 0, width, 80, "F");
-
-    try {
-        doc.addImage(LOGO_BASE64, "PNG", 30, 15, 110, 50);
-    } catch (e) {}
-
-    doc.setFontSize(24);
+    doc.setFontSize(28);
     doc.setTextColor("#ffffff");
+    doc.text("Sales4Sight", 40, 50);
+    doc.setFontSize(20);
     doc.text("Assessment Report", width - 40, 50, { align: "right" });
 
     let y = 120;
 
-    /* SECTION TITLE */
+    // Summary
     doc.setFontSize(18);
     doc.setTextColor("#1e3a8a");
     doc.text("Candidate Summary", 30, y);
-
-    /* SUMMARY CARDS (UI STYLE) */
     y += 20;
 
-    function drawCard(label, value, x, y) {
-        doc.setFillColor(241, 245, 249);
-        doc.roundedRect(x, y, 170, 60, 8, 8, "F");
+    doc.setFontSize(12);
+    doc.setTextColor("#000000");
+    doc.text(`Name: ${r.name || 'N/A'}`, 40, y);
+    doc.text(`Email: ${r.email || 'N/A'}`, 250, y);
+    doc.text(`Score: ${r.percentage || 0}%`, 450, y);
+    
+    y += 25;
+    doc.text(`Mobile: ${r.mobile || 'N/A'}`, 40, y);
+    doc.text(`Experience: ${r.experience || 'N/A'}`, 250, y);
+    doc.text(`Date: ${r.timestamp ? new Date(r.timestamp).toLocaleDateString() : 'N/A'}`, 450, y);
 
-        doc.setFontSize(10);
-        doc.setTextColor("#475569");
-        doc.text(label, x + 10, y + 20);
+    y += 60;
 
-        doc.setFontSize(16);
-        doc.setTextColor("#1e3a8a");
-        doc.text(String(value), x + 10, y + 45);
-    }
-
-    drawCard("Name", r.name, 30, y);
-    drawCard("Email", r.email, 220, y);
-    drawCard("Score", r.percentage + "%", 410, y);
-
-    y += 80;
-    drawCard("Mobile", r.mobile, 30, y);
-    drawCard("Experience", r.experience, 220, y);
-    drawCard("Date", new Date(r.timestamp).toLocaleString(), 410, y);
-
-    y += 100;
-
-    /* BIG BLUE SCORE CIRCLE (matches UI) */
+    // Score circle
     const centerX = width / 2;
     doc.setLineWidth(8);
     doc.setDrawColor(37, 99, 235);
-    doc.circle(centerX, y + 60, 50);
-
+    doc.circle(centerX, y + 30, 50);
     doc.setFontSize(26);
     doc.setTextColor("#2563eb");
-    doc.text(r.percentage + "%", centerX, y + 70, { align: "center" });
+    doc.text(r.percentage + "%", centerX, y + 45, { align: "center" });
 
-    y += 140;
+    y += 100;
 
-    /* TOPIC PERFORMANCE SECTION */
+    // Topic Performance
     doc.setFontSize(18);
     doc.setTextColor("#1e3a8a");
     doc.text("Topic Performance", 30, y);
-
     y += 20;
 
-    let topicRows = Object.entries(r.topic_scores).map(([topic, data]) => {
-        return [
-            topic,
-            `${data.percentage}% (${data.totalPoints}/${data.maxPoints})`,
-            data.statusText || data.status || ""
-        ];
-    });
+    let topicRows = [];
+    if (r.topic_scores) {
+        topicRows = Object.entries(r.topic_scores).map(([topic, data]) => {
+            const percent = data.percentage ?? data.score ?? 0;
+            const total = data.totalPoints ?? data.total ?? data.points ?? 0;
+            const max = data.maxPoints ?? data.max ?? 0;
+            const status = data.statusText ?? data.status ?? "";
+            return [topic, `${percent}% (${total}/${max})`, status];
+        });
+    }
 
     doc.autoTable({
         startY: y,
@@ -542,16 +1131,24 @@ async function downloadPDF(index) {
 
     y = doc.lastAutoTable.finalY + 30;
 
-    /* ANSWER DETAILS */
+    // Answer Sheet
+    if (y > pageHeight - 150) {
+        doc.addPage();
+        y = 40;
+    }
+
     doc.setFontSize(18);
     doc.setTextColor("#1e3a8a");
     doc.text("Answer Sheet", 30, y);
 
-    let answerRows = r.answers.map((a, i) => [
-        `Q${i + 1}`,
-        a.question,
-        a.points
-    ]);
+    let answerRows = [];
+    if (r.answers && r.answers.length > 0) {
+        answerRows = r.answers.map((a, i) => [
+            `Q${i + 1}`,
+            a.question || 'N/A',
+            a.points || 0
+        ]);
+    }
 
     doc.autoTable({
         startY: y + 10,
@@ -559,23 +1156,31 @@ async function downloadPDF(index) {
         body: answerRows,
         theme: "striped",
         styles: { fontSize: 9, cellWidth: "wrap" },
-        headStyles: { fillColor: [37, 99, 235], textColor: "#fff" }
+        headStyles: { fillColor: [37, 99, 235], textColor: "#fff" },
+        didDrawPage: function(data) {
+            doc.setFontSize(8);
+            doc.setTextColor("#6b7280");
+            doc.text(
+                "© 2026 Sales4Sight Inc. | Four Pillars, One Framework",
+                width / 2,
+                pageHeight - 20,
+                { align: "center" }
+            );
+        }
     });
 
-    /* FOOTER */
-    doc.setFontSize(10);
-    doc.setTextColor("#6b7280");
-    doc.text(
-        "© 2026 Sales4Sight Inc. | Four Pillars, One Framework | Foresight. Hindsight. Insight. Oversight.",
-        width / 2,
-        pageHeight - 20,
-        { align: "center" }
-    );
-
-    const safe = r.name.replace(/[^a-z0-9]/gi, "_");
-    doc.save(`${safe}_assessment_report.pdf`);
+    const safe = (r.name || 'candidate').replace(/[^a-z0-9]/gi, "_");
+    doc.save(`${safe}_summary_report.pdf`);
+    showNotification('Summary PDF generated!', 'success');
 }
 
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('detailModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
 </script>
 
 </body>
